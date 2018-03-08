@@ -1,0 +1,31 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+
+.infoText {
+  margin: 0px 50px 10px 50px;
+  text-align: center;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+.col-lg-4 {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 50%;
+  flex:0 0 50%;
+  max-width:50%;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
