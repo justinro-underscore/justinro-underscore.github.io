@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title id="test">Hot Rod Gid Database</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="pageRunner.js"></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body onload="onLoad()">
+    <main role="main">
+
+      <div class="header">
+        <h1 style="font-size:100px;">Happy Birthday Tim!</h1>
+        <p style="text-shadow:none;font-size:30px;">Here, you will find the most extensive collection of Hot Rod gifs known to man. Use them wisely</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="searchBar">
+        <p style="font-size:30px;">Search for a specific gif:</p>
+        <input type="text" id="searchInput" onkeyup="search()" placeholder="Search...">
+        <br><br>
+      </div>
+
+      <div id="gifGrid">
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>All gifs are property of Paramount Studios, not me.</p>
+      </footer>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  </body>
+</html>
