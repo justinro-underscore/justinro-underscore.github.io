@@ -30,10 +30,14 @@ let gifGrid;
 function populateDatabase()
 {
   let gifNames = [
-    'CoolBeans',
-    'EveryoneLaughing',
-    'LetsParty',
-    'ThumbsUp'
+    "AllGreatMen",
+	"AncestorsProtectMe",
+	"BringTheDemons",
+	"Bubblewrap",
+	"Dance",
+	"Dance2",
+	"Dance3",
+	"Don'tJustStareAtMe"
   ]
 
   gifNames.forEach((name) => {
@@ -61,13 +65,22 @@ function onLoad()
 function search()
 {
   let input = document.getElementById("searchInput").value.toLowerCase();
+  let found = false;
   dataBase.forEach((x) => {
     let entry = document.getElementById(x.imgName);
-    if(entry.id.toLowerCase().includes(input)) {
+    if(x.name.toLowerCase().includes(input)) {
+	  found = true;
       entry.style.display = "";
     }
     else {
       entry.style.display = "none";
     }
-  })
+  });
+  let noneFound = document.getElementById("NoGifFound");
+  if(!found) {
+	noneFound.style.display = "block";
+  }
+  else {
+	noneFound.style.display = "none";
+  }
 }
