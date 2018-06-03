@@ -27,6 +27,7 @@ console.log("test".includes("t"));
 let dataBase = [];
 let gifGrid;
 
+// Eventually I'm gunna have to move all of the gifs off of this repo
 function populateDatabase()
 {
   let gifNames = [
