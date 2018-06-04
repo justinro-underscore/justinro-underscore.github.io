@@ -256,6 +256,7 @@ function onLoad()
   gifGrid = document.getElementById("gifGrid");
   populateDatabase();
 
+  /**
   dataBase.forEach((entry) => {
     gifGrid.innerHTML +=
     `
@@ -264,6 +265,7 @@ function onLoad()
       <h2>` + entry.name + `</h2>
     </div>`;
   });
+  **/
 
   loadImages("");
 }
