@@ -22,10 +22,10 @@ class Gif
   }
 }
 
-console.log("test".includes("t"));
-
 let dataBase = [];
 let gifGrid;
+let currPage = 1;
+let maxPages;
 
 // Eventually I'm gunna have to move all of the gifs off of this repo
 function populateDatabase()
@@ -249,8 +249,6 @@ function populateDatabase()
   gifNames.forEach((name) => {
     dataBase.push(new Gif(name));
   });
-
-  console.log(dataBase[0]);
 }
 
 function onLoad()
@@ -261,32 +259,79 @@ function onLoad()
   dataBase.forEach((entry) => {
     gifGrid.innerHTML +=
     `
-    <div class="gifEntry" id="` + entry.imgName + `" style="display:block;">
+    <div class="gifEntry" id="` + entry.imgName + `" style="display:none;">
       <img src="Gifs/` + entry.imgName + `.gif" alt="` + entry.name + `" style="width:100%;">
       <h2>` + entry.name + `</h2>
     </div>`;
   });
+
+  loadImages("");
 }
 
-function search()
+function loadImages(searchValue)
 {
-  let input = document.getElementById("searchInput").value.toLowerCase();
+  // Console.log("check");
   let found = false;
+  let index = 0;
   dataBase.forEach((x) => {
     let entry = document.getElementById(x.imgName);
-    if(x.name.toLowerCase().includes(input)) {
-	  found = true;
-      entry.style.display = "";
+    if(x.name.toLowerCase().includes(searchValue)) {
+	    found = true;
+      index++;
+      if(index >= ((currPage - 1) * 15) && index < (currPage * 15)) {
+        entry.style.display = "block";
+      }
+      else {
+        entry.style.display = "none";
+      }
     }
     else {
       entry.style.display = "none";
     }
   });
+
   let noneFound = document.getElementById("NoGifFound");
   if(!found) {
-	noneFound.style.display = "block";
+	 noneFound.style.display = "block";
   }
   else {
-	noneFound.style.display = "none";
+	 noneFound.style.display = "none";
   }
+
+  maxPages = Math.floor(index / 15) + 1;
+  if(currPage > maxPages) {
+    currPage = maxPages;
+    let pageNumber = document.getElementsByName("pageNumber");
+    pageNumber.forEach((x) => {
+      x.innerHTML = ("<a " + (currPage === 1 ? "" : "href='javascript:void(0);' ") +
+                    "onclick='changePage(false)'><<</a>  " + currPage + "  <a " +
+                    (currPage === maxPages ? "" : "href='javascript:void(0);' ")
+                    + "onclick='changePage(true)'>>></a>");
+    });
+    loadImages(searchValue);
+  }
+}
+
+function refreshSearch()
+{
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  loadImages(input);
+}
+
+function changePage(isRight)
+{
+  if(isRight && currPage < maxPages) {
+    currPage++;
+  }
+  else if(!isRight && currPage > 1) {
+    currPage--;
+  }
+  let pageNumber = document.getElementsByName("pageNumber");
+  pageNumber.forEach((x) => {
+    x.innerHTML = ("<a " + (currPage === 1 ? "" : "href='javascript:void(0);' ") +
+                  "onclick='changePage(false)'><<</a>  " + currPage + "  <a " +
+                  (currPage === maxPages ? "" : "href='javascript:void(0);' ")
+                  + "onclick='changePage(true)'>>></a>");
+  });
+  refreshSearch();
 }

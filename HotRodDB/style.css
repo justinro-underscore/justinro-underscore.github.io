@@ -20,6 +20,10 @@ body {
   text-align: center;
 }
 
+.changePage {
+  font-size: 20px;
+}
+
 /* Search bar css from https://www.w3schools.com/howto/howto_css_animated_search.asp */
 input[type=text] {
     width: 130px;

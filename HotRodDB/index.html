@@ -23,14 +23,30 @@
 
       <div class="searchBar">
         <p style="font-size:30px;">Search for a specific gif:</p>
-        <input type="text" id="searchInput" onkeyup="search()" placeholder="Search...">
+        <input type="text" id="searchInput" onkeyup="refreshSearch()" placeholder="Search...">
         <br><br>
       </div>
 
+      <div class="changePage">
+        <p name="pageNumber">
+          <a onclick="changePage(false)"><<</a>
+           1
+          <a href="javascript:void(0);" onclick="changePage(true)">>></a>
+        </p>
+      </div>
+
       <div id="gifGrid">
-	    <div id="NoGifFound" style="display:none;">
+        <div id="NoGifFound" style="display:none;">
           <h3 style="text-align:center;">No Results Found</h3>
         </div>
+      </div>
+
+      <div class="changePage">
+        <p name="pageNumber">
+          <a onclick="changePage(false)"><<</a>
+          1
+          <a href="javascript:void(0);" onclick="changePage(true)">>></a>
+        </p>
       </div>
 
       <hr class="featurette-divider">
