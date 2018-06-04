@@ -251,28 +251,27 @@ function populateDatabase()
   });
 }
 
-function onLoad()
+function onLoad(loadImagesBool)
 {
   gifGrid = document.getElementById("gifGrid");
   populateDatabase();
 
-  /**
-  dataBase.forEach((entry) => {
-    gifGrid.innerHTML +=
-    `
-    <div class="gifEntry" id="` + entry.imgName + `" style="display:none;">
-      <img src="Gifs/` + entry.imgName + `.gif" alt="` + entry.name + `" style="width:100%;">
-      <h2>` + entry.name + `</h2>
-    </div>`;
-  });
-  **/
+  if(loadImagesBool) {
+    dataBase.forEach((entry) => {
+      gifGrid.innerHTML +=
+      `
+      <div class="gifEntry" id="` + entry.imgName + `" style="display:none;">
+        <img src="Gifs/` + entry.imgName + `.gif" alt="` + entry.name + `" style="width:100%;">
+        <h2>` + entry.name + `</h2>
+      </div>`;
+    });
+  }
 
   loadImages("");
 }
 
 function loadImages(searchValue)
 {
-  // Console.log("check");
   let found = false;
   let index = 0;
   dataBase.forEach((x) => {
