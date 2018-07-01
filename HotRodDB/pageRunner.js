@@ -56,13 +56,12 @@ function populateDatabase()
     "Bubblewrap",
     "ChemicalFire",
     "Clap",
-    "CoolBeans1",
+    "CoolBeans",
     "CreepyFisherman",
     "Crying",
     "Dance1",
     "Dance2",
     "Dance3",
-    "Dance",
     "Danger",
     "DaveNod",
     "DaveSuitcase",
@@ -263,11 +262,11 @@ function onLoad(loadImagesBool)
   populateDatabase();
 
   if(loadImagesBool) {
-    dataBase.forEach((entry) => { // Change src to "Gifs/" entry.imgName + ".png"
+    dataBase.forEach((entry) => {
       gifGrid.innerHTML +=
       `
       <div class="gifEntry" id="` + entry.imgName + `" style="display:none;" onclick="changeToGif('` + entry.imgName.replace("'", "\\'") + `')">
-        <img id="` + entry.imgName + `Img" src="Gifs/test.png" alt="` + entry.name + `" style="width:100%;">
+        <img id="` + entry.imgName + `Img" src="Gifs/` + entry.imgName + `.png" alt="` + entry.name + `" style="width:100%;">
         <h2 id="` + entry.imgName + `Header" style="color:red;">` + entry.name + `</h2>
       </div>`;
     });
@@ -279,13 +278,13 @@ function onLoad(loadImagesBool)
 function loadImages(searchValue)
 {
   let found = false;
-  let index = 0;
+  let index = -1;
   dataBase.forEach((x) => {
     let entry = document.getElementById(x.imgName);
     if(x.name.toLowerCase().includes(searchValue)) {
 	    found = true;
       index++;
-      if(index >= ((currPage - 1) * 15) && index < (currPage * 15)) {
+      if(index >= ((currPage - 1) * 16) && index < (currPage * 16)) {
         entry.style.display = "block";
       }
       else {
@@ -305,7 +304,7 @@ function loadImages(searchValue)
 	 noneFound.style.display = "none";
   }
 
-  maxPages = Math.floor(index / 15) + 1;
+  maxPages = Math.floor(index / 16) + 1;
   if(currPage > maxPages) {
     currPage = maxPages;
     let pageNumber = document.getElementsByName("pageNumber");
@@ -325,7 +324,7 @@ function refreshSearch()
   if(activatedGif != undefined) {
     if(!getRealName(activatedGif).toLowerCase().includes(input)) {
       document.getElementById(activatedGif + "Header").style.color = "red";
-      document.getElementById(activatedGif + "Img").src = "Gifs/" + "test" + ".png"; // Change to activatedGif + ".png"
+      document.getElementById(activatedGif + "Img").src = "Gifs/" + activatedGif + ".png";
       activatedGif = undefined;
     }
   }
@@ -356,7 +355,7 @@ function changeToGif(imgName)
   document.getElementById(imgName + "Img").src = "Gifs/" + imgName + ".gif";
   if(activatedGif != undefined) {
     document.getElementById(activatedGif + "Header").style.color = "red";
-    document.getElementById(activatedGif + "Img").src = "Gifs/" + "test" + ".png"; // Change to activatedGif + ".png"
+    document.getElementById(activatedGif + "Img").src = "Gifs/" + activatedGif + ".png";
   }
 
   if(activatedGif == imgName) {
