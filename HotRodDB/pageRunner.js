@@ -11,9 +11,7 @@ class Gif
 
   get name()
   {
-    return this._name.replace(/[A-Z0-9]/g, function (x) {
-        return " " + x;
-    }).substr(1);
+    return getRealName(this._name);
   }
 
   set name(name)
@@ -22,10 +20,18 @@ class Gif
   }
 }
 
+function getRealName(name)
+{
+  return name.replace(/[A-Z0-9]/g, function (x) {
+      return " " + x;
+  }).substr(1);
+}
+
 let dataBase = [];
 let gifGrid;
 let currPage = 1;
 let maxPages;
+let activatedGif;
 
 // Eventually I'm gunna have to move all of the gifs off of this repo
 function populateDatabase()
@@ -257,12 +263,12 @@ function onLoad(loadImagesBool)
   populateDatabase();
 
   if(loadImagesBool) {
-    dataBase.forEach((entry) => {
+    dataBase.forEach((entry) => { // Change src to "Gifs/" entry.imgName + ".png"
       gifGrid.innerHTML +=
       `
-      <div class="gifEntry" id="` + entry.imgName + `" style="display:none;">
-        <img src="Gifs/` + entry.imgName + `.gif" alt="` + entry.name + `" style="width:100%;">
-        <h2>` + entry.name + `</h2>
+      <div class="gifEntry" id="` + entry.imgName + `" style="display:none;" onclick="changeToGif('` + entry.imgName.replace("'", "\\'") + `')">
+        <img id="` + entry.imgName + `Img" src="Gifs/test.png" alt="` + entry.name + `" style="width:100%;">
+        <h2 id="` + entry.imgName + `Header" style="color:red;">` + entry.name + `</h2>
       </div>`;
     });
   }
@@ -316,6 +322,13 @@ function loadImages(searchValue)
 function refreshSearch()
 {
   let input = document.getElementById("searchInput").value.toLowerCase();
+  if(activatedGif != undefined) {
+    if(!getRealName(activatedGif).toLowerCase().includes(input)) {
+      document.getElementById(activatedGif + "Header").style.color = "red";
+      document.getElementById(activatedGif + "Img").src = "Gifs/" + "test" + ".png"; // Change to activatedGif + ".png"
+      activatedGif = undefined;
+    }
+  }
   loadImages(input);
 }
 
@@ -335,4 +348,21 @@ function changePage(isRight)
                   + "onclick='changePage(true)'>>></a>");
   });
   refreshSearch();
+}
+
+function changeToGif(imgName)
+{
+  document.getElementById(imgName + "Header").style.color = "green";
+  document.getElementById(imgName + "Img").src = "Gifs/" + imgName + ".gif";
+  if(activatedGif != undefined) {
+    document.getElementById(activatedGif + "Header").style.color = "red";
+    document.getElementById(activatedGif + "Img").src = "Gifs/" + "test" + ".png"; // Change to activatedGif + ".png"
+  }
+
+  if(activatedGif == imgName) {
+    activatedGif = undefined;
+  }
+  else {
+    activatedGif = imgName;
+  }
 }
