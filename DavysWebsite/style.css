@@ -1,0 +1,15 @@
+body {
+  margin-top: -7rem;
+  margin-bottom: -10rem;
+  font-family: "Impact", Arial, sans-serif;
+  font-size: 10rem;
+  text-align:center;
+  background-color: black;
+  color: white;
+}
+
+p {
+  margin-top: 10rem;
+  font-size: 1.5rem;
+  color: white;
+}
