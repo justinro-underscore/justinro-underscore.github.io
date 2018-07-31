@@ -6,16 +6,21 @@
     <link href="style.css" rel="stylesheet">
     <script type="text/javascript" src="davyRunner.js"></script>
   </head>
-  <body onload="init()" id="mainText">
+  <body id="mainText">
     <main role="main">
-      <div id="customText" style="display:none">
-        <p>
-          Edit text:
-          <input type="text" id="textInput" placeholder="Text">
-          <input type="button" onclick="setText()" value="Submit">
-        </p>
+      <div id="openWebpage" style="display:block;width:100%;height:100%;padding-top:3rem">
+        <button onclick="showWebpage()" style="font-size:1rem;margin:auto">Click Me</button>
       </div>
-      <h1 id="text" onclick="customToggle()">Davy's Got Juice</h1>
+      <div id="mainWebpage" style="display:none;width:100%;height:100%">
+        <div id="customText" style="display:none">
+          <p>
+            Edit text:
+            <input type="text" id="textInput" placeholder="Text">
+            <input type="button" onclick="setText()" value="Submit">
+          </p>
+        </div>
+        <h1 id="text" onclick="customToggle()">Davy's Got Juice</h1>
+      </div>
     </main>
   </body>
 </html>

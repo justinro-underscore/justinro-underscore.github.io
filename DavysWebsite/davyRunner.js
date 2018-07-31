@@ -6,6 +6,13 @@ bg = null
 increasing = true
 on = false
 
+function showWebpage()
+{
+  document.getElementById("openWebpage").style.display = "none"
+  document.getElementById("mainWebpage").style.display = "block"
+  init()
+}
+
 function init()
 {
   main = document.getElementById("mainText").style
