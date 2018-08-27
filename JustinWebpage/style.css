@@ -1,0 +1,27 @@
+html {
+  font-family: "Fira Sans", Arial, sans-serif;
+  font-weight: 400;
+	color: #00264d;
+  background-color: #f2f2f2;
+}
+
+hr {
+  background-color: #a0a0a0;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.index-title {
+	font-size: 90px;
+	letter-spacing: 3px;
+	color: #0066cc;
+}
+
+.index-subtitle {
+	font-size: 32px;
+	color: #00264d;
+}
+
+a.index-subtitle:hover {
+	color: #0000aa;
+}
