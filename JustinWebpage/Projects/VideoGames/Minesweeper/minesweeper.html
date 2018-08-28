@@ -23,8 +23,92 @@
         <section class="section">
         	<div class="container has-text-centered">
         		<h1 class="title index-title">Minesweeper</h1>
-            <a class="subtitle index-subtitle" href="https://github.com/justinro-underscore/Minesweeper" target="_blank">Minesweeper</a>
+            <a class="subtitle index-subtitle" href="#Code">The Code</a>
+            <p>
+              <br>Let's set the scene.<br><br>
+              The date is August 2nd, 2018, and I am sitting on a plane on my way to Boston to see my
+              friend for the weekend. Attempting to quell my boredom, I begin playing Minesweeper on
+              my phone, a common thing to do when I don't have internet. However, today was no ordinary
+              day of playing my favorite arcade game. I had long since known about the pitfalls of
+              Minesweeper - times when the player has no choice but to guess what cell is a mine and
+              what isn't. I hate these moments; in a game solely about logic, it infuriates me when I
+              lose due to situations (situations?) outside of my control. With a 4 hour layover in
+              Philadelphia, I had a plan. A plan that would make the greatest designers tremble. I would
+              attempt to fix a decades-old game, beloved by fans everywhere.<br><br>
+              <b>I would attempt to fix Minesweeper</b><br><br>
+            </p>
         	</div>
+          <div class="container">
+            <h2>The Goal</h2>
+            <p>
+              <a href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)" target="_blank">Minesweeper</a>
+              is a fantastic game that most everyone from the 1960s-onwards should know. The game, which
+              began as a mainframe game in the 1960s, has a very simple premise: clear out a minefield
+              by clicking on cells. Almost every cell has a number, and that number tells the player how
+              many mines are adjacent.<br><br>
+              <div class="proj-img" style="float:right;">
+                <img src="MinesweeperImpossible.png">
+                <p>Figure 1.a</p>
+              </div>
+              It's a very simple logic game, but it has one glaring flaw that upsets me. Due to the random
+              nature of the game, it is possible (and quite likely) to get into a situation where you have
+              no choice but to guess as to which cell is a mine and which one isn't. This can be seen in
+              Figure 1.a. In this shot, it is clear that the top two cells are mines, but it is unclear
+              whether the middle cell is a mine or if the bottom cell is a mine. This is by far not the
+              only occurrence of this conundrum, but it seems to be the most common.<br><br>
+              The goal of this project is deceivingly simple: fix Minesweeper's unfair guessing game. However,
+              like most things, it is easier said than done.<br><br>
+            </p>
+          </div>
+          <div class="container">
+            <h2>The Progress</h2>
+            <p>
+              Unfortunately, this project is a work-in-progress. Right now I have successfully recreated
+              Minesweeper in JavaFX, however I have not implemented any checks to see if the game has
+              become impossible to complete logically. The screenshots below show the progress that has
+              been made:
+            </p><br>
+            <div class="tile is-ancestor">
+              <div class="tile proj-img">
+                <img src="MinesweeperWin.png" style="border:none;">
+              </div>
+              <div class="tile proj-img">
+                <img src="Minesweeper1.png" style="border:none;">
+              </div>
+              <div class="tile proj-img">
+                <img src="Minesweeper2.png" style="border:none;">
+              </div>
+              <div class="tile proj-img">
+                <img src="MinesweeperLose.png" style="border:none;">
+              </div>
+            </div><br>
+          </div>
+          <div class="container">
+            <h2>The Future</h2>
+            <p>
+              As stated earlier, this project is not done. The basic functionality of the game is there,
+              but my goal was not to simply recreate Minesweeper. The goal was to fix it.<br>
+              Unfortunately, I don't really know how to accomplish this task currently, nor do I really
+              have the time to do it. The only idea I currently have is to create a bot that will
+              solve the puzzle first and figure out what is impossible and what isn't. After that,
+              I can think of a way to resolve these situations. During these situations, I was thinking
+              another, smaller map would pop up. If the player completed this map, the situation would
+              automatically be resolved, and the correct mine would be flagged. There is also the option
+              of having a special tool that players can use to flag impossible situations. At the end of
+              the game, the game would check these so-called "impossible situations". If they truly
+              can't be resolved logically, the player would win. If not, the mines would explode and the
+              player would lose. These ideas are admittedly not great, and need some refining. However,
+              I hope that once I get the time (and drive) to finish this project, implementing these
+              ideas won't be too difficult...<br><br>
+            </p>
+          </div>
+          <div class="container">
+            <h2 id="Code">The Code</h2>
+            <p>
+              To access the code, <a href="https://github.com/justinro-underscore/Minesweeper" target="_blank"><b>click here</b></a><br>
+              To access the jar, <a href="#" target="_blank"><b>click here</b></a> (Unavailable currently)
+            </p>
+          </idv>
         </section>
       </div>
     </main>
