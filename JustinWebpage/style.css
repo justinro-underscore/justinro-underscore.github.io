@@ -34,6 +34,7 @@ a.index-subtitle:hover {
 }
 
 .proj-img img {
+  margin: auto;
   border: solid;
 }
 
@@ -43,10 +44,37 @@ a.index-subtitle:hover {
 	color: #bbbbbb;
 }
 
+.quote-text {
+  border: solid;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  color: #999999;
+  font-style: italic;
+  font-size: 28px;
+}
+
+.hidden-link {
+  color: #4a4a4a;
+}
+
+.hidden-link:hover {
+  cursor: text;
+  color: #4a4a4a;
+}
+
 @media only screen and (max-width: 600px) {
   .index-title {
     font-size: 12vw;
     letter-spacing: 0.5vw;
+  }
+
+  .quote-text {
+    font-size: 18px;
+    margin-left: 2vw;
+    margin-right: 2vw;
   }
 }
 
