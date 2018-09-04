@@ -65,6 +65,10 @@ a.index-subtitle:hover {
   color: #4a4a4a;
 }
 
+ol {
+  padding-left: 35px;
+}
+
 @media only screen and (max-width: 600px) {
   .index-title {
     font-size: 12vw;
