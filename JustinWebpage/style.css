@@ -69,6 +69,45 @@ ol {
   padding-left: 35px;
 }
 
+.code-btn {
+  color: black;
+  background-color: #1a8cff;
+  width: 7em;
+  transition-duration: 0.3s;
+}
+
+.download-btn {
+  color: black;
+  background-color: #ffb84d;
+  width: 7em;
+  transition-duration: 0.3s;
+}
+
+.web-btn {
+  color: black;
+  background-color: #ff3333;
+  width: 7em;
+  transition-duration: 0.3s;
+}
+
+.code-btn:hover {
+  color: white;
+  background-color: #0059b3;
+  box-shadow: 0 0 10px 5px gray;
+}
+
+.download-btn:hover {
+  color: white;
+  background-color: #ff9900;
+  box-shadow: 0 0 10px 5px gray;
+}
+
+.web-btn:hover {
+  color: white;
+  background-color: #b30000;
+  box-shadow: 0 0 10px 5px gray;
+}
+
 @media only screen and (max-width: 600px) {
   .index-title {
     font-size: 11vw;
