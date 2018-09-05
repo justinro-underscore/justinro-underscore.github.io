@@ -22,9 +22,112 @@
       <div>
         <section class="section">
         	<div class="container has-text-centered">
-        		<h1 class="title index-title">Hot Rod Database</h1>
-        		<a class="subtitle index-subtitle" href="https://justinro-underscore.github.io/HotRodDB/index.html" target="_blank">Hot Rod DB</a>
-        	</div>
+        		<h1 class="title index-title">HOT ROD DATABASE</h1>
+        		<a class="subtitle index-subtitle" href="https://justinro-underscore.github.io/HotRodDB/index.html" target="_blank">The Site</a>
+            <p>
+              <br>The movie <a href="https://www.imdb.com/title/tt0787475/" target="_blank"><i>Hot Rod</i> (2007)</a>,
+              directed by Akiva Schaffer and starring Andy Samberg, is technically
+              a bad movie. Although the humor is childish and the entire film relies
+              a bit too heavily on slapstick comedy, <b>it is one of me and my roommate's
+              favorite films of all time</b>. We reference it constantly, and enjoy
+              subjecting our friends to repeated viewings with commentary (which
+              simply consists of him and I saying the lines with the actors). The
+              movie is a pivotal part of our friendship, so when Tim's (my roommate's) birthday
+              came around I had a great idea. I would go through the movie, make
+              gifs of a few of our favorite parts, then load them all up onto a flash
+              drive and give it to him. It would be <i>easy-peasy</i>...<br>
+              <b>It wasn't easy-peasy</b><br><br>
+            </p>
+          </div>
+          <div class="tile is-ancestor">
+            <div class="tile proj-img">
+              <img src="HotRod1.png" style="border:none;box-shadow: 0 0 10px 10px white;">
+            </div>
+          </div>
+          <div class="container">
+            <h2>The Gifs</h2>
+            <p>
+              The first thing I needed were gifs. I was supposed to find only 10
+              to 15 or so gifs to collect, but I soon realized that there were way
+              too many good moments to choose. What started as a 30-45 minute venture -
+              take the clips, shorten them, and then make them into gifs - soon
+              turned into a 15 hour sludge, as I made over 200 different gifs.
+            </p><br>
+          </div>
+          <div class="tile is-ancestor">
+            <div class="tile is-vertical proj-img">
+              <img src="../../../../HotRodDB/Gifs/CoolBeans.gif">
+            </div>
+            <div class="tile proj-img">
+              <img src="../../../../HotRodDB/Gifs/Dance2.gif">
+            </div>
+            <div class="tile proj-img">
+              <img src="../../../../HotRodDB/Gifs/HiFive.gif">
+            </div>
+            <div class="tile proj-img">
+              <img src="../../../../HotRodDB/Gifs/SafeWord.gif">
+            </div>
+          </div>
+          <div class="container">
+            <h2>The Site</h2>
+            <p>
+              Once I had all of the gifs, I needed a place to put them. I quickly
+              realized that a flash drive wasn't gunna cut it - if you wanted to
+              actually use these gifs, they would have to be available on messaging
+              devices. This is where the idea for a website came in. The site was
+              simple, mostly governed by a javascript function that made adding /
+              changing gifs very easy. I quickly figured out that a search bar was
+              necessary in order to find a specific gif. This was actually a very
+              simple thing to add in given the preexisting website structure. Once
+              all of the gifs were loaded in, I made them show up in pages, so as
+              to get rid of the awful strain it would put on the computer to run all
+              215 gifs simultaneously. However, as I soon learned, this would not
+              be enough...
+            </p><br>
+          </div>
+          <div class="tile is-ancestor">
+            <div class="tile is-vertical proj-img">
+              <img src="HotRod2.png" style="border:none;box-shadow: 0 0 10px 10px white;max-width:1000px;">
+            </div>
+          </div>
+          <div class="container">
+            <h2>The Issues</h2>
+            <p>
+              I ran into many issues when I tried to put all of the gifs on the website,
+              and because of this, I went through many different iterations of the
+              site. The first thing I tried was starting with a blank site with no
+              gifs, and then have javascript add in all of the gifs when the site
+              loaded up.<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Pros:</b> This makes adding new gifs easy as pie.<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Cons:</b> The computer has a tough time loading in over 200 gifs
+              at once.<br>
+              I had to think of a different plan. Instead of having javascript load
+              in all of the gifs at load time, why don't I just hardcode everything?<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Pros:</b> Uh... I'll be honest this was a really bad idea.<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Cons:</b> This didn't really help with the loading time like I thought
+              it would...<br>
+              I had to come up with a new plan. The major problem I was having was
+              that loading tons of gifs all at once made loading a pain. This gave
+              me an idea: why don't I load them in one at a time? I would have the
+              gif only load in when the user clicked on the gif's block.<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Pros:</b> This <i>drastically</i> cut down on load time.<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Cons:</b> It was kind of difficult to understand what gif you needed,
+              now that the gif was not showing until you clicked on it.<br>
+              It was close, but still not the perfect solution. Thankfully, the best
+              solution simply required one more step: put thumbnails on all the gifs.<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Pros:</b> The load time is minimal and the user can have a good
+              idea of what gif they are looking at before they activate the gif.<br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;Cons:</b> I now I have to go through and make thumbnails for <b>
+              ALL 215 GIFS. I THOUGHT I WAS DONE WITH THIS PROJECT.</b><br><br>
+            </p>
+          </div>
+          <div class="container">
+            <h2>The Code</h2>
+            <p>
+        		  To access the website, <a href="https://justinro-underscore.github.io/HotRodDB/index.html" target="_blank"><b>click here</b></a><br>
+              To access the code, <a href="https://github.com/justinro-underscore/justinro-underscore.github.io/tree/master/HotRodDB" target="_blank"><b>click here</b></a>
+            </p>
+          </div>
         </section>
       </div>
     </main>
