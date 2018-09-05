@@ -4,11 +4,15 @@
   margin: 10px;
 }
 
-img {
+.proj-i {
   transition-duration: 0.3s;
 }
 
-.proj-container:hover > img {
+.proj-i > img {
+  height: 100%;
+}
+
+.proj-container:hover > .proj-i {
   filter: blur(4px) opacity(35%);
 }
 
@@ -27,10 +31,6 @@ img {
 
 .desc-text:hover {
   opacity: 1
-}
-
-.desc-text-header {
-  font-size: 3vw;
 }
 
 fieldset {

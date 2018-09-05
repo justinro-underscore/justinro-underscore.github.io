@@ -1,10 +1,10 @@
 .proj-container {
-  width: 100%;
+  width: 90%;
   margin: 10px;
 }
 
 img {
-  width: 90%;
+  width: 100%;
   display: block;
   padding: auto;
 }
@@ -14,17 +14,11 @@ img {
   width: 100%;
   height: 100%;
   font-size: 24px;
-  padding-left: 25px;
-  padding-right: 25px;
   color: #202020;
 }
 
 .desc-text:hover {
   color: #0020c0;
-}
-
-.desc-text-header {
-  font-size: 50px;
 }
 
 fieldset {
