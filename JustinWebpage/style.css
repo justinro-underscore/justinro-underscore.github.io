@@ -27,6 +27,24 @@ a.index-subtitle:hover {
 	color: #0000aa;
 }
 
+.index-paragraph {
+  font-size: 30px;
+}
+
+.index-img {
+  max-width: 400px;
+  float: right;
+  border: solid;
+  box-shadow: 0 0 10px 5px gray;
+  padding: 10px;
+  margin: 20px;
+}
+
+.footer-imgs {
+  max-width: 200px;
+  margin: auto;
+}
+
 .proj-img {
   margin-left: 10px;
   margin-right: 10px;
@@ -112,6 +130,16 @@ ol {
   .index-title {
     font-size: 11vw;
     letter-spacing: 0.5vw;
+  }
+
+  .index-img {
+    float:none;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .index-paragraph {
+    font-size: 18px;
   }
 
   .quote-text {
