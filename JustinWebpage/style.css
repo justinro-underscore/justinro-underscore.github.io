@@ -43,6 +43,11 @@ a.index-subtitle:hover {
 .footer-imgs {
   max-width: 200px;
   margin: auto;
+  transition-duration: 0.15s;
+}
+
+.footer-imgs:hover {
+  filter: brightness(50%);
 }
 
 .proj-img {
