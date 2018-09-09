@@ -1,0 +1,14 @@
+.dates {
+  color: gray;
+  font-size: 26px;
+}
+
+img {
+  border: solid;
+  margin: 10px;
+  margin-top: 0px;
+}
+
+a > img {
+  border-color: #444444;
+}
