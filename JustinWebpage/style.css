@@ -92,6 +92,11 @@ ol {
   padding-left: 35px;
 }
 
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
 .code-btn {
   color: black;
   background-color: #1a8cff;

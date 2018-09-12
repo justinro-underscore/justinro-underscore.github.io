@@ -9,6 +9,7 @@
     <link href="../../bulma.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
     <link href="aboutStyle.css" rel="stylesheet">
+    <script type="text/javascript" src="aboutme.js"></script>
   </head>
   <body>
 		<nav class="navbar" role="navigation" aria-label="main navigation">
@@ -25,11 +26,50 @@
       <section class="section">
       	<div class="container">
       		<h1 class="title index-title has-text-centered">ABOUT ME</h1>
-          <h1>
-            Okay, I'm gunna need to figure out a more creative way to show these
-            things, but for now, here is my work experience:<br><br><br>
-          </h1>
-          <div>
+          <button onclick="showCat('education')">Education</button>
+          <button onclick="showCat('work')">Work Experience</button>
+          <button onclick="showCat('achievements')">Achievements</button>
+          <button onclick="showCat('leadership')">Leadership</button>
+
+          <div id="education" style="display:none;opacity:0;">
+          <!-- <div id="education"> -->
+            <h1 class="index-title"><b>Education</b></h1>
+            <a href="https://remington-square.com/wp-content/uploads/2016/09/University-of-Kansas-Photo-e1500385983102.jpg" target="_blank">
+              <img src="Images/KU.jpg" style="width:100%;margin:0;">
+            </a><br>
+            <h1 class="index-subtitle"><b>University of Kansas - Honors Program</b></h1>
+            <span class="dates"><i>Expected Graduation Date: May 2020</i></span>
+            <h1 class="index-subtitle">Major - Computer Science<span style="float:right;">Minor - Film & Media Studies</span></h1>
+            <div class="container">
+              <h3>GPA: 3.97 / 4.00</h3>
+              <div class="columns">
+                <div class="column">
+                  <p>
+                    Groups:
+                    <ul>
+                      <li>Association for Computing Machinery</li>
+                      <li>Tau Beta Pi <i>(Engineering Honors Society)</i></li>
+                      <li>Jazz Band</li>
+                      <li>Trombone Choir</li>
+                    </ul>
+                  </p>
+                </div>
+                <div class="column">
+                  <p>
+                    Significant Classes:
+                    <ul>
+                      <li>Video Game Theory & Design</li>
+                      <li>Data Structures</li>
+                      <li>Software Engineering</li>
+                      <li>Theory of Computation</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="work" style="display:none;opacity:0;">
+            <h1 class="index-title"><b>Work Experience</b></h1><br>
             <h1 class="index-subtitle"><b>BK Technologies</b> - Software Intern</h1>
             <p>
               <span class="dates"><i>January 2018 - Present</i></span>
@@ -172,6 +212,14 @@
               complicated job, and I also learned how to manage my time well, and
               make sure that things moved smoothly and effectively.
             </p><br>
+          </div>
+          <div id="achievements" style="display:none;opacity:0;">
+            <h1 class="index-title"><b>Achievements</b></h1><br>
+            <br><br><img src="../Projects/ComingSoon.png" style="border:none;">
+          </div>
+          <div id="leadership" style="display:none;opacity:0;">
+            <h1 class="index-title"><b>Leadership</b></h1><br>
+            <br><br><img src="../Projects/ComingSoon.png" style="border:none;">
           </div>
       	</div>
       </section>
