@@ -3,9 +3,12 @@ currCat = null
 function showCat(cat)
 {
   if(currCat != null)
-    currCat.style.display = "none";
+  {
+    document.getElementById(currCat).style.display = "none";
+    document.getElementById(currCat + "-btn").classList.remove("about-btn-selected");
+  }
   newCat = document.getElementById(cat)
-  if(currCat == newCat)
+  if(currCat == cat)
   {
     newCat.style.display = "none";
     currCat = null;
@@ -13,6 +16,7 @@ function showCat(cat)
   else
   {
     newCat.style.display = "inherit";
+    document.getElementById(cat + "-btn").classList.add("about-btn-selected");
     interval = setInterval(changeOpacity, 10)
     opacity = 0
     function changeOpacity() {
@@ -24,6 +28,6 @@ function showCat(cat)
     newCat.scrollIntoView({
       behavior: 'smooth'
     });
-    currCat = newCat;
+    currCat = cat;
   }
 }

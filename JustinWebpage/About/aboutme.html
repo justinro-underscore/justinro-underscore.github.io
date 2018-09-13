@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
     <link href="../../bulma.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="aboutStyle.css" rel="stylesheet">
     <script type="text/javascript" src="aboutme.js"></script>
   </head>
@@ -26,13 +27,34 @@
       <section class="section">
       	<div class="container">
       		<h1 class="title index-title has-text-centered">ABOUT ME</h1>
-          <button onclick="showCat('education')">Education</button>
-          <button onclick="showCat('work')">Work Experience</button>
-          <button onclick="showCat('achievements')">Achievements</button>
-          <button onclick="showCat('leadership')">Leadership</button>
+          <div class="columns has-text-centered">
+            <div class="column" id="education-btn">
+              <h2 class="about-btn" onclick="showCat('education')">
+                <b>Education</b><br>
+                <i class="fa fa-book" style="font-size:106px;color:#000088"></i>
+              </h2>
+            </div>
+            <div class="column" id="work-btn">
+              <h2 class="about-btn" onclick="showCat('work')">
+                <b>Experience</b><br>
+                <i class="fa fa-briefcase" style="font-size:106px;color:#000088"></i>
+              </h2>
+            </div>
+            <div class="column" id="achievements-btn">
+              <h2 class="about-btn" onclick="showCat('achievements')">
+                <b>Achievements</b><br>
+                <i class="fa fa-trophy" style="font-size:106px;color:#000088"></i>
+              </h2>
+            </div>
+            <div class="column" id="leadership-btn">
+              <h2 class="about-btn" onclick="showCat('leadership')">
+                <b>Leadership</b><br>
+                <i class="fa fa-users" style="font-size:106px;color:#000088"></i>
+              </h2>
+            </div>
+          </div>
 
           <div id="education" style="display:none;opacity:0;">
-          <!-- <div id="education"> -->
             <h1 class="index-title"><b>Education</b></h1>
             <a href="https://remington-square.com/wp-content/uploads/2016/09/University-of-Kansas-Photo-e1500385983102.jpg" target="_blank">
               <img src="Images/KU.jpg" style="width:100%;margin:0;">

@@ -16,3 +16,34 @@ img {
 a > img {
   border-color: #444444;
 }
+
+.about-btn {
+  transition-duration: 0.1s;
+  font-size: 48px;
+  cursor: pointer;
+}
+
+.about-btn:hover {
+  /* font-size: 52px; */
+  letter-spacing: 2px;
+}
+
+.about-btn-selected {
+  /* font-size: 52px; */
+  letter-spacing: 2px;
+  filter: brightness(150%);
+}
+
+@media only screen and (max-width: 500px) {
+  .about-btn {
+    font-size: 9vw;
+  }
+
+  .about-btn:hover {
+    font-size: 10vw;
+  }
+
+  .about-btn-selected {
+    font-size: 10vw;
+  }
+}
