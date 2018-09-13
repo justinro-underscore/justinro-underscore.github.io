@@ -19,8 +19,9 @@ a > img {
 
 .about-btn {
   transition-duration: 0.1s;
-  font-size: 48px;
+  font-size: 40px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .about-btn:hover {
@@ -34,7 +35,7 @@ a > img {
   filter: brightness(150%);
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 400px) {
   .about-btn {
     font-size: 9vw;
   }
