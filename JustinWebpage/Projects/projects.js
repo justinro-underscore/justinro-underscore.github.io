@@ -1,7 +1,6 @@
 function scrollToCode()
 {
-  window.scrollTo({
-    top: document.getElementById("Code").getBoundingClientRect().top,
-    behavior: "smooth"
+  document.getElementById("Code").scrollIntoView({
+    behavior: 'smooth'
   });
 }

@@ -21,9 +21,8 @@ function showCat(cat)
       if(opacity >= 1)
         clearInterval(interval);
     }
-    window.scrollTo({
-      top: newCat.getBoundingClientRect().top,
-      behavior: "smooth"
+    newCat.scrollIntoView({
+      behavior: 'smooth'
     });
     currCat = newCat;
   }
