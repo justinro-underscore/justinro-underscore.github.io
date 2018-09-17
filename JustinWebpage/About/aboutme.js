@@ -26,7 +26,8 @@ function showCat(cat)
         clearInterval(interval);
     }
     newCat.scrollIntoView({
-      behavior: 'smooth'
+      behavior: 'smooth',
+      block: "start"
     });
     currCat = cat;
   }

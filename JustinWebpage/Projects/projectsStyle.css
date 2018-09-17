@@ -8,10 +8,6 @@
   transition-duration: 0.3s;
 }
 
-.proj-i > img {
-  height: 100%;
-}
-
 .proj-container:hover > .proj-i {
   filter: blur(4px) opacity(35%);
 }
