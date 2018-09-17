@@ -1,6 +1,7 @@
 function scrollToCode()
 {
   document.getElementById("Code").scrollIntoView({
-    behavior: 'smooth'
+    behavior: "smooth",
+    block: "start"
   });
 }
