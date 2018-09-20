@@ -71,7 +71,7 @@
                     <ul>
                       <li>Association for Computing Machinery</li>
                       <li>Tau Beta Pi <i>(Engineering Honors Society)</i></li>
-                      <li>KU Game Design Association</li>
+                      <li>KU Game Development Association</li>
                       <li>Jazz Band</li>
                       <li>Trombone Choir</li>
                     </ul>
@@ -89,7 +89,10 @@
                   </p>
                 </div>
               </div>
-            </div>
+            </div><br>
+            <a href="javascript:void(0);" onclick="goToTop()">
+              <p style="font-size:24px;text-align:center;"><b>Scroll to Top</b></p>
+            </a>
           </div>
           <div id="work" style="display:none;opacity:0;">
             <h1 class="index-title"><b>Work Experience</b></h1><br>
@@ -235,6 +238,9 @@
               complicated job, and I also learned how to manage my time well, and
               make sure that things moved smoothly and effectively.
             </p><br>
+            <a href="javascript:void(0);" onclick="goToTop()">
+              <p style="font-size:24px;text-align:center;"><b>Scroll to Top</b></p>
+            </a>
           </div>
           <div id="achievements" style="display:none;opacity:0;">
             <h1 class="index-title"><b>Achievements</b></h1><br>
@@ -264,7 +270,7 @@
               In the November of 2016, with very little experience in programming,
               I joined a team of five in the annual Kansas City Federal Reserve
               Code-A-Thon. The team and I had 24 hours to create
-              <a href="https://github.com/awarrington0895/ElectionIQ" target="_blank">Election IQ</a>,
+              <a href="https://github.com/awarrington0895/ElectionIQ" target="_blank">ElectionIQ</a>,
               a web service that assisted people with the process of navigating
               through the election cycle. The website could help the user register
               to vote, learn who was on their ballot, and find out where they could
@@ -275,11 +281,14 @@
               I didn't do much programming here. I did a little bit on the bug-fixing
               side of things but overall I didn't contribute much to the codebase.
               However, that does not mean I didn't do anything. Instead of coding,
-              I worked on all the promotional material for Election IQ, including
+              I worked on all the promotional material for ElectionIQ, including
               the video:<br><br>
-              <div style="position:relative;height:0;padding-bottom:56.25%">
-                <iframe src="https://www.youtube.com/embed/ib4b6R5b0oQ?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div><br>
+              <fieldset>
+                <legend class="index-subtitle" onclick="showVideo('election')"><u><i>ElectionIQ Video</i></u></legend>
+                <div id="electionVideo" style="display:none;position:relative;height:0;padding-bottom:56.25%">
+                  <iframe src="https://www.youtube.com/embed/ib4b6R5b0oQ?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+              </fieldset><br>
               <a href="https://www.kansascityfed.org/careers/collegerecruiting/techedge/code-a-thon" target="_blank">
                 <img style="float:right;" src="Images/KCFedReserve.jpg">
               </a>
@@ -328,12 +337,83 @@
                   <img src="Images/CB4.jpg">
                 </div>
               </div>
+              <a href="javascript:void(0);" onclick="goToTop()">
+                <p style="font-size:24px;text-align:center;"><b>Scroll to Top</b></p>
+              </a>
             </p>
           </div>
           <div id="leadership" style="display:none;opacity:0;">
             <h1 class="index-title"><b>Leadership</b></h1><br>
-            <br><br><img src="../Projects/ComingSoon.png" style="border:none;">
-            <h2>Check my r&eacute;sum&eacute; for information!</h2>
+            <h1 class="index-subtitle"><b>ACM</b> - Webmaster</h1>
+            <p>
+              <span class="dates"><i>August 2018 - Present</i></span>
+              Due to the recent nature of this leadership role, not much has been
+              done. However, I am in charge of leading a small team of freshmen and
+              sophomores in the creation of a website for the Association for Computing
+              Machinery club at KU. I act as a sort of moderator, guiding the younger
+              students in the right direction as they create the website. I also
+              teach the basics of HTML, CSS, and Javascript in this role.<br><br>
+              Once the website is up and functional, a link will be provided here.<br><br>
+            </p>
+            <h1 class="index-subtitle"><b>HackKU</b> - Events Chair / Videographer</h1>
+            <p>
+              <span class="dates"><i>October 2017 - June 2018</i></span>
+              <a href="http://hackku.org/" target="_blank">
+                <img style="float:right;margin:15px;border:none;" src="Images/HackKU.png"><br>
+              </a>
+              For last year's weekend-long hackathon,
+              <a href="http://hackku.org/" target="_blank">HackKU</a>, I was not a participant
+              but in fact, an organizer. I functioned as HackKU's Events Chair,
+              meaning that I was responsible for coordinating events and talks for
+              participants to attend. This was a fun adventure, as I not only got
+              to exercise my creativity in coming up with possible events to entertain
+              competitors, but I also got to communicate with industry professionals
+              in helping them set up talks.<br><br>
+              This was all done before the hackathon, but during the hackathon I
+              had a different role. During the hackathon, I was in charge of making
+              sure events went smoothly, that all talks were on-schedule and well-attended.
+              I was also the on-campus liaison for the event sponsors, meaning that
+              if someone needed something, they came to me. This gave me an opportunity
+              to communicate and create friendships with the higher-ups in certain
+              companies. In addition to all of this, I was in charge of preparing
+              and delivering the opening speech.<br><br>
+              Events were not the only thing I was in charge of - I was also in charge
+              of <i>capturing the moment</i>. With the assistance of a close friend,
+              we created a promotional video for the hackathon that included videos
+              of competitors programming; people partaking in the festivies; and
+              interviews from the organizers, volunteers, and sponsors. Check out
+              the fruits of our labor here:<br><br>
+              <fieldset>
+                <legend class="index-subtitle" onclick="showVideo('hackathon')"><u><i>HackKU Video</i></u></legend>
+                <div id="hackathonVideo" style="display:none;position:relative;height:0;padding-bottom:56.25%">
+                  <iframe src="https://www.youtube.com/embed/1CqjAgtR5oY?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+              </fieldset><br>
+            </p>
+            <h1 class="index-subtitle"><b>ACM</b> - Programming Club Co-Chair</h1>
+            <p>
+              <span class="dates"><i>August 2017 - May 2018</i></span>
+              <div class="image">
+                <img class="is-rounded" style="max-width: 250px;float:right;margin:15px;" src="Images/ACM.png"><br>
+              </div>
+              Last year I functioned as one of two Programming Club Co-Chairs for
+              the Association of Computing Machinery club at KU. Programming Club
+              was unique, as it was a subset of ACM. Where ACM focused
+              more on professional development and industry talks, Programming Club,
+              which met after ACM meetings, focused more on the art of programming.
+              This featured talks, presentations, workshops, and projects. My job
+              as Programming Club Co-Chair was to work with my other Co-Chair in
+              the planning and execution of these meetings. These meetings happened
+              every other week for an entire year, meaning I planned about 15 or
+              16 meetings. This experience not only gave me valuable communication
+              and public speaking skills, but it also gave me a much deeper appreciation
+              for programming and those who do it. I loved it so much, I decided
+              to continue on the board of ACM with the role of Webmaster, info of
+              which can be found above.
+            </p><br><br>
+            <a href="javascript:void(0);" onclick="goToTop()">
+              <p style="font-size:24px;text-align:center;"><b>Scroll to Top</b></p>
+            </a>
           </div>
       	</div>
       </section>

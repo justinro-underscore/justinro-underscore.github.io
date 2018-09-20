@@ -31,4 +31,34 @@ function showCat(cat)
     });
     currCat = cat;
   }
+  resetVideos();
+}
+
+function showVideo(vid)
+{
+  video = document.getElementById(vid + "Video");
+  if(video.style.display == "none")
+  {
+    video.style.display = "inherit";
+    video.scrollIntoView({
+      behavior: 'smooth',
+      block: "center"
+    });
+  }
+  else
+    video.style.display = "none";
+}
+
+function resetVideos()
+{
+  document.getElementById("electionVideo").style.display = "none"
+  document.getElementById("hackathonVideo").style.display = "none"
+}
+
+function goToTop()
+{
+  document.getElementsByClassName("navbar")[0].scrollIntoView({
+    behavior: 'smooth',
+    block: "start"
+  });
 }

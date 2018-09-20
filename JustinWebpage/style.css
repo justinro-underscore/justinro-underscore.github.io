@@ -97,6 +97,22 @@ ul {
   padding-left: 20px;
 }
 
+fieldset {
+  padding: 10px;
+  border: solid;
+  border-color: #00004d;
+  background-color: #b8b8b8;
+  margin-bottom: 10px;
+}
+
+legend {
+  border: solid;
+  border-color: #00004d;
+  background-color: #f2f2f2;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .code-btn {
   color: black;
   background-color: #1a8cff;
