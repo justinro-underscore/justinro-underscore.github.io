@@ -16,6 +16,10 @@
   filter: drop-shadow(0px 0px 20px yellow);
 }
 
+.under-construction {
+  filter: drop-shadow(0px 0px 20px red);
+}
+
 .desc-text {
   border: solid;
   position: absolute;
