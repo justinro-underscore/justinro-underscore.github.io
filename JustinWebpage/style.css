@@ -31,6 +31,19 @@ a.index-subtitle:hover {
   font-size: 30px;
 }
 
+.index-img-link p {
+  font-size: 24px;
+  color: #001931;
+}
+
+.index-img-link:hover p {
+	color: #0039be;
+}
+
+.index-img-link:hover h2 {
+	color: #0039be;
+}
+
 .index-img {
   max-width: 400px;
   float: right;
@@ -61,7 +74,7 @@ a.index-subtitle:hover {
   border: solid;
 }
 
-.proj-img p {
+.proj-img-para {
   text-align: center;
 	font-size: 16px;
 	color: #bbbbbb;
