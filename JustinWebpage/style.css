@@ -80,6 +80,16 @@ a.index-subtitle:hover {
 	color: #bbbbbb;
 }
 
+.tldr-text {
+  border: solid;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #4d4d4d;
+  font-style: italic;
+  font-size: 28px;
+  text-align: left;
+}
+
 .quote-text {
   border: solid;
   padding-top: 5px;
