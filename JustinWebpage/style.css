@@ -196,6 +196,10 @@ legend {
     margin-left: 2vw;
     margin-right: 2vw;
   }
+
+  .tldr-text {
+    font-size: 20px;
+  }
 }
 
 @media only screen and (max-width: 350px) {
