@@ -63,6 +63,13 @@ a.index-subtitle:hover {
   filter: brightness(50%);
 }
 
+.warning {
+  border: solid 3px orange;
+  border-radius: 5px;
+  padding: 10px 12px;
+  margin-bottom: 40px;
+}
+
 .proj-img {
   margin-left: 10px;
   margin-right: 10px;
