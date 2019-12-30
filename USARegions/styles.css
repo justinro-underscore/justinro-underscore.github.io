@@ -1,0 +1,28 @@
+.region-west {
+  fill: #ff0000;
+}
+
+.region-east {
+  fill: #ffff00;
+}
+
+.region-midwest {
+  fill: #00ff00;
+}
+
+.region-southwest {
+  fill: #00ffff;
+}
+
+.region-southeast {
+  fill: #0000ff;
+}
+
+.region-northeast {
+  fill: #ff00ff;
+}
+
+.state-highlight {
+  fill: #ffffff;
+  cursor: pointer;
+}
