@@ -11,6 +11,10 @@
   </head>
   <body onload="loadStates()">
     <h1 id="selected-region">Click on a state to select that region</h1>
+    <p>Enter in your state:
+      <input type="text" id="stateInput" oninput="update()">
+      <input type="button" value="Select Region" onclick="selectRegion('', '')">
+    </p>
 
     <div style="width: 100%; text-align: center;">
       <svg id="state-map" version="1.1" width=563px height=357px style="display: none;">

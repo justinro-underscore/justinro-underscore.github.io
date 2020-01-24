@@ -1,3 +1,7 @@
+.state {
+  filter: opacity(50%)
+}
+
 .region-west {
   fill: #ff0000;
 }
@@ -25,4 +29,8 @@
 .state-highlight {
   fill: #ffffff;
   cursor: pointer;
+}
+
+.region-highlight {
+  filter: opacity(100%)
 }
