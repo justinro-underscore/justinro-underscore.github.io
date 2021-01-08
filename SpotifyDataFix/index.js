@@ -33,6 +33,9 @@ function uploadFile() {
 }
 
 function _throwError(error) {
+  let submitBtn = document.getElementById("submit-btn");
+  let responseText = document.getElementById("response-text");
+
   submitBtn.classList.add("btn-disabled");
   submitBtn.href = "javascript:void(0)";
 
