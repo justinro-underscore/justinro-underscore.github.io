@@ -75,7 +75,7 @@ function _success() {
 
 function _checkForData() {
   const cookies = document.cookie.split(";");
-  const sizeCookie = cookies.filter(c => /size=\d+;.*/.test(c));
+  const sizeCookie = cookies.filter(c => /size=\d+/.test(c));
   if (sizeCookie.length == 0) {
     return false;
   }
