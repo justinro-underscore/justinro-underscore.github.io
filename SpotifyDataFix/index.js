@@ -7,10 +7,7 @@ function onLoad() {
 }
 
 function uploadFile() {
-  let submitBtn = document.getElementById("submit-btn");
-  let responseText = document.getElementById("response-text");
-
-  const file = document.getElementById("csv-file").files[0];
+  const file = document.getElementById("file-input").files[0];
   file.text().then(text => {
     const rows = text.trim().split("\n");
     if (rows[0] === ",index,track_name,artist_name,type,id,error") {
