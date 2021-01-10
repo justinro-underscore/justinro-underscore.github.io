@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Spotify Data Fix</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="../styles.css" rel="stylesheet">
+    <link href="./spotifypage.css" rel="stylesheet">
+    <script type="text/javascript" src="spotify.js"></script>
+  </head>
+  <body class="container" onload="onLoad()">
+    <div class="progress-container">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
+      <div class="progress-label" style="margin-left: -1.5%"></div> <!-- margin-left should be -1.5% less than total percentage -->
+    </div>
+    <form id="spotify-form" onsubmit="submitForm(this)">
+      <div>
+        <div id="form-spinner" class="spinner-border text-primary spinner">
+          <span class="visually-hidden">Loading Track...</span>
+        </div>
+        <div id="spotify-container" class="loading-container loading-container-hidden">
+          <h1 id="track"></h1>
+          <h2 id="artist"></h2>
+          <p class="podcast">
+            Is this a podcast?
+            <label class="podcast-container" >
+              <input type="radio" name="podcast-choice" value="yes" onchange="submitPodcast(this)">
+              <span class="fas fa-check podcast-choice yes"></span>
+            </label>
+            <label class="podcast-container">
+              <input type="radio" name="podcast-choice" value="no" onchange="submitPodcast(this)">
+              <span class="fas fa-times podcast-choice nope"></span>
+            </label>
+          </p>
+          <div id="spinner" class="spinner-border text-primary spinner" style="display: none;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div id="spotify-selection-container" class="spotify-selection-container loading-container loading-container-hidden">
+            <p>Choose the correct one (change this text)</p>
+            <div id="spotify-row" class="spotify-selection">
+            </div>
+          </div>
+          <div>
+            <button id="back-btn" type="button" class="btn btn-secondary btn-submit" onclick="backButton()"><<</button>
+            <button id="submit-btn" type="submit" disabled class="btn btn-submit btn-disabled">>></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

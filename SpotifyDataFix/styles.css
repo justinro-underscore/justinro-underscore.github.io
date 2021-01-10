@@ -34,10 +34,6 @@
 	color: #ffffff;
 }
 
-.btn-disabled:focus {
-	box-shadow: none;
-}
-
 .error-text {
 	color: #cc0000;
 }

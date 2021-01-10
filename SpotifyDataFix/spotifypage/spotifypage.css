@@ -1,0 +1,130 @@
+.progress-container {
+  margin: 20px;
+}
+
+.progress-label {
+  text-align: left;
+}
+
+.loading-container {
+  transition-duration: 0.5s;
+}
+
+.loading-container-hidden {
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.podcast {
+  font-size: 24px;
+}
+
+.podcast-container {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.podcast-container:nth-child(1) {
+  margin-left: 10px;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.podcast-choice {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  border-radius: 5px;
+}
+
+.podcast-container:hover input ~ .podcast-choice {
+  background-color: #ccc;
+}
+
+.podcast-container input:checked ~ .podcast-choice {
+  background-color: #ddd;
+  transform: scale(1.2);
+}
+
+.podcast-choice:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.podcast-choice {
+  transition-duration: 0.1s;
+  cursor: pointer;
+}
+
+.podcast-choice:hover {
+  transform: scale(1.2);
+}
+
+.yes {
+  color: #00ff00;
+}
+
+.nope {
+  color: #ff0000;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  font-size: 40px;
+  margin: 20px;
+}
+
+.spotify-selection-container {
+  margin: auto;
+  padding: 10px;
+  width: 100%;
+  border: 2px solid #aaa;
+  background-color: #ddd;
+}
+
+.spotify-selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.spotify-selection-cell {
+  width: 30%;
+  padding: 10px;
+  border-radius: 5px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  margin: 0 5px 15px 5px;
+}
+
+.spotify-selection-cell:hover {
+  background-color: #ccc;
+  transform: scale(1.02);
+}
+
+.spotify-selection-cell-active {
+  background-color: #aaa !important;
+  transform: scale(1.02);
+}
+
+.spotify-selection-cell img {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.spotify-selection-cell p {
+  margin: 0;
+  line-height: 1rem;
+}
