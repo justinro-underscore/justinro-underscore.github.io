@@ -18,7 +18,7 @@
   padding: 0 !important;
 }
 
-.podcast {
+.spotify-text {
   font-size: 24px;
 }
 
@@ -92,6 +92,16 @@ input[type="radio"] {
   width: 100%;
   border: 2px solid #aaa;
   background-color: #ddd;
+}
+
+.sync-btn-container {
+  position: relative;
+}
+
+.btn-sync {
+  position: absolute;
+  top: -10px;
+  right: 0;
 }
 
 .spotify-selection {

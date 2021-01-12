@@ -44,13 +44,9 @@ function onLoad() {
   }
 }
 
-// This token is gotten from here: https://developer.spotify.com/console/get-search-item/?q=tania%20bowra&type=artist&market=&limit=&offset=&include_external=
-// and expires in like 30 minutes, so I'm not worried about putting it online
-
 function submitForm() {
   const podcastChoice = document.getElementsByName("podcast-choice")[0];
   const podcast = podcastChoice.value === "yes" && podcastChoice.checked;
-  console.log(podcast ? 0 : 1, currId);
 
   const cookie = _getCookies()[currIndex];
   document.cookie = `${currIndex}=${podcast ? 0 : 1}${currId}|||${cookie};${_getCookieParameters()}`;
@@ -81,8 +77,8 @@ function _setButtonDisabledStatus(id, disable) {
   btn.disabled = disable;
 }
 
-function submitPodcast(choice) {
-  const podcast = choice.value === "yes";
+function callSpotify() {
+  const podcast = document.getElementsByName("podcast-choice")[0].value === "yes" && document.getElementsByName("podcast-choice")[0].checked;
   document.getElementById("spinner").style.display = "";
   const track_name = document.getElementById("track").innerText;
   const artist_name = document.getElementById("artist").innerText;
@@ -93,7 +89,7 @@ function _callSpotify(track_name, artist_name, podcast) {
   const track = (podcast ? "" : "track:") + track_name;
   const artist = (podcast ? "" : "artist:") + artist_name;
   const type = podcast ? "episode" : "track";
-  const query = `q=${encodeURI(track + " AND " + artist)}&type=${type}&limit=6`;
+  const query = `q=${encodeURI(track + " AND " + artist)}&type=${type}&offset=${offset}&limit=6`;
   fetch(`https://api.spotify.com/v1/search?${query}`, {
     headers: {"Authorization": `Bearer ${token}`}
   }).then(res => res.json()).then(
@@ -103,22 +99,34 @@ function _callSpotify(track_name, artist_name, podcast) {
         document.getElementById("spotify-iframe").src = "https://developer.spotify.com/console/get-search-item/#oauth-input";
       }
       else {
-        _populateValues((podcast ? res["episodes"] : res["tracks"])["items"])
+        _populateValues(podcast ? res["episodes"] : res["tracks"])
       }
     },
     (error) => console.log(error)
   );
 }
 
-function _populateValues(tracks) {
+function _populateValues(res) {
   document.getElementById("spinner").style.display = "none";
   document.getElementById("spotify-selection-container").classList.remove("loading-container-hidden");
   const container = document.getElementById("spotify-row");
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
+
+  const tracks = res["items"];
   ids = tracks.map(track => track["id"]);
   currId = "";
+
+  const next = res["next"];
+  if (next) {
+    const offsetIndex = next.indexOf("offset=") + "offset=".length;
+    offset = parseInt(next.substring(offsetIndex, next.indexOf("&", offsetIndex)));
+  }
+  else {
+    offset = 0;
+  }
+
   _setButtonDisabledStatus("submit-btn", true);
   for (let i = 0; i < tracks.length; i++) {
     const track = tracks[i];

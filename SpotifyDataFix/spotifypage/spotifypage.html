@@ -26,14 +26,14 @@
         <div id="spotify-container" class="loading-container loading-container-hidden">
           <h1 id="track"></h1>
           <h2 id="artist"></h2>
-          <p class="podcast">
+          <p class="spotify-text">
             Is this a podcast?
             <label class="podcast-container" >
-              <input type="radio" name="podcast-choice" value="yes" onchange="submitPodcast(this)">
+              <input type="radio" name="podcast-choice" value="yes" onchange="callSpotify()">
               <span class="fas fa-check podcast-choice yes"></span>
             </label>
             <label class="podcast-container">
-              <input type="radio" name="podcast-choice" value="no" onchange="submitPodcast(this)">
+              <input type="radio" name="podcast-choice" value="no" onchange="callSpotify()">
               <span class="fas fa-times podcast-choice nope"></span>
             </label>
           </p>
@@ -41,7 +41,10 @@
             <span class="visually-hidden">Loading...</span>
           </div>
           <div id="spotify-selection-container" class="spotify-selection-container loading-container loading-container-hidden">
-            <p>Choose the correct one (change this text)</p>
+            <div class="sync-btn-container">
+              <button type="button" id="sync-btn" class="btn btn-submit btn-secondary btn-sync" onclick="callSpotify()"><i class="fas fa-sync"></i></button>
+            </div>
+            <p class="spotify-text">Choose the correct one (change this text)</p>
             <div id="spotify-row" class="spotify-selection">
             </div>
           </div>
