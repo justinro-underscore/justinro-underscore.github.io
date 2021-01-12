@@ -1,6 +1,8 @@
 let currIndex = -1;
 let ids = [];
 let currId = "";
+let offset = 0;
+let token = "";
 
 function _getCookies() {
   return document.cookie.split(";").map(cookie => cookie.trim().split("=", 2))
@@ -16,6 +18,7 @@ function _getCookieParameters() {
 function onLoad() {
   const cookies = _getCookies();
   const sizeCookie = cookies["size"];
+  token = cookies?.["token"] || "";
 
   for (let i = 0; i < sizeCookie; i++) {
     if (!cookies[i].includes("|||")) {
@@ -43,9 +46,8 @@ function onLoad() {
 
 // This token is gotten from here: https://developer.spotify.com/console/get-search-item/?q=tania%20bowra&type=artist&market=&limit=&offset=&include_external=
 // and expires in like 30 minutes, so I'm not worried about putting it online
-const token = "BQBnrR61VzukJqkmcnmh70UM9XM-7A2q4ewr2B9fUuVGkKj6aZP2YmWvG7yfZwEh_mD0HAQzoUAJkMwXVoAevsR6Lc46fqMO5SqTtiabl7C8G9GbiwFFPNsLxH_rw7wBjRII8wzv3OtjSHVcvvoExKt5wlzHqxybbjbktv7CP1UJFg";
 
-function submitForm(formObj) {
+function submitForm() {
   const podcastChoice = document.getElementsByName("podcast-choice")[0];
   const podcast = podcastChoice.value === "yes" && podcastChoice.checked;
   console.log(podcast ? 0 : 1, currId);
@@ -95,8 +97,16 @@ function _callSpotify(track_name, artist_name, podcast) {
   fetch(`https://api.spotify.com/v1/search?${query}`, {
     headers: {"Authorization": `Bearer ${token}`}
   }).then(res => res.json()).then(
-    (res) => _populateValues((podcast ? res["episodes"] : res["tracks"])["items"]),
-    (error) => console.error(error)
+    (res) => {
+      if (res["error"] !== undefined) {
+        document.getElementById("spotify-token-popup").classList.remove("loading-container-hidden");
+        document.getElementById("spotify-iframe").src = "https://developer.spotify.com/console/get-search-item/#oauth-input";
+      }
+      else {
+        _populateValues((podcast ? res["episodes"] : res["tracks"])["items"])
+      }
+    },
+    (error) => console.log(error)
   );
 }
 
@@ -159,4 +169,12 @@ function _createSpotifyCell(index, track, artist, album, albumType, albumUrl) {
   cellElem.appendChild(albumElem);
 
   document.getElementById("spotify-row").appendChild(cellElem);
+}
+
+function submitToken() {
+  const token = document.getElementById("spotify-token").value;
+  if (token?.length > 0) {
+    document.cookie = `token=${token};${_getCookieParameters()}`;
+    document.getElementById("spotify-form").submit();
+  }
 }

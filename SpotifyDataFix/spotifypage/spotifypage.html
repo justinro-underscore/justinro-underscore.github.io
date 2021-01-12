@@ -18,7 +18,7 @@
       </div>
       <div class="progress-label" style="margin-left: -1.5%"></div> <!-- margin-left should be -1.5% less than total percentage -->
     </div>
-    <form id="spotify-form" onsubmit="submitForm(this)">
+    <form id="spotify-form" onsubmit="submitForm()">
       <div>
         <div id="form-spinner" class="spinner-border text-primary spinner">
           <span class="visually-hidden">Loading Track...</span>
@@ -52,5 +52,19 @@
         </div>
       </div>
     </form>
+    <div id="spotify-token-popup" class="spotify-token-popup-background loading-container loading-container-hidden">
+      <div class="spotify-token-popup">
+        <h1>Your Token Has Expired!</h1>
+        <p>
+          Looks like we need to reauthenticate. If you don't know how to do this, <a href="#">click here</a>.
+          Otherwise, grab your token, paste it below, and let's keep going!
+        </p>
+        <iframe id="spotify-iframe" src="" class="spotify-iframe"></iframe>
+        <div class="spotify-token-form-container">
+          <input type="text" id="spotify-token" placeholder="Spotify token">
+          <button id="token-btn" class="btn btn-primary" onclick="submitToken()">Submit</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
