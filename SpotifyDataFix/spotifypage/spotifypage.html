@@ -47,6 +47,20 @@
             <p class="spotify-text">Choose the correct one (change this text)</p>
             <div id="spotify-row" class="spotify-selection">
             </div>
+            <p id="no-results-text" class="no-results-text" style="display: none;">
+              <b>No results found.</b><br>
+              Try changing the search term below or directly copy the share link!
+            </p>
+            <div class="spotify-selection-input-container">
+              <p>Not here? Try changing the search:</p>
+              <input id="spotify-query-input" type="text" placeholder="Search Query" />
+              <button type="button" class="btn btn-primary" onclick="newSearch()">Submit</button>
+            </div>
+            <div class="spotify-selection-input-container">
+              <p id="spotify-link-label">OR paste the song link here:</p>
+              <input id="spotify-link-input" type="text" placeholder="Share > Copy Song Link" />
+              <button type="button" class="btn btn-primary" onclick="directLink()">Submit</button>
+            </div>
           </div>
           <div>
             <button id="back-btn" type="button" class="btn btn-secondary btn-submit" onclick="backButton()"><<</button>

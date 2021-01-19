@@ -139,6 +139,32 @@ input[type="radio"] {
   line-height: 1rem;
 }
 
+.no-results-text {
+  margin: 20px 0 46px 0;
+  font-size: 20px;
+  color: #555;
+}
+
+.no-results-text > b {
+  font-size: 24px;
+}
+
+.spotify-selection-input-container {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.spotify-selection-input-container p {
+  margin: auto;
+  margin-left: 5px;
+  font-size: 20px;
+}
+
+.spotify-selection-input-container input {
+  margin: 0 5px;
+  flex-grow: 2;
+}
+
 .spotify-token-popup-background {
   position: absolute;
   z-index: 1;
