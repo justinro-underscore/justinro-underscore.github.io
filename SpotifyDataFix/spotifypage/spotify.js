@@ -68,7 +68,7 @@ function backButton() {
 
 function _setButtonDisabledStatus(id, disable) {
   let btn = document.getElementById(id);
-  const btn_class = id === "submit-btn" ? "btn-primary" : "btn-secondary";
+  const btn_class = ["submit-btn", "link-btn"].includes(id) ? "btn-primary" : "btn-secondary";
 
   if (disable) {
     btn.classList.add("btn-disabled");
@@ -118,7 +118,8 @@ function _callSpotifyWithQuery(queryStr, podcast) {
   }).then(res => res.json()).then(
     (res) => {
       if (res["error"] !== undefined) {
-        document.getElementById("spotify-token-popup").classList.remove("loading-container-hidden");
+        document.getElementById("spotify-token-popup-background").classList.remove("loading-container-hidden");
+        document.getElementById("spotify-token-popup").style.display = "";
         document.getElementById("spotify-iframe").src = "https://developer.spotify.com/console/get-search-item/#oauth-input";
       }
       else {
@@ -132,6 +133,7 @@ function _callSpotifyWithQuery(queryStr, podcast) {
 function _populateValues(res, podcast) {
   document.getElementById("spinner").style.display = "none";
   document.getElementById("spotify-selection-container").classList.remove("loading-container-hidden");
+  document.getElementById("spotify-selection-container-inner").style.display = "";
   const container = document.getElementById("spotify-row");
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -155,41 +157,90 @@ function _populateValues(res, podcast) {
   if (items.length > 0) {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      let imgUrl,
-          cellObj;
-      if (podcast) {
-        imgUrl = item["images"][0]["url"];
-        cellObj = {
-          name: item["name"],
-          duration: item["duration_ms"]
-        };
-      }
-      else {
-        imgUrl = item["album"]["images"][0]["url"];
-        const artists = item["artists"].map(artist => artist["name"]).join(" and ");
-        cellObj = {
-          track: item["name"],
-          artists,
-          album: item["album"]["name"],
-          albumType: item["album"]["type"]
-        };
-      }
-      const cellElem = _createSpotifyCell(i, podcast, cellObj, imgUrl);
+      const cellElem = _unpackItem(i, item, podcast);
       document.getElementById("spotify-row").appendChild(cellElem);
     }
   }
   else {
-    document.getElementById("no-results-text").style.display = '';
+    document.getElementById("no-results-text").style.display = "";
   }
 }
 
-const spotifyLinkRegex = /https:\/\/open\.spotify\.com\/([a-z]+)\/([a-zA-Z0-9]+)/;
+function _unpackItem(index, item, podcast, selectable=true) {
+  let imgUrl,
+      cellObj;
+  if (podcast) {
+    imgUrl = item["images"][0]["url"];
+    cellObj = {
+      name: item["name"],
+      duration: item["duration_ms"]
+    };
+  }
+  else {
+    imgUrl = item["album"]["images"][0]["url"];
+    const artists = item["artists"].map(artist => artist["name"]).join(", ");
+    cellObj = {
+      track: item["name"],
+      artists,
+      album: item["album"]["name"],
+      albumType: item["album"]["type"]
+    };
+  }
+  return _createSpotifyCell(index, podcast, cellObj, imgUrl, selectable);
+}
+
+const spotifyLinkRegex = /https:\/\/open\.spotify\.com\/(track|episode)\/([a-zA-Z0-9]+)/;
 
 function directLink() {
   const link = document.getElementById("spotify-link-input").value?.trim();
   if (link && spotifyLinkRegex.test(link)) {
-    currId = spotifyLinkRegex.exec(link)[2];
-    console.log(currId); // TODO Open confirmation popup
+    const type = spotifyLinkRegex.exec(link)[1];
+
+    document.getElementById("spotify-link-popup-background").classList.remove("loading-container-hidden");
+    document.getElementById("spotify-link-popup").style.display = "";
+
+    const podcast = _getPodcastChoice();
+    if ((podcast && type === "episode") || (!podcast && type === "track")) {
+      currId = spotifyLinkRegex.exec(link)[2];
+
+      fetch(`https://api.spotify.com/v1/${type}s/${currId}`, {
+        headers: {"Authorization": `Bearer ${token}`}
+      }).then(res => res.json()).then(
+        (res) => {
+          if (res["error"] !== undefined) {
+            if (res["error"]["message"] === "invalid id") {
+              document.getElementById("spotify-link-popup-right").style.display = "none";
+              document.getElementById("spotify-link-popup-invalid").style.display = "";
+              document.getElementById("spotify-link-popup-invalid").innerText = "Something went wrong with that link. Please make sure you are copying the share link";
+              _setButtonDisabledStatus("link-btn", true);
+            }
+            else {
+              document.getElementById("spotify-token-popup-background").classList.remove("loading-container-hidden");
+              document.getElementById("spotify-token-popup").style.display = "";
+              document.getElementById("spotify-iframe").src = "https://developer.spotify.com/console/get-search-item/#oauth-input";
+            }
+          }
+          else {
+            document.getElementById("spotify-link-popup-right").style.display = "";
+            document.getElementById("spotify-link-popup-invalid").style.display = "none";
+            _setButtonDisabledStatus("link-btn", false);
+
+            const popup = document.getElementById("spotify-link-popup");
+            const cellElem = _unpackItem("popup", res, type === "episode", false);
+            popup.insertBefore(cellElem, popup.firstChild);
+          }
+        },
+        (error) => console.log(error)
+      );
+    }
+    else {
+      document.getElementById("spotify-link-popup-right").style.display = "none";
+      document.getElementById("spotify-link-popup-invalid").style.display = "";
+      document.getElementById("spotify-link-popup-invalid").innerText = podcast ?
+        "Please change to not podcast option and try again." :
+        "Please change to podcast option and try again.";
+      _setButtonDisabledStatus("link-btn", true);
+    }
   }
 }
 
@@ -211,20 +262,25 @@ function submitSpotify(val) {
   _setButtonDisabledStatus("submit-btn", false);
 }
 
-function _createSpotifyCell(index, podcast, cellObj, imgUrl) {
+function _createSpotifyCell(index, podcast, cellObj, imgUrl, selectable=true) {
   let cellElem = document.createElement("label", {
     "id": `spotify-selection-cell-${index}`,
     "class": "spotify-selection-cell"
   });
   cellElem.id = `spotify-selection-cell-${index}`;
-  cellElem.className = "spotify-selection-cell";
+  cellElem.classList.add("spotify-selection-cell");
+  if (selectable) {
+    cellElem.classList.add("spotify-selection-cell-selectable");
+  }
 
-  let inputElem = document.createElement("input");
-  inputElem.type = "radio";
-  inputElem.name = "spotify-choice";
-  inputElem.value = index;
-  inputElem.onchange = () => submitSpotify(index);
-  cellElem.appendChild(inputElem);
+  if (selectable) {
+    let inputElem = document.createElement("input");
+    inputElem.type = "radio";
+    inputElem.name = "spotify-choice";
+    inputElem.value = index;
+    inputElem.onchange = () => submitSpotify(index);
+    cellElem.appendChild(inputElem);
+  }
 
   let imgElem = document.createElement("img");
   imgElem.src = imgUrl;
@@ -263,6 +319,21 @@ function _createSpotifyCell(index, podcast, cellObj, imgUrl) {
   }
 
   return cellElem;
+}
+
+function cancelLinkPopup() {
+  const selectionCell = document.getElementById("spotify-selection-cell-popup");
+  if (selectionCell) {
+    selectionCell.parentNode.removeChild(selectionCell);
+  }
+
+  document.getElementById("spotify-link-popup-background").classList.add("loading-container-hidden");
+  document.getElementById("spotify-link-popup").style.display = "none";
+}
+
+function submitLinkPopup() {
+  submitForm();
+  document.getElementById("spotify-form").submit();
 }
 
 function submitToken() {

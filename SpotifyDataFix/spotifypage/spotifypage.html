@@ -41,25 +41,27 @@
             <span class="visually-hidden">Loading...</span>
           </div>
           <div id="spotify-selection-container" class="spotify-selection-container loading-container loading-container-hidden">
-            <div class="sync-btn-container">
-              <button type="button" id="sync-btn" class="btn btn-submit btn-secondary btn-sync" onclick="callSpotify()"><i class="fas fa-sync"></i></button>
-            </div>
-            <p class="spotify-text">Choose the correct one (change this text)</p>
-            <div id="spotify-row" class="spotify-selection">
-            </div>
-            <p id="no-results-text" class="no-results-text" style="display: none;">
-              <b>No results found.</b><br>
-              Try changing the search term below or directly copy the share link!
-            </p>
-            <div class="spotify-selection-input-container">
-              <p>Not here? Try changing the search:</p>
-              <input id="spotify-query-input" type="text" placeholder="Search Query" />
-              <button type="button" class="btn btn-primary" onclick="newSearch()">Submit</button>
-            </div>
-            <div class="spotify-selection-input-container">
-              <p id="spotify-link-label">OR paste the song link here:</p>
-              <input id="spotify-link-input" type="text" placeholder="Share > Copy Song Link" />
-              <button type="button" class="btn btn-primary" onclick="directLink()">Submit</button>
+            <div id="spotify-selection-container-inner" style="display: none;">
+              <div class="sync-btn-container">
+                <button type="button" id="sync-btn" class="btn btn-submit btn-secondary btn-sync" onclick="callSpotify()"><i class="fas fa-sync"></i></button>
+              </div>
+              <p class="spotify-text">Choose the correct one (change this text)</p>
+              <div id="spotify-row" class="spotify-selection">
+              </div>
+              <p id="no-results-text" class="no-results-text" style="display: none;">
+                <b>No results found.</b><br>
+                Try changing the search term below or directly copy the share link!
+              </p>
+              <div class="spotify-selection-input-container">
+                <p>Not here? Try changing the search:</p>
+                <input id="spotify-query-input" type="text" placeholder="Search Query" />
+                <button type="button" class="btn btn-primary" onclick="newSearch()">Submit</button>
+              </div>
+              <div class="spotify-selection-input-container">
+                <p id="spotify-link-label">OR paste the song link here:</p>
+                <input id="spotify-link-input" type="text" placeholder="Share > Copy Song Link" />
+                <button type="button" class="btn btn-primary" onclick="directLink()">Submit</button>
+              </div>
             </div>
           </div>
           <div>
@@ -69,8 +71,8 @@
         </div>
       </div>
     </form>
-    <div id="spotify-token-popup" class="spotify-token-popup-background loading-container loading-container-hidden">
-      <div class="spotify-token-popup">
+    <div id="spotify-token-popup-background" class="spotify-popup-background loading-container loading-container-hidden">
+      <div id="spotify-token-popup" class="spotify-popup spotify-token-popup" style="display: none;">
         <h1>Your Token Has Expired!</h1>
         <p>
           Looks like we need to reauthenticate. If you don't know how to do this, <a href="#">click here</a>.
@@ -80,6 +82,16 @@
         <div class="spotify-token-form-container">
           <input type="text" id="spotify-token" placeholder="Spotify token">
           <button id="token-btn" class="btn btn-primary" onclick="submitToken()">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div id="spotify-link-popup-background" class="spotify-popup-background loading-container loading-container-hidden">
+      <div id="spotify-link-popup" class="spotify-popup spotify-link-popup" style="display: none;">
+        <p id="spotify-link-popup-right"><b>Is this right?</b></p>
+        <p id="spotify-link-popup-invalid"></p>
+        <div class="spotify-link-form-container">
+          <button class="btn btn-secondary" onclick="cancelLinkPopup()">Cancel</button>
+          <button id="link-btn" class="btn btn-primary" onclick="submitLinkPopup()">Yes</button>
         </div>
       </div>
     </div>
