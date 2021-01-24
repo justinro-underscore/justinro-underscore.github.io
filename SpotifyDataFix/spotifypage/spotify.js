@@ -262,6 +262,19 @@ function submitSpotify(val) {
   _setButtonDisabledStatus("submit-btn", false);
 }
 
+function handleNotFound(toDelete) {
+  if (!toDelete && ids.length > 0) {
+    currId = ids[0];
+    submitForm();
+    document.getElementById("spotify-form").submit();
+    return;
+  }
+
+  const cookie = _getCookies()[currIndex];
+  document.cookie = `${currIndex}=delete|||${cookie};${_getCookieParameters()}`;
+  document.getElementById("spotify-form").submit();
+}
+
 function _createSpotifyCell(index, podcast, cellObj, imgUrl, selectable=true) {
   let cellElem = document.createElement("label", {
     "id": `spotify-selection-cell-${index}`,
