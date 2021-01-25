@@ -1,0 +1,13 @@
+.intro-container {
+  width: 100%;
+  margin: 20px auto;
+}
+
+input {
+  width: 800px;
+}
+
+.error-text {
+  color: red;
+  margin: 0;
+}
