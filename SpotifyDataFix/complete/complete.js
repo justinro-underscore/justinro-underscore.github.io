@@ -37,12 +37,12 @@ function _setupData() {
   for (let i = 0; i < sizeCookie; i++) {
     const res = cookies[i].split("|||");
     if (res[0] === "delete") {
-      data += `${res[1]},,,${true}\r\n`;
+      data += `${i},${res[1]},,,${true}\r\n`;
     }
     else {
       const podcast = res[0][0] === 1;
       const id = res[0].slice(1);
-      data += `${res[1]},${podcast ? "episode" : "track"},${id},${false}\r\n`;
+      data += `${i},${res[1]},${podcast ? "episode" : "track"},${id},${false}\r\n`;
     }
   }
   return data;
