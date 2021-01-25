@@ -42,6 +42,9 @@ function onLoad() {
       return;
     }
   }
+
+  // All done!
+  window.location.replace("/SpotifyDataFix/complete/complete.html");
 }
 
 function _getPodcastChoice() {
