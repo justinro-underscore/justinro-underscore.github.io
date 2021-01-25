@@ -37,6 +37,7 @@ function _throwError(error) {
   let responseText = document.getElementById("response-text");
 
   submitBtn.classList.add("btn-disabled");
+  submitBtn.classList.remove("btn-primary");
   submitBtn.href = "javascript:void(0)";
 
   responseText.classList.remove("success-text");
@@ -68,6 +69,7 @@ function _success() {
   responseText.classList.remove("error-text");
   responseText.innerText = "Ready to continue!";
 
+  submitBtn.classList.add("btn-primary");
   submitBtn.classList.remove("btn-disabled");
   submitBtn.href = "intro/intro.html";
   submitBtn.focus()
