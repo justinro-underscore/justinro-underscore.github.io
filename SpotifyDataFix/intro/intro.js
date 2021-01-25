@@ -18,7 +18,7 @@ function submitToken() {
         }
         else {
           document.cookie = `token=${token};${_getCookieParameters(0.5)}`;
-          window.location.replace("/SpotifyDataFix/spotifypage/spotifypage.html");
+          window.location.replace("/SpotifyDataFix/selection/selection.html");
         }
       },
       (error) => {
