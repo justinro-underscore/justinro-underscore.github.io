@@ -8,10 +8,12 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
     <link href="../../bulma.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="projectsStyleSmall.css" media="screen and (max-width: 769px)" rel="stylesheet">
     <link href="projectsStyle.css" media="screen and (min-width: 769px)" rel="stylesheet">
+    <script type="text/javascript" src="projects.js"></script>
   </head>
-  <body>
+  <body onload="onLoad()">
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="navbar-start navbar-webpage">
 				<span class="navbar-item" style="font-weight:bold;">Justin Roderman</span>
@@ -35,10 +37,10 @@
           <div class="tile is-ancestor">
             <!-- Mood for a Melody - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#moodforamelody" onclick="openPopup('moodforamelody')">
                 <img src="Images/VideoGames/MoodForAMelody/MoodForAMelodyThumbnail.png" alt="Mood for a Melody">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#moodforamelody" onclick="openPopup('moodforamelody')">
                 <b>Mood for a Melody</b><br>
                 A fresh spin on the interactive story game genre, based on <i>the</i> classic Billy Joel song.
               </a>
@@ -46,10 +48,10 @@
 
             <!-- Voyage of the Infinity - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#voyageoftheinfinity" onclick="openPopup('voyageoftheinfinity')">
                 <img src="Images/VideoGames/VoyageOfTheInfinity/VoyageOfTheInfinityThumbnail.png" alt="Voyage of the Infinity">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#voyageoftheinfinity" onclick="openPopup('voyageoftheinfinity')">
                 <b>Voyage of the Infinity</b><br>
                 The browser-based text adventure game and engine of my young game developer's dreams.
               </a>
@@ -57,10 +59,10 @@
 
             <!-- Cannoneer - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#cannoneer" onclick="openPopup('cannoneer')">
                 <img src="Images/VideoGames/Cannoneer/CannoneerThumbnail.png" alt="Cannoneer">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#cannoneer" onclick="openPopup('cannoneer')">
                 <b>Cannoneer</b><br>
                 An award-winning horizontal shooter with vertical shooter mechanics. Also, you play as a pirate ship.
               </a>
@@ -70,10 +72,10 @@
           <div class="tile is-ancestor">
             <!-- Lost and Raturn - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#lostraturn" onclick="openPopup('lostraturn')">
                 <img src="Images/VideoGames/LostRaturn/LostRaturnThumbnail.png" alt="Lost and Raturn">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#lostraturn" onclick="openPopup('lostraturn')">
                 <b>Lost and Raturn</b><br>
                 A fun little arcade game about a friendly rat who just wishes people would stop dropping all their stuff.
               </a>
@@ -81,10 +83,10 @@
 
             <!-- RFID Pong - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#rfidpong" onclick="openPopup('rfidpong')">
                 <img src="Images/VideoGames/RFIDPong/RFIDPongThumbnail.png" alt="RFID Pong">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#rfidpong" onclick="openPopup('rfidpong')">
                 <b>RFID Pong</b><br>
                 Your favorite retro video game with a rather uncommon controller scheme.
               </a>
@@ -92,10 +94,10 @@
 
             <!-- Terminal - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#terminal" onclick="openPopup('terminal')">
                 <img src="Images/VideoGames/Terminal/TerminalThumbnail.png" alt="Terminal">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#terminal" onclick="openPopup('terminal')">
                 <b>Terminal</b><br>
                 An award-winning asynchronous couch co-op game that combines the joy of platforming with the typing of a hacker.
               </a>
@@ -105,10 +107,10 @@
           <div class="tile is-ancestor">
             <!-- Conflicting Objectives - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#conflictingobjectives" onclick="openPopup('conflictingobjectives')">
                 <img class="award-winning" src="Images/VideoGames/ConflictingObjectives/ConflictingObjectivesThumbnail.png" alt="Conflicting Objectives">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#conflictingobjectives" onclick="openPopup('conflictingobjectives')">
                 <b>Conflicting Objectives</b><br>
                 A prototype for a multiplayer arcade game where you collect coins while trying to figure out where you're going.
               </a>
@@ -116,10 +118,10 @@
 
             <!-- EECSurvival (DFQE) - Video Game & Engine -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#eecsurvival" onclick="openPopup('eecsurvival')">
                 <img src="Images/VideoGames/EECSurvival/EECSurvivalThumbnail.png" alt="EECSurvival (DFQE)">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#eecsurvival" onclick="openPopup('eecsurvival')">
                 <b>EECSurvival & The DFQE</b><br>
                 A simple top down shooter created on a homemade engine - the DFQE.
               </a>
@@ -127,10 +129,10 @@
 
             <!-- Minesweeper - Video Game -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#minesweeper" onclick="openPopup('minesweeper')">
                 <img src="Images/VideoGames/Minesweeper/MinesweeperThumbnail.png" alt="Minesweeper">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#minesweeper" onclick="openPopup('minesweeper')">
                 <b>Minesweeper</b><br>
                 A basic recreation of the classic <i>Minesweeper</i> game with an ambitious goal.
               </a>
@@ -143,10 +145,10 @@
           <div class="tile is-ancestor">
             <!-- Applican - Webpage -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#applican" onclick="openPopup('applican')">
                 <img src="Images/Websites/Applican/ApplicanThumbnail.png" alt="Applican">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#applican" onclick="openPopup('applican')">
                 <b>Applican</b><br>
                 A startup that aimed to connect employers with computer science students looking for entry-level jobs or internships.
               </a>
@@ -154,22 +156,22 @@
 
             <!-- WhatShouldICallFreddy.com - Webpage -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#whatshouldicallfreddy" onclick="openPopup('whatshouldicallfreddy')">
                 <img src="Images/Websites/WhatShouldICallFreddy/WhatShouldICallFreddyThumbnail.png" alt="WhatShouldICallFreddy.com">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#whatshouldicallfreddy" onclick="openPopup('whatshouldicallfreddy')">
                 <b>WhatShouldICallFreddy.com</b><br>
                 I figured I'd rename my dog of 14 years. Want to help?
               </a>
             </div>
 
-            <!-- Spotify Data Analysis Help - Webpage -->
+            <!-- Spotify Data Fix - Webpage -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
-                <img src="Images/Websites/SpotifyDataAnalysisHelp/SpotifyDataAnalysisHelpThumbnail.png" alt="Spotify Data Analysis Help">
+              <a class="proj-i" href="#spotifydatafix" onclick="openPopup('spotifydatafix')">
+                <img src="Images/Websites/SpotifyDataAnalysisHelp/SpotifyDataAnalysisHelpThumbnail.png" alt="Spotify Data Fix">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
-                <b>Spotify Data Analysis Help</b><br>
+              <a class="desc-text" href="#spotifydatafix" onclick="openPopup('spotifydatafix')">
+                <b>Spotify Data Fix</b><br>
                 Associated with the Spotify Data Analysis project below, this page was used to easily fix holes in downloaded Spotify data.
               </a>
             </div>
@@ -178,10 +180,10 @@
           <div class="tile is-ancestor">
             <!-- PoserRank - Webpage -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#poserrank" onclick="openPopup('poserrank')">
                 <img src="Images/Websites/PoserRank/PoserRankThumbnail.png" alt="PoserRank">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#poserrank" onclick="openPopup('poserrank')">
                 <b>PoserRank</b><br>
                 A revolutionary new social media platform where friends can rank each others' poser score!
               </a>
@@ -189,10 +191,10 @@
 
             <!-- Hot Rod DB - Webpage -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#hotroddb" onclick="openPopup('hotroddb')">
                 <img src="Images/Websites/HotRodDB/HotRodDBThumbnail.png" alt="Hot Rod DB">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#hotroddb" onclick="openPopup('hotroddb')">
                 <b>Hot Rod DB</b><br>
                 A database of gifs that I made for my roommate as a birthday present, all from the fantastic movie <i>Hot Rod</i>.
               </a>
@@ -200,10 +202,10 @@
 
             <!-- Doodle Clone - Webpage -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#doodleclone" onclick="openPopup('doodleclone')">
                 <img src="Images/Websites/DoodleClone/DoodleCloneThumbnail.png" alt="Doodle Clone">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#doodleclone" onclick="openPopup('doodleclone')">
                 <b>Doodle Clone</b><br>
                 A web-based clone of the popular schedule-planning app, <i>Doodle</i>.
               </a>
@@ -216,10 +218,10 @@
           <div class="tile is-ancestor">
             <!-- HackKU RFID - Hardware -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#hackkurfid" onclick="openPopup('hackkurfid')">
                 <img src="Images/Hardware/HackKURFID/HackKURFIDThumbnail.png" alt="HackKU RFID">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#hackkurfid" onclick="openPopup('hackkurfid')">
                 <b>HackKU RFID</b><br>
                 The RFID system used in the 2020 KU hackathon (HackKU) to keep track of participants.
               </a>
@@ -227,10 +229,10 @@
 
             <!-- Papa's Burgeria Controller - Hardware -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#papasburgeria" onclick="openPopup('papasburgeria')">
                 <img src="Images/Hardware/PapasBurgeria/PapasBurgeriaThumbnail.png" alt="Papa's Burgeria Controller">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#papasburgeria" onclick="openPopup('papasburgeria')">
                 <b>Papa's Burgeria Controller</b><br>
                 An ambitious, realistic controller for a very unrealistic flash game from my childhood.
               </a>
@@ -238,10 +240,10 @@
 
             <!-- Wiimote Adventures - Hardware -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#wiimoteadventures" onclick="openPopup('wiimoteadventures')">
                 <img src="Images/Hardware/WiimoteAdventures/WiimoteAdventuresThumbnail.png" alt="Wiimote Adventures">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#wiimoteadventures" onclick="openPopup('wiimoteadventures')">
                 <b>Wiimote Adventures</b><br>
                 I learned you can access a Wii remote through Bluetooth. Let's see what we can do with it!
               </a>
@@ -254,10 +256,10 @@
           <div class="tile is-ancestor">
             <!-- Spotify Data Analysis - Application -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#spotifydataanalysis" onclick="openPopup('spotifydataanalysis')">
                 <img src="Images/Applications/SpotifyDataAnalysis/SpotifyDataAnalysisThumbnail.png" alt="Spotify Data Analysis">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#spotifydataanalysis" onclick="openPopup('spotifydataanalysis')">
                 <b>Spotify Data Analysis</b><br>
                 Ever wonder what your listening habits look like? Download your Spotify data and I'll show you!
               </a>
@@ -265,10 +267,10 @@
 
             <!-- KU-dle - Application -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#kudle" onclick="openPopup('kudle')">
                 <img src="Images/Applications/KU-dle/KU-dleThumbnail.png" alt="KU-dle">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#kudle" onclick="openPopup('kudle')">
                 <b>KU-dle</b><br>
                 A schedule-planning application similar in concept to the popular <i>Doodle</i> service.
               </a>
@@ -276,10 +278,10 @@
 
             <!-- Morse Code Project - Application -->
             <div class="tile proj-container">
-              <a class="proj-i" href="#"> <!-- TODO: link to the popup -->
+              <a class="proj-i" href="#morsecodeproject" onclick="openPopup('morsecodeproject')">
                 <img src="Images/Applications/MorseCodeProject/MorseCodeThumbnail.png" alt="Morse Code Project">
               </a>
-              <a class="desc-text" href="#"> <!-- TODO: link to the popup -->
+              <a class="desc-text" href="#morsecodeproject" onclick="openPopup('morsecodeproject')">
                 <b>Morse Code Project</b><br>
                 An application that plays & receives messages through morse code via the speaker.
               </a>
@@ -288,5 +290,91 @@
         </fieldset>
       </section>
     </main>
+
+    <div id="popup-background" class="popup-background popup-background-hidden" onclick="closePopups()">
+      <div id="popup-moodforamelody" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Mood for a Melody</h2>
+      </div>
+
+      <div id="popup-voyageoftheinfinity" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Voyage of the Infinity</h2>
+      </div>
+
+      <div id="popup-cannoneer" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Cannoneer</h2>
+      </div>
+
+      <div id="popup-lostraturn" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Lost and Raturn</h2>
+      </div>
+
+      <div id="popup-rfidpong" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>RFID Pong</h2>
+      </div>
+
+      <div id="popup-terminal" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Terminal</h2>
+      </div>
+
+      <div id="popup-conflictingobjectives" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Conflicting Objectives</h2>
+      </div>
+
+      <div id="popup-eecsurvival" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>EECSurvival and the DFQR</h2>
+      </div>
+
+      <div id="popup-minesweeper" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Minesweeper</h2>
+      </div>
+
+      <div id="popup-applican" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Applican</h2>
+      </div>
+
+      <div id="popup-whatshouldicallfreddy" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>WhatShouldICallFreddy.com</h2>
+      </div>
+
+      <div id="popup-spotifydatafix" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Spotify Data Fix</h2>
+      </div>
+
+      <div id="popup-poserrank" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>PoserRank</h2>
+      </div>
+
+      <div id="popup-hotroddb" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Hot Rod DB</h2>
+      </div>
+
+      <div id="popup-doodleclone" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Doodle Clone</h2>
+      </div>
+
+      <div id="popup-hackkurfid" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>HackKU RFID</h2>
+      </div>
+
+      <div id="popup-papasburgeria" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Papa's Burgeria Controller</h2>
+      </div>
+
+      <div id="popup-wiimoteadventures" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Wiimote Adventures</h2>
+      </div>
+
+      <div id="popup-spotifydataanalysis" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Spotify Data Analysis</h2>
+      </div>
+
+      <div id="popup-kudle" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>KU-dle</h2>
+      </div>
+
+      <div id="popup-morsecodeproject" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <h2>Morse Code Project</h2>
+      </div>
+    </div>
   </body>
 </html>
