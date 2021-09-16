@@ -23,7 +23,8 @@
   padding-left: 25px;
   padding-right: 25px;
   transition-duration: 0.5s;
-  opacity: 0
+  opacity: 0;
+  background-color: #fffa;
 }
 
 .desc-text:hover {
