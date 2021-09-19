@@ -79,6 +79,7 @@ a.index-subtitle:hover {
 .proj-img img {
   margin: auto;
   border: solid;
+  box-shadow: 0 0 10px 5px gray;
 }
 
 .proj-img-para {

@@ -21,6 +21,23 @@ function closePopups() {
 }
 
 function dontClose(event) {
-  console.log(event);
   event.stopPropogation();
+}
+
+function changeRFIDPongSrc(index) {
+  let iframe = document.getElementById("rfid-pong-iframe");
+  let choices = document.getElementsByClassName("selected");
+  for (let i = 0; i < choices.length; i++) {
+    choices.item(i).classList.remove("selected");
+  }
+  if (index === 1) {
+    iframe.src = "https://www.youtube.com/embed/wBuuTTQBRac";
+  }
+  else if (index === 2) {
+    iframe.src = "https://www.youtube.com/embed/D3jktK0YoFk";
+  }
+  else if (index === 3) {
+    iframe.src = "https://www.youtube.com/embed/tRGuztNfOcA";
+  }
+  document.getElementById("rfid-pong-" + index).classList.add("selected");
 }
