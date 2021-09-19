@@ -1,3 +1,7 @@
+.mobile {
+  display: none;
+}
+
 .proj-container {
   width: 33%;
   position: relative;
