@@ -34,6 +34,7 @@ a.index-subtitle:hover {
 .index-img-link p {
   font-size: 24px;
   color: #001931;
+  margin-bottom: 15px;
 }
 
 .index-img-link:hover p {
@@ -47,6 +48,14 @@ a.index-subtitle:hover {
 .index-img {
   max-width: 400px;
   float: right;
+  border: solid;
+  box-shadow: 0 0 10px 5px gray;
+  padding: 10px;
+  margin: 20px;
+}
+
+.index-img-2 {
+  width: 400px;
   border: solid;
   box-shadow: 0 0 10px 5px gray;
   padding: 10px;
