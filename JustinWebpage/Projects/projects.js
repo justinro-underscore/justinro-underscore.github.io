@@ -18,6 +18,11 @@ function closePopups() {
     popups.item(i).style.display = 'none';
   }
   document.getElementById("popup-background").classList.add("popup-background-hidden");
+  // Stop all videos that are currently playing
+  let iframes = document.querySelectorAll("iframe");
+  for (let i = 0; i < iframes.length; i++) {
+    iframes.item(i).src = iframes.item(i).src;
+  }
 }
 
 function dontClose(event) {
