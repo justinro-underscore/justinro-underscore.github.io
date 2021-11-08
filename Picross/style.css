@@ -1,0 +1,73 @@
+body {
+  text-align: center;
+  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+}
+
+/* TODO Add element specifiers before all class and id definitions */
+.container {
+  margin: auto;
+  display: flex;
+}
+
+#game-board {
+  max-width: 1000px;
+  margin: auto;
+}
+
+#game-table {
+  margin: auto;
+}
+
+.cell {
+  /* TODO Make this dynamic */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  font-weight: 500;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.cell-selected {
+  border: 2px solid #00f;
+  background-color: #eef;
+}
+
+.cell-filled {
+  background-color: #11f;
+}
+
+.cell-x-ed {
+  color: #f80;
+}
+
+.cell-marked {
+  color: #11f;
+}
+
+.numbers {
+  /* TODO Add Ubuntu Monospace */
+  font-family: 'Ubuntu Monospace', monospace;
+  display: table-cell;
+  /* TODO Make sure that numbers with more than 1 digit are 1 space wide */
+}
+
+.numbers-row {
+  text-align: right;
+  padding-right: 5px;
+  vertical-align: middle;
+}
+
+.numbers-col {
+  text-align: center;
+  padding-bottom: 5px;
+  vertical-align: bottom;
+}
+
+.numbers-filled {
+  color: #888;
+}
+
+.numbers-available {
+  color: #44f;
+}
