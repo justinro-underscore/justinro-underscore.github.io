@@ -20,6 +20,7 @@ const CLASS_NUMBERS_ROW = 'numbers-row';
 const CLASS_NUMBERS_COL = 'numbers-col';
 const CLASS_NUMBERS_FILLED = 'numbers-filled';
 const CLASS_NUMBERS_AVAILABLE = 'numbers-available';
+const CLASS_WIN = 'win';
 
 // Attributes
 const ATTR_ID = 'id';
@@ -44,3 +45,8 @@ const VALID_ACTION_KC = [KC_Z, KC_X, KC_C];
 const NS_NONE = 'none';
 const NS_FILLED = 'filled';
 const NS_AVAILABLE = 'available';
+
+// Internal Cell Values
+const CV_NONE = 'none';
+const CV_FILLED = 'filled';
+const CV_X = 'x-ed';

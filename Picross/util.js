@@ -1,6 +1,6 @@
 /**
  * Gets the ID of a cell at a position
- * @param {Array|number} x The x coordinate of the cell, or an array containing [x, y]
+ * @param {number|Array<number>} x The x coordinate of the cell, or an array containing [x, y]
  * @param {number} y The y coordinate of the cell
  * @returns The ID of the cell
  */

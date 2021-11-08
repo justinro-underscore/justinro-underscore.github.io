@@ -2,6 +2,10 @@
 
 // The position of the selected cell
 let selectedPos;
+// The solution to the puzzle
+let solution;
+// How the game board looks currently
+let gameBoard;
 // The width of the game board
 let gameBoardWidth;
 // The height of the game board
@@ -10,6 +14,8 @@ let gameBoardHeight;
 let rowValues;
 // The numbers values for each column
 let colValues;
+// Defines if the game is over or not
+let gameOver;
 
 /**
  * Runs when the page loads, initializes game
@@ -24,16 +30,18 @@ function onLoad() {
  */
 function bindListeners() {
   document.addEventListener('keydown', event => {
-    // TODO Add debounce
-    // TODO Add ability to hold action key while moving
-    // TODO Make sure that the arrow keys don't scroll the page
-    const keyCode = event.key;
-    const dir = KC_ARROWS.indexOf(keyCode);
-    if (dir >= 0) {
-      moveSelected(dir);
-    }
-    else if (VALID_ACTION_KC.includes(keyCode)) {
-      takeAction(keyCode);
+    if (!gameOver) {
+      // TODO Add debounce
+      // TODO Add ability to hold action key while moving
+      // TODO Make sure that the arrow keys don't scroll the page
+      const keyCode = event.key;
+      const dir = KC_ARROWS.indexOf(keyCode);
+      if (dir >= 0) {
+        moveSelected(dir);
+      }
+      else if (VALID_ACTION_KC.includes(keyCode)) {
+        takeAction(keyCode);
+      }
     }
   });
 }
@@ -43,10 +51,17 @@ function bindListeners() {
  * @param {number} index The index of the level to play 
  */
 function loadLevel(index) {
-  // Get data
-  const data = levels[index];
-  gameBoardHeight = data.length;
-  gameBoardWidth = data[0].length;
+  // Get data and set initial values for variables
+  solution = levels[index];
+  gameBoardHeight = solution.length;
+  gameBoardWidth = solution[0].length;
+  gameBoard = new Array(gameBoardHeight);
+  for (let i = 0; i < gameBoardHeight; i++) {
+    gameBoard[i] = new Array(gameBoardWidth);
+    for (let j = 0; j < gameBoardWidth; j++) {
+      gameBoard[i][j] = CV_NONE;
+    }
+  }
 
   // Get the row and column values for the board
   colValues = new Array(gameBoardWidth);
@@ -60,7 +75,7 @@ function loadLevel(index) {
       let vals = [];
       let count = 0;
       for (let j = 0; j < (row ? gameBoardWidth : gameBoardHeight); j++) {
-        if (row ? data[i][j] : data[j][i] === 1) {
+        if (row ? solution[i][j] : solution[j][i] === 1) {
           count++;
         }
         else if (count > 0) {
@@ -91,6 +106,9 @@ function loadLevel(index) {
   selectedPos = [0, 0];
   const selectedId = getCellId(selectedPos);
   document.getElementById(selectedId).classList.add(CLASS_CELL_SELECTED);
+
+  // Start the game
+  gameOver = false;
 }
 
 /**
@@ -253,18 +271,28 @@ function takeAction(actionKeyCode) {
   cell.classList.remove(CLASS_CELL_X_ED);
   cell.classList.remove(CLASS_CELL_MARKED);
   cell.innerHTML = CELL_NONE;
+  gameBoard[selectedPos[1]][selectedPos[0]] = CV_NONE;
 
   // If we are toggling, we already wiped the class list and set the cell content to none
   // If we are not toggling, take an action
   if (!toggle) {
     takeActionOnCell(actionKeyCode, selectedPos);
   }
+
+  // Update the numbers on this row and column
+  updateNumbers(selectedPos);
+
+  // Checks if the puzzle has been solved
+  if (checkWin()) {
+    setWin();
+  }
 }
 
 /**
+ * TODO Come up with a better name for this function
  * Applies an action onto a given cell with the given position
  * @param {string} actionKeyCode The key code of the action to take (assumes valid input)
- * @param {Array} cellPos [row, col]
+ * @param {Array<number>} cellPos [row, col]
  */
 function takeActionOnCell(actionKeyCode, cellPos) {
   const id = getCellId(cellPos);
@@ -274,16 +302,61 @@ function takeActionOnCell(actionKeyCode, cellPos) {
   switch (actionKeyCode) {
     case KC_Z: // Fill
       cell.classList.add(CLASS_CELL_FILLED);
+      gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
       break;
     case KC_X: // X
       cell.classList.add(CLASS_CELL_X_ED);
       cell.innerText = CELL_X;
+      gameBoard[cellPos[1]][cellPos[0]] = CV_X;
       break;
     case KC_C: // Mark
       cell.classList.add(CLASS_CELL_MARKED);
       cell.innerText = CELL_MARK;
+      gameBoard[cellPos[1]][cellPos[0]] = CV_NONE;
       break;
   }
+}
+
+/**
+ * Updates the numbers on the row and column
+ * @param {Array<number>} xy [row, col] of the recently changed cell
+ */
+function updateNumbers(xy) {
+  // TODO Fill this in... this is where it gets difficult
+}
+
+/**
+ * Verifies if the game board has the winning solution
+ * There's gotta be a more efficient way to do this, but this works for now
+ * @returns True if win, false otherwise
+ */
+function checkWin() {
+  for (let i = 0; i < gameBoardHeight; i++) {
+    for (let j = 0; j < gameBoardWidth; j++) {
+      if ((gameBoard[i][j] === CV_FILLED && solution[i][j] !== 1) ||
+        (gameBoard[i][j] !== CV_FILLED && solution[i][j] === 1)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+/**
+ * Sets the win condition
+ */
+function setWin() {
+  gameOver = true;
+
+  // Remove cursor
+  document.getElementById(getCellId(selectedPos)).classList.remove(CLASS_CELL_SELECTED);
+
+  // Add win condition
+  const gameBoardElem = document.getElementById(ID_GAME_BOARD);
+  const winElem = document.createElement(ELEM_DIV);
+  winElem.classList.add(CLASS_WIN);
+  winElem.innerText = 'You win!';
+  gameBoardElem.appendChild(winElem);
 }
 
 /**
