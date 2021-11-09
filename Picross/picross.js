@@ -35,11 +35,10 @@ function bindListeners() {
       // TODO Add ability to hold action key while moving
       // TODO Make sure that the arrow keys don't scroll the page
       const keyCode = event.key;
-      const dir = KC_ARROWS.indexOf(keyCode);
-      if (dir >= 0) {
-        moveSelected(dir);
+      if (NAVIGATION_KEYS.includes(keyCode)) {
+        moveSelected(keyCode);
       }
-      else if (VALID_ACTION_KC.includes(keyCode)) {
+      else if (ACTION_KEYS.includes(keyCode)) {
         takeAction(keyCode);
       }
     }
@@ -183,10 +182,10 @@ function prefillCells() {
   for (let row = 0; row < gameBoardHeight; row++) {
     let action = null;
     if (rowValues[row][0] === 0) {
-      action = KC_X;
+      action = ACTION_X;
     }
     else if (rowValues[row][0] === gameBoardWidth) {
-      action = KC_Z;
+      action = ACTION_FILL;
     }
     if (action) {
       for (let col = 0; col < gameBoardWidth; col++) {
@@ -198,10 +197,10 @@ function prefillCells() {
   for (let col = 0; col < gameBoardWidth; col++) {
     let action = null;
     if (colValues[col][0] === 0) {
-      action = KC_X;
+      action = ACTION_X;
     }
     else if (colValues[col][0] === gameBoardHeight) {
-      action = KC_Z;
+      action = ACTION_FILL;
     }
     if (action) {
       for (let row = 0; row < gameBoardHeight; row++) {
@@ -214,36 +213,34 @@ function prefillCells() {
 
 /**
  * Moves the selected cell
- * @param {number} dir The direction to move (assumes valid range)
- *    0 - Up
- *    1 - Right
- *    2 - Down
- *    3 - Left
+ * @param {string} keyCode The key code of the key input
  */
-function moveSelected(dir) {
+function moveSelected(keyCode) {
   const id = getCellId(selectedPos);
   document.getElementById(id).classList.remove(CLASS_CELL_SELECTED);
 
-  switch (dir) {
-    case 0:
+  // Translate the key code to a direction
+  const navDirection = CONTROL_MAPPING[NAVIGATION][keyCode];
+  switch (navDirection) {
+    case NAV_UP:
       selectedPos[1]--;
       if (selectedPos[1] < 0) {
         selectedPos[1] = gameBoardHeight - 1;
       }
       break;
-    case 1:
+    case NAV_RIGHT:
       selectedPos[0]++;
       if (selectedPos[0] >= gameBoardWidth) {
         selectedPos[0] = 0;
       }
       break;
-    case 2:
+    case NAV_DOWN:
       selectedPos[1]++;
       if (selectedPos[1] >= gameBoardHeight) {
         selectedPos[1] = 0;
       }
       break;
-    case 3:
+    case NAV_LEFT:
       selectedPos[0]--;
       if (selectedPos[0] < 0) {
         selectedPos[0] = gameBoardWidth - 1;
@@ -259,14 +256,17 @@ function moveSelected(dir) {
  * @param {string} actionKeyCode The key code of the action to take (assumes valid input)
  */
 function takeAction(actionKeyCode) {
+  const action = CONTROL_MAPPING[ACTION][actionKeyCode];
+
+  const selectedCellStatus = gameBoard[selectedPos[1]][selectedPos[0]];
+  // If we should just toggle the cell and not take an action
+  const toggle = (selectedCellStatus === CV_FILLED && action === ACTION_FILL) ||
+    (selectedCellStatus === CV_X_ED && action === ACTION_X) ||
+    (selectedCellStatus === CV_MARKED && actionKeyCode === ACTION_MARK)
+
+  // Wipe the slate clean
   const id = getCellId(selectedPos);
   const cell = document.getElementById(id);
-
-  // If we should just toggle the cell and not take an action
-  const toggle = (cell.classList.contains(CLASS_CELL_FILLED) && actionKeyCode === KC_Z) ||
-    (cell.classList.contains(CLASS_CELL_X_ED) && actionKeyCode === KC_X) ||
-    (cell.classList.contains(CLASS_CELL_MARKED) && actionKeyCode === KC_C)
-  // Wipe the slate clean
   cell.classList.remove(CLASS_CELL_FILLED);
   cell.classList.remove(CLASS_CELL_X_ED);
   cell.classList.remove(CLASS_CELL_MARKED);
@@ -276,7 +276,7 @@ function takeAction(actionKeyCode) {
   // If we are toggling, we already wiped the class list and set the cell content to none
   // If we are not toggling, take an action
   if (!toggle) {
-    takeActionOnCell(actionKeyCode, selectedPos);
+    takeActionOnCell(action, selectedPos);
   }
 
   // Update the numbers on this row and column
@@ -291,28 +291,28 @@ function takeAction(actionKeyCode) {
 /**
  * TODO Come up with a better name for this function
  * Applies an action onto a given cell with the given position
- * @param {string} actionKeyCode The key code of the action to take (assumes valid input)
+ * @param {string} action The action to take
  * @param {Array<number>} cellPos [row, col]
  */
-function takeActionOnCell(actionKeyCode, cellPos) {
+function takeActionOnCell(action, cellPos) {
   const id = getCellId(cellPos);
   const cell = document.getElementById(id);
 
   // Take the action
-  switch (actionKeyCode) {
-    case KC_Z: // Fill
+  switch (action) {
+    case ACTION_FILL:
       cell.classList.add(CLASS_CELL_FILLED);
       gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
       break;
-    case KC_X: // X
+    case ACTION_X:
       cell.classList.add(CLASS_CELL_X_ED);
       cell.innerText = CELL_X;
-      gameBoard[cellPos[1]][cellPos[0]] = CV_X;
+      gameBoard[cellPos[1]][cellPos[0]] = CV_X_ED;
       break;
-    case KC_C: // Mark
+    case ACTION_MARK:
       cell.classList.add(CLASS_CELL_MARKED);
       cell.innerText = CELL_MARK;
-      gameBoard[cellPos[1]][cellPos[0]] = CV_NONE;
+      gameBoard[cellPos[1]][cellPos[0]] = CV_MARKED;
       break;
   }
 }
