@@ -74,7 +74,7 @@ function loadLevel(index) {
       let vals = [];
       let count = 0;
       for (let j = 0; j < (row ? gameBoardWidth : gameBoardHeight); j++) {
-        if (row ? solution[i][j] : solution[j][i] === 1) {
+        if ((row ? solution[i][j] : solution[j][i])[3] === 1) {
           count++;
         }
         else if (count > 0) {
@@ -333,8 +333,8 @@ function updateNumbers(xy) {
 function checkWin() {
   for (let i = 0; i < gameBoardHeight; i++) {
     for (let j = 0; j < gameBoardWidth; j++) {
-      if ((gameBoard[i][j] === CV_FILLED && solution[i][j] !== 1) ||
-        (gameBoard[i][j] !== CV_FILLED && solution[i][j] === 1)) {
+      if ((gameBoard[i][j] === CV_FILLED && solution[i][j][3] !== 1) ||
+        (gameBoard[i][j] !== CV_FILLED && solution[i][j][3] === 1)) {
         return false;
       }
     }
