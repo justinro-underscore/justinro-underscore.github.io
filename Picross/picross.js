@@ -16,6 +16,9 @@ let rowValues;
 let colValues;
 // Defines if the game is over or not
 let gameOver;
+// Defines the numbers prediction after calculation
+// Had to make this global scope because it must be up to date through all recursion instances
+var finalNumbersPrediction;
 
 /**
  * Runs when the page loads, initializes game
@@ -280,6 +283,7 @@ function takeAction(actionKeyCode) {
   }
 
   // Update the numbers on this row and column
+  // TODO Only update numbers if changing an X-ed, filled, or empty space (not with a mark)
   updateNumbers(selectedPos);
 
   // Checks if the puzzle has been solved
@@ -319,10 +323,128 @@ function takeActionOnCell(action, cellPos) {
 
 /**
  * Updates the numbers on the row and column
- * @param {Array<number>} xy [row, col] of the recently changed cell
+ * @param {Array<number>} yx [col, row] of the recently changed cell
  */
-function updateNumbers(xy) {
-  // TODO Fill this in... this is where it gets difficult
+function updateNumbers(yx) {
+  const [colNum, rowNum] = yx;
+  const rowNums = rowValues[rowNum]
+  const icvRow = gameBoard[rowNum];
+  const ncvRow = convertICVToNCV(icvRow);
+  calcNumbersPrediction(rowNums, ncvRow);
+  printFinalNumbersPrediction(finalNumbersPrediction, 'Row prediction:');
+
+  const colNums = colValues[colNum]
+  const icvCol = gameBoard.map(row => row[colNum]);
+  const ncvCol = convertICVToNCV(icvCol);
+  calcNumbersPrediction(colNums, ncvCol);
+  printFinalNumbersPrediction(finalNumbersPrediction, 'Column prediction:');
+}
+
+/**
+ * Calculates the prediction for the given numbers array
+ * @param {Array<number>} nums The numbers for that row/column
+ * @param {Array<number>} arr The row/col in NCV form
+ */
+function calcNumbersPrediction(nums, arr) {
+  // Reset the prediction
+  finalNumbersPrediction = [];
+
+  // If there are no values in this array...
+  if (nums[0] === 0) {
+    // And if the player hasn't filled in any squares (that would make this section)...
+    if (arr.every(num => num !== NCV_INIT_FILLED)) {
+      // Autofill prediction to be all Xs unless the player has already placed Xs
+      finalNumbersPrediction = arr.map(num => num === NCV_INIT_X ? num : NCV_X);
+    }
+  }
+  // If there are values in this array...
+  else {
+    // Recursively calculate the numbers prediction
+    recurseCalcNumbersPrediction(nums, 0, arr, 0);
+  }
+
+  // If a prediction was not created, there is no prediction to be made
+  if (finalNumbersPrediction.length === 0) {
+    finalNumbersPrediction = new Array(arr.length).fill(NCV_NONE);
+  }
+
+  // Bit shift the filled numbers so that we can flag whether or not it has been filled already
+  finalNumbersPrediction = finalNumbersPrediction.map((num, i) => num >= 0 ? ((num + 1) << 1) + (arr[i] === NCV_INIT_FILLED ? 1 : 0) : num);
+}
+
+/**
+ * Recursively calculates the prediction for this row/column based on the numbers given
+ * NOTE: There are probably more efficient ways of doing this, but this is what I came up with
+ *  and I worked really hard on it and don't ever want to look at it again
+ * @param {Array<number>} nums The numbers for that row/column
+ * @param {number} numsIdx The current index of the nums array
+ * @param {Array<number>} initPrediction The initial prediction based on the last calculations
+ * @param {number} initPredictionIdx The current index of the initial prediction
+ */
+function recurseCalcNumbersPrediction(nums, numsIdx, initPrediction, initPredictionIdx) {
+  const num = nums[numsIdx];
+
+  // Get the max index we can go to so we don't iterate through array combinations that are invalid
+  const maxIdx = initPrediction.length - nums.slice(numsIdx + 1).reduce((sum, number) => sum + number + 1, 0);
+
+  // Start iterating through all possible array combinations
+  // `i` will keep track of the iteration starting point
+  for (let i = initPredictionIdx; i < maxIdx; i++) {
+    let predictionIdx = i; // This will keep track of where we are placing potential squares in the array
+    let prediction = initPrediction.slice(); // Make a copy of the initial prediction
+
+    // If there is a filled square on either side of this iteration's number group...
+    if ((predictionIdx > 0 && prediction[predictionIdx - 1] === NCV_INIT_FILLED) ||
+        (predictionIdx + num < prediction.length && prediction[predictionIdx + num] === NCV_INIT_FILLED)) {
+      // It is invalid, skip this iteration
+      continue;
+    }
+
+    let xEncountered = false; // Use to break out of the inner for loop
+    // Fill out this number group
+    for (let j = 0; j < num; j++) {
+      // If there is a defined X in this number group...
+      if (predictionIdx >= prediction.length || prediction[predictionIdx] === NCV_INIT_X) {
+        // It is invalid, break out of this for loop
+        xEncountered = true; // Have to use this boolean to break out of the outer for loop as well
+        break;
+      }
+      // If we didn't encounter an X, fill the square and move to the next square
+      prediction[predictionIdx++] = numsIdx;
+    }
+    // If we encountered an X...
+    if (xEncountered) {
+      // It is invalid, skip this iteration
+      continue;
+    }
+
+    // If somewhere before in this array, we skipped over a user filled in square...
+    if (prediction.slice(0, predictionIdx).some(num => num === NCV_INIT_FILLED)) {
+      // It is invalid, skip this iteration
+      continue;
+    }
+
+    // If this was not the final number group...
+    if (numsIdx < nums.length - 1) {
+      // Continue iterating
+      recurseCalcNumbersPrediction(nums, numsIdx + 1, prediction, predictionIdx + 1);
+    }
+    // If all number groups have been filled in...
+    else {
+      // If the final numbers prediction has not been set, set it
+      if (finalNumbersPrediction.length === 0) {
+        for (const val of prediction) {
+          // Push values so we don't lose the reference
+          finalNumbersPrediction.push(val);
+        }
+      }
+      // If final number prediction has been set...
+      else {
+        // Intersect this prediction with the last one
+        finalNumbersPrediction = intersect(finalNumbersPrediction, prediction, NCV_NONE);
+      }
+    }
+  }
 }
 
 /**

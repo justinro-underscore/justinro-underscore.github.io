@@ -84,3 +84,9 @@ const CV_NONE = 'none';
 const CV_FILLED = 'filled';
 const CV_X_ED = 'x-ed';
 const CV_MARKED = 'marked';
+
+// Numbers Calculation Values
+const NCV_NONE = -1;
+const NCV_INIT_X = -2;
+const NCV_INIT_FILLED = -3;
+const NCV_X = -4;
