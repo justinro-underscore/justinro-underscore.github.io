@@ -25,7 +25,7 @@ var finalNumbersPrediction;
  */
 function onLoad() {
   bindListeners();
-  loadLevel(0);
+  loadLevel(1);
 }
 
 /**
