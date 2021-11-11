@@ -19,7 +19,8 @@ const CLASS_NUMBERS = 'numbers';
 const CLASS_NUMBERS_ROW = 'numbers-row';
 const CLASS_NUMBERS_COL = 'numbers-col';
 const CLASS_NUMBERS_FILLED = 'numbers-filled';
-const CLASS_NUMBERS_AVAILABLE = 'numbers-available';
+const CLASS_NUMBERS_FILLED_BLUE = 'numbers-filled-blue';
+const CLASS_NUMBERS_BLUE = 'numbers-blue';
 const CLASS_WIN = 'win';
 
 // Attributes
@@ -77,7 +78,8 @@ const ACTION_KEYS = Object.keys(CONTROL_MAPPING[ACTION]);
 // Number Statuses
 const NS_NONE = 'none';
 const NS_FILLED = 'filled';
-const NS_AVAILABLE = 'available';
+const NS_FILLED_BLUE = 'filledBlue';
+const NS_BLUE = 'blue';
 
 // Internal Cell Values
 const CV_NONE = 'none';

@@ -68,6 +68,10 @@ body {
   color: #888;
 }
 
-.numbers-available {
+.numbers-filled-blue {
+  color: #aeaeff;
+}
+
+.numbers-blue {
   color: #44f;
 }

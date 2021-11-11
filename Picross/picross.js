@@ -36,9 +36,9 @@ function bindListeners() {
     if (!gameOver) {
       // TODO Add debounce
       // TODO Add ability to hold action key while moving
-      // TODO Make sure that the arrow keys don't scroll the page
       const keyCode = event.key;
       if (NAVIGATION_KEYS.includes(keyCode)) {
+        event.preventDefault();
         moveSelected(keyCode);
       }
       else if (ACTION_KEYS.includes(keyCode)) {
@@ -103,6 +103,14 @@ function loadLevel(index) {
 
   // Prefill the cells so we have an easy starting place
   prefillCells();
+
+  // Go through and set the numbers colors
+  for (let row = 0; row < gameBoardHeight; row++) {
+    calcNumbersPredictionFromRowCol(true, row);
+  }
+  for (let col = 0; col < gameBoardWidth; col++) {
+    calcNumbersPredictionFromRowCol(false, col);
+  }
 
   // Set first selected cell
   selectedPos = [0, 0];
@@ -179,7 +187,7 @@ function createGameTable() {
 }
 
 /**
- * Creates the game table using level values
+ * Prefills the cells by filling in full rows/cols and x-ing out empty rows/cols
  */
 function prefillCells() {
   for (let row = 0; row < gameBoardHeight; row++) {
@@ -194,7 +202,6 @@ function prefillCells() {
       for (let col = 0; col < gameBoardWidth; col++) {
         takeActionOnCell(action, [col, row]);
       }
-      setNumberStatus(NS_FILLED, true, row, 0);
     }
   }
   for (let col = 0; col < gameBoardWidth; col++) {
@@ -209,7 +216,6 @@ function prefillCells() {
       for (let row = 0; row < gameBoardHeight; row++) {
         takeActionOnCell(action, [col, row]);
       }
-      setNumberStatus(NS_FILLED, false, col, 0);
     }
   }
 }
@@ -327,17 +333,21 @@ function takeActionOnCell(action, cellPos) {
  */
 function updateNumbers(yx) {
   const [colNum, rowNum] = yx;
-  const rowNums = rowValues[rowNum]
-  const icvRow = gameBoard[rowNum];
-  const ncvRow = convertICVToNCV(icvRow);
-  calcNumbersPrediction(rowNums, ncvRow);
-  printFinalNumbersPrediction(finalNumbersPrediction, 'Row prediction:');
+  calcNumbersPredictionFromRowCol(true, rowNum);
+  calcNumbersPredictionFromRowCol(false, colNum);
+}
 
-  const colNums = colValues[colNum]
-  const icvCol = gameBoard.map(row => row[colNum]);
-  const ncvCol = convertICVToNCV(icvCol);
-  calcNumbersPrediction(colNums, ncvCol);
-  printFinalNumbersPrediction(finalNumbersPrediction, 'Column prediction:');
+/**
+ * Calculates the numbers prediction for a single row or column
+ * @param {boolean} rowCol If true, row. Otherwise, column
+ * @param {number} index The row index if row. Column index if column
+ */
+function calcNumbersPredictionFromRowCol(rowCol, index) {
+  const nums = rowCol ? rowValues[index] : colValues[index];
+  const icv = rowCol ? gameBoard[index] : gameBoard.map(row => row[index]);
+  const ncv = convertICVToNCV(icv);
+  calcNumbersPrediction(nums, ncv);
+  setNumberStatusFromPrediction(rowCol, index, nums);
 }
 
 /**
@@ -419,6 +429,7 @@ function recurseCalcNumbersPrediction(nums, numsIdx, initPrediction, initPredict
     }
 
     // If somewhere before in this array, we skipped over a user filled in square...
+    // TODO Bug where if there's a filled square later, it should also be invalid
     if (prediction.slice(0, predictionIdx).some(num => num === NCV_INIT_FILLED)) {
       // It is invalid, skip this iteration
       continue;
@@ -482,6 +493,68 @@ function setWin() {
 }
 
 /**
+ * Sets the numbers statuses based on the numbers prediction
+ * @param {boolean} rowCol If true, row. Otherwise, column
+ * @param {number} index The row index if row. Column index if column
+ * @param {Array<number>} nums The numbers from the given row or column
+ */
+function setNumberStatusFromPrediction(rowCol, index, nums) {
+  // If we have anything that can be filled in, tint the numbers blue
+  let blue = false;
+  // Keeps track of all the indices that have been solved
+  let solvedIndices = [];
+  // Loop through all elements in the prediction
+  for (let i = 0; i < finalNumbersPrediction.length; i++) {
+    const num = finalNumbersPrediction[i];
+
+    // If an X should be placed here...
+    if (num === NCV_X) {
+      // Turn the numbers blue
+      blue = true;
+    }
+    // If we encounter a number group...
+    else if (num > 0) {
+      // Get the number it is based on
+      const rawNum = num >> 1;
+      // A number group will be considered solved if...
+      //  1. It is next to the wall or a player-placed X on its left side
+      let solved = i === 0 || finalNumbersPrediction[i - 1] === NCV_INIT_X;
+      do {
+        // 2. The number group contains all filled squares
+        if (finalNumbersPrediction[i] % 2 === 0) {
+          solved = false;
+          blue = true;
+        }
+        i++;
+      }
+      while (i < finalNumbersPrediction.length &&
+          finalNumbersPrediction[i] >= rawNum << 1 &&
+          finalNumbersPrediction[i] <= (rawNum << 1) + 1);
+
+      if (solved) {
+        // 3. It is next to the wall or a player-placed X on its right side
+        if (i === finalNumbersPrediction.length || finalNumbersPrediction[i] === NCV_INIT_X) {
+          // If all is true, push the number to the solved indices
+          solvedIndices.push(rawNum - 1);
+        }
+      }
+      // Back the i value up
+      i -= 1;
+    }
+  }
+
+  // Go through all numbers and set the statuses
+  for (let i = 0; i < nums.length; i++) {
+    const status = blue ? (
+      solvedIndices.includes(i) ? NS_FILLED_BLUE : NS_BLUE
+    ) : (
+      solvedIndices.includes(i) ? NS_FILLED : NS_NONE
+    );
+    setNumberStatus(status, rowCol, index, i);
+  }
+}
+
+/**
  * Sets the status of a given number value
  * @param {string} status The number status of the given number
  * @param {boolean} rowCol If true, numbers row. Otherwise, numbers column
@@ -491,14 +564,16 @@ function setWin() {
 function setNumberStatus(status, rowCol, index, numberIndex) {
   const id = getNumbersId(rowCol, index, numberIndex);
   const numberElem = document.getElementById(id);
-  numberElem.classList.remove(CLASS_NUMBERS_FILLED);
-  numberElem.classList.remove(CLASS_NUMBERS_AVAILABLE);
+  numberElem.classList = [];
   switch (status) {
     case NS_FILLED:
       numberElem.classList.add(CLASS_NUMBERS_FILLED);
       break;
-    case NS_AVAILABLE:
-      numberElem.classList.add(CLASS_NUMBERS_AVAILABLE);
+    case NS_FILLED_BLUE:
+      numberElem.classList.add(CLASS_NUMBERS_FILLED_BLUE);
+      break;
+    case NS_BLUE:
+      numberElem.classList.add(CLASS_NUMBERS_BLUE);
       break;
   }
 }
