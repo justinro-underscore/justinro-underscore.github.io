@@ -69,60 +69,6 @@ function printFinalNumbersPrediction(prediction, prefix = '') {
   console.log(str, ...styles);
 }
 
-// function testNumbersPrediction() {
-//   // const nums = [1, 1, 3];
-//   // let arr = new Array(9).fill(NCV_X);
-//   // arr[7] = NCV_INIT_FILLED;
-//   // arr[1] = NCV_INIT_FILLED;
-//   // arr[3] = NCV_INIT_X;
-//   // const nums = [1, 2, 1];
-//   // let arr = new Array(7).fill(NCV_X);
-//   // const nums = [3];
-//   // let arr = new Array(4).fill(NCV_X);
-//   // const nums = [0];
-//   // let arr = new Array(4).fill(NCV_X);
-//   // arr[1] = NCV_INIT_FILLED;
-//   // arr[1] = NCV_INIT_X;
-//   // const nums = [3];
-//   // let arr = new Array(4).fill(NCV_X);
-//   // arr[1] = NCV_INIT_FILLED;
-//   // arr[1] = NCV_INIT_X;
-
-//   // calcNumbersPrediction(nums, arr);
-
-//   const nums = [1, 1];
-//   const arr1 = [NCV_X, NCV_X, NCV_X, NCV_X, NCV_X];
-//   const arr2 = [NCV_INIT_FILLED, NCV_X, NCV_X, NCV_X, NCV_X];
-//   const arr3 = [NCV_INIT_FILLED, NCV_INIT_X, NCV_X, NCV_X, NCV_X];
-//   const arr4 = [NCV_X, NCV_INIT_FILLED, NCV_X, NCV_X, NCV_X];
-//   const arr5 = [NCV_INIT_X, NCV_INIT_FILLED, NCV_X, NCV_X, NCV_X];
-//   const arr6 = [NCV_X, NCV_INIT_FILLED, NCV_INIT_X, NCV_X, NCV_X];
-//   const arr7 = [NCV_INIT_X, NCV_INIT_FILLED, NCV_INIT_X, NCV_X, NCV_X];
-
-//   const arr8 = [NCV_INIT_FILLED, NCV_INIT_FILLED, NCV_X, NCV_X, NCV_X];
-//   const arr9 = [NCV_X, NCV_X, NCV_INIT_X, NCV_INIT_X, NCV_INIT_FILLED];
-//   const arr10 = [NCV_X, NCV_X, NCV_INIT_X, NCV_INIT_X, NCV_X];
-//   const arr11 = [NCV_X, NCV_INIT_FILLED, NCV_INIT_X, NCV_INIT_X, NCV_X];
-//   const arr12 = [NCV_INIT_X, NCV_INIT_FILLED, NCV_INIT_X, NCV_INIT_X, NCV_X];
-//   const arr13 = [NCV_INIT_FILLED, NCV_X, NCV_INIT_X, NCV_INIT_X, NCV_X];
-//   const arr14 = [NCV_X, NCV_INIT_FILLED, NCV_X, NCV_INIT_FILLED, NCV_X];
-
-//   calcNumbersPrediction(nums, arr1);
-//   calcNumbersPrediction(nums, arr2);
-//   calcNumbersPrediction(nums, arr3);
-//   calcNumbersPrediction(nums, arr4);
-//   calcNumbersPrediction(nums, arr5);
-//   calcNumbersPrediction(nums, arr6);
-//   calcNumbersPrediction(nums, arr7);
-//   calcNumbersPrediction(nums, arr8);
-//   calcNumbersPrediction(nums, arr9);
-//   calcNumbersPrediction(nums, arr10);
-//   calcNumbersPrediction(nums, arr11);
-//   calcNumbersPrediction(nums, arr12);
-//   calcNumbersPrediction(nums, arr13);
-//   calcNumbersPrediction(nums, arr14);
-// }
-
 /**
  * Converts the given array of Internal Cell Values (the array directly from the game board)
  * to Numbers Calculation Values (the values that are used in the numbers prediction calculation)
