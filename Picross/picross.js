@@ -262,7 +262,7 @@ function takeAction(actionKeyCode) {
   // If we should just toggle the cell and not take an action
   const toggle = (selectedCellStatus === CV_FILLED && action === ACTION_FILL) ||
     (selectedCellStatus === CV_X_ED && action === ACTION_X) ||
-    (selectedCellStatus === CV_MARKED && actionKeyCode === ACTION_MARK)
+    (selectedCellStatus === CV_MARKED && action === ACTION_MARK)
 
   // Wipe the slate clean
   const id = getCellId(selectedPos);
