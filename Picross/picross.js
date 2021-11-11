@@ -428,9 +428,14 @@ function recurseCalcNumbersPrediction(nums, numsIdx, initPrediction, initPredict
       continue;
     }
 
-    // If somewhere before in this array, we skipped over a user filled in square...
-    // TODO Bug where if there's a filled square later, it should also be invalid
+    // If somewhere before in this prediction, we skipped over a user filled in square...
     if (prediction.slice(0, predictionIdx).some(num => num === NCV_INIT_FILLED)) {
+      // It is invalid, skip this iteration
+      continue;
+    }
+
+    // If the prediction is complete and we missed a user filled in square...
+    if (numsIdx === nums.length - 1 && prediction.slice(predictionIdx).some(num => num === NCV_INIT_FILLED)) {
       // It is invalid, skip this iteration
       continue;
     }
