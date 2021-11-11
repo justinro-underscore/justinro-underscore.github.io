@@ -36,9 +36,9 @@ function bindListeners() {
     if (!gameOver) {
       // TODO Add debounce
       // TODO Add ability to hold action key while moving
-      // TODO Make sure that the arrow keys don't scroll the page
       const keyCode = event.key;
       if (NAVIGATION_KEYS.includes(keyCode)) {
+        event.preventDefault();
         moveSelected(keyCode);
       }
       else if (ACTION_KEYS.includes(keyCode)) {
