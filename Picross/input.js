@@ -20,7 +20,7 @@ function keydownListener(event) {
     if (NAVIGATION_KEYS.includes(keyCode)) {
       // TODO Add debounce
       event.preventDefault();
-      moveSelected(keyCode);
+      moveSelected(keyCode, event.repeat);
       // If an action key is currently being pressed down...
       if (currActionKey) {
         // Execute the current action

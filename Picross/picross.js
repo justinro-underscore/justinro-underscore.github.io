@@ -205,8 +205,10 @@ function prefillCells() {
 /**
  * Moves the selected cell
  * @param {string} keyCode The key code of the key input
+ * @param {boolean} repeating If true, the key is being held down
+ *  If this is true, then we want to not wrap the cursor
  */
-function moveSelected(keyCode) {
+function moveSelected(keyCode, repeating) {
   const id = getCellId(selectedPos);
   document.getElementById(id).classList.remove(CLASS_CELL_SELECTED);
 
@@ -214,24 +216,36 @@ function moveSelected(keyCode) {
   const navDirection = CONTROL_MAPPING[NAVIGATION][keyCode];
   switch (navDirection) {
     case NAV_UP:
+      if (repeating && selectedPos[1] === 0) {
+        break;
+      }
       selectedPos[1]--;
       if (selectedPos[1] < 0) {
         selectedPos[1] = gameBoardHeight - 1;
       }
       break;
     case NAV_RIGHT:
+      if (repeating && selectedPos[0] === gameBoardWidth - 1) {
+        break;
+      }
       selectedPos[0]++;
       if (selectedPos[0] >= gameBoardWidth) {
         selectedPos[0] = 0;
       }
       break;
     case NAV_DOWN:
+      if (repeating && selectedPos[1] === gameBoardHeight - 1) {
+        break;
+      }
       selectedPos[1]++;
       if (selectedPos[1] >= gameBoardHeight) {
         selectedPos[1] = 0;
       }
       break;
     case NAV_LEFT:
+      if (repeating && selectedPos[0] === 0) {
+        break;
+      }
       selectedPos[0]--;
       if (selectedPos[0] < 0) {
         selectedPos[0] = gameBoardWidth - 1;
