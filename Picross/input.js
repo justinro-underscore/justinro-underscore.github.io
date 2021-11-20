@@ -23,8 +23,8 @@ function keydownListener(event) {
       moveSelected(keyCode);
       // If an action key is currently being pressed down...
       if (currActionKey) {
-        // Execute that action
-        takeAction(currActionKey);
+        // Execute the current action
+        takeInternalAction();
       }
     }
     // Only run the action event once

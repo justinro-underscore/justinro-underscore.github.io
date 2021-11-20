@@ -92,3 +92,10 @@ const NCV_NONE = -1;
 const NCV_INIT_X = -2;
 const NCV_INIT_FILLED = -3;
 const NCV_X = -4;
+
+// Internal Actions
+const IA_ADD_FILL = 'add fill';
+const IA_ADD_X = 'add x';
+const IA_ADD_MARK = 'add mark';
+const IA_ERASE = 'erase';
+const IA_ERASE_MARK = 'erase mark';

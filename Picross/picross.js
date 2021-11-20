@@ -19,6 +19,8 @@ let gameOver;
 // Defines the numbers prediction after calculation
 // Had to make this global scope because it must be up to date through all recursion instances
 var finalNumbersPrediction;
+// Defines the current action being taken
+let currInternalAction;
 
 /**
  * Runs when the page loads, initializes game
@@ -173,28 +175,28 @@ function prefillCells() {
   for (let row = 0; row < gameBoardHeight; row++) {
     let action = null;
     if (rowValues[row][0] === 0) {
-      action = ACTION_X;
+      action = IA_ADD_X;
     }
     else if (rowValues[row][0] === gameBoardWidth) {
-      action = ACTION_FILL;
+      action = IA_ADD_FILL;
     }
     if (action) {
       for (let col = 0; col < gameBoardWidth; col++) {
-        takeActionOnCell(action, [col, row]);
+        takeInternalAction(action, [col, row]);
       }
     }
   }
   for (let col = 0; col < gameBoardWidth; col++) {
     let action = null;
     if (colValues[col][0] === 0) {
-      action = ACTION_X;
+      action = IA_ADD_X;
     }
     else if (colValues[col][0] === gameBoardHeight) {
-      action = ACTION_FILL;
+      action = IA_ADD_FILL;
     }
     if (action) {
       for (let row = 0; row < gameBoardHeight; row++) {
-        takeActionOnCell(action, [col, row]);
+        takeInternalAction(action, [col, row]);
       }
     }
   }
@@ -245,65 +247,110 @@ function moveSelected(keyCode) {
  * @param {string} actionKeyCode The key code of the action to take (assumes valid input)
  */
 function takeAction(actionKeyCode) {
+  // Get the current action being taken based on the controls
   const action = CONTROL_MAPPING[ACTION][actionKeyCode];
-
+  // Get the current selected cell status
   const selectedCellStatus = gameBoard[selectedPos[1]][selectedPos[0]];
-  // If we should just toggle the cell and not take an action
-  const toggle = (selectedCellStatus === CV_FILLED && action === ACTION_FILL) ||
-    (selectedCellStatus === CV_X_ED && action === ACTION_X) ||
-    (selectedCellStatus === CV_MARKED && action === ACTION_MARK)
 
-  // Wipe the slate clean
-  const id = getCellId(selectedPos);
-  const cell = document.getElementById(id);
+  // Determine what action should be taken on the game board based on
+  //  the action from the controls and the current cell status
+  currInternalAction = null;
+  // If filling or x-ing...
+  if (action === ACTION_FILL || action === ACTION_X) {
+    // And if the cell is either empty or marked...
+    if (selectedCellStatus === CV_NONE || selectedCellStatus === CV_MARKED) {
+      // Action should be to add fills or x-es
+      currInternalAction = action === ACTION_FILL ? IA_ADD_FILL : IA_ADD_X;
+    }
+    // Or if the cell is already filled or x-ed...
+    else {
+      // Action should be to erase
+      currInternalAction = IA_ERASE;
+    }
+  }
+  // If marking...
+  else if (action === ACTION_MARK) {
+    // If the cell is empty...
+    if (selectedCellStatus === CV_NONE) {
+      // Action should be to add marks
+      currInternalAction = IA_ADD_MARK;
+    }
+    // Or if the cell is marked...
+    else if (selectedCellStatus === CV_MARKED) {
+      // Action should be to erase marks
+      currInternalAction = IA_ERASE_MARK;
+    }
+    // Do nothing if starting action on filled or x-ed cell
+  }
+
+  // Take the action
+  takeInternalAction();
+}
+
+function clearCellElem(cell) {
   cell.classList.remove(CLASS_CELL_FILLED);
   cell.classList.remove(CLASS_CELL_X_ED);
   cell.classList.remove(CLASS_CELL_MARKED);
   cell.innerHTML = CELL_NONE;
-  gameBoard[selectedPos[1]][selectedPos[0]] = CV_NONE;
-
-  // If we are toggling, we already wiped the class list and set the cell content to none
-  // If we are not toggling, take an action
-  if (!toggle) {
-    takeActionOnCell(action, selectedPos);
-  }
-
-  // Update the numbers on this row and column
-  // TODO Only update numbers if changing an X-ed, filled, or empty space (not with a mark)
-  updateNumbers(selectedPos);
-
-  // Checks if the puzzle has been solved
-  if (checkWin()) {
-    setWin();
-  }
 }
 
 /**
- * TODO Come up with a better name for this function
  * Applies an action onto a given cell with the given position
- * @param {string} action The action to take
- * @param {Array<number>} cellPos [row, col]
+ * @param {string} internalAction The action to take, defaults the current action
+ * @param {Array<number>} cellPos [row, col], defaults to the selected position
  */
-function takeActionOnCell(action, cellPos) {
+function takeInternalAction(internalAction = currInternalAction, cellPos = selectedPos) {
   const id = getCellId(cellPos);
   const cell = document.getElementById(id);
 
   // Take the action
-  switch (action) {
-    case ACTION_FILL:
+  switch (internalAction) {
+    case IA_ADD_FILL:
+      clearCellElem(cell);
       cell.classList.add(CLASS_CELL_FILLED);
       gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
+
+      // Since a square has been filled, check if the puzzle has been solved
+      if (checkWin()) {
+        // If it has, set the win status and exit
+        setWin();
+        return;
+      }
       break;
-    case ACTION_X:
+    case IA_ADD_X:
+      clearCellElem(cell);
       cell.classList.add(CLASS_CELL_X_ED);
       cell.innerText = CELL_X;
       gameBoard[cellPos[1]][cellPos[0]] = CV_X_ED;
       break;
-    case ACTION_MARK:
-      cell.classList.add(CLASS_CELL_MARKED);
-      cell.innerText = CELL_MARK;
-      gameBoard[cellPos[1]][cellPos[0]] = CV_MARKED;
+    case IA_ADD_MARK:
+      // Marks can only be placed on empty cells
+      if (gameBoard[cellPos[1]][cellPos[0]] === CV_NONE) {
+        clearCellElem(cell);
+        cell.classList.add(CLASS_CELL_MARKED);
+        cell.innerText = CELL_MARK;
+        gameBoard[cellPos[1]][cellPos[0]] = CV_MARKED;
+      }
       break;
+
+    case IA_ERASE_MARK:
+      // When erasing marks, can only erase marked cells
+      if (gameBoard[cellPos[1]][cellPos[0]] !== CV_MARKED) {
+        break;
+      }
+      // Fall through:
+    case IA_ERASE:
+      clearCellElem(cell);
+      gameBoard[cellPos[1]][cellPos[0]] = CV_NONE;
+      break;
+  }
+
+  // If the game hasn't finished and the game board has been changed...
+  if (!gameOver && (internalAction === IA_ADD_FILL ||
+      internalAction === IA_ADD_X ||
+      internalAction === IA_ERASE)) {
+    // Update the numbers on this row and column
+    updateNumbers(cellPos);
   }
 }
 
