@@ -508,52 +508,80 @@ function setNumberStatusFromPrediction(rowCol, index, nums) {
   let blue = false;
   // Keeps track of all the indices that have been solved
   let solvedIndices = [];
-  // Loop through all elements in the prediction
-  for (let i = 0; i < finalNumbersPrediction.length; i++) {
-    const num = finalNumbersPrediction[i];
 
-    // If an X should be placed here...
-    if (num === NCV_X) {
-      // Turn the numbers blue
+  // In Picross, if all of the number groups are found the row is automatically filled
+  let numberGroupsFound = true;
+  for (const num of finalNumbersPrediction) {
+    // If there is a number group...
+    if (num > 0) {
+      // And that number group contains non-filled in squares
+      if (num % 2 === 0) {
+        // It is not complete
+        numberGroupsFound = false;
+        break;
+      }
+    }
+    // If there is an unknown square...
+    else if (num === NCV_NONE) {
+      // It is not complete
+      numberGroupsFound = false;
+      break;
+    }
+    // If the player can add an X, turn the row blue
+    else if (num === NCV_X) {
       blue = true;
     }
-    // If we encounter a number group...
-    else if (num > 0) {
-      // Get the number it is based on
-      const rawNum = num >> 1;
-      // A number group will be considered solved if...
-      //  1. It is next to the wall or a player-placed X on its left side
-      let solved = i === 0 || finalNumbersPrediction[i - 1] === NCV_INIT_X;
-      do {
-        // 2. The number group contains all filled squares
-        if (finalNumbersPrediction[i] % 2 === 0) {
-          solved = false;
-          blue = true;
-        }
-        i++;
-      }
-      while (i < finalNumbersPrediction.length &&
-          finalNumbersPrediction[i] >= rawNum << 1 &&
-          finalNumbersPrediction[i] <= (rawNum << 1) + 1);
+  }
 
-      if (solved) {
-        // 3. It is next to the wall or a player-placed X on its right side
-        if (i === finalNumbersPrediction.length || finalNumbersPrediction[i] === NCV_INIT_X) {
-          // If all is true, push the number to the solved indices
-          solvedIndices.push(rawNum - 1);
-        }
+  // If all the number groups were not found, do the standard number statuses
+  if (!numberGroupsFound) {
+    // Loop through all elements in the prediction
+    for (let i = 0; i < finalNumbersPrediction.length; i++) {
+      const num = finalNumbersPrediction[i];
+  
+      // If an X should be placed here...
+      if (num === NCV_X) {
+        // Turn the numbers blue
+        blue = true;
       }
-      // Back the i value up
-      i -= 1;
+      // If we encounter a number group...
+      else if (num > 0) {
+        // Get the number it is based on
+        const rawNum = num >> 1;
+        // A number group will be considered solved if...
+        //  1. It is next to the wall or a player-placed X on its left side
+        let solved = i === 0 || finalNumbersPrediction[i - 1] === NCV_INIT_X;
+        do {
+          // 2. The number group contains all filled squares
+          if (finalNumbersPrediction[i] % 2 === 0) {
+            solved = false;
+            blue = true;
+          }
+          i++;
+        }
+        while (i < finalNumbersPrediction.length &&
+            finalNumbersPrediction[i] >= rawNum << 1 &&
+            finalNumbersPrediction[i] <= (rawNum << 1) + 1);
+  
+        if (solved) {
+          // 3. It is next to the wall or a player-placed X on its right side
+          if (i === finalNumbersPrediction.length || finalNumbersPrediction[i] === NCV_INIT_X) {
+            // If all is true, push the number to the solved indices
+            solvedIndices.push(rawNum - 1);
+          }
+        }
+        // Back the i value up
+        i -= 1;
+      }
     }
   }
 
   // Go through all numbers and set the statuses
   for (let i = 0; i < nums.length; i++) {
     const status = blue ? (
-      solvedIndices.includes(i) ? NS_FILLED_BLUE : NS_BLUE
+      numberGroupsFound || solvedIndices.includes(i) ? NS_FILLED_BLUE : NS_BLUE
     ) : (
-      solvedIndices.includes(i) ? NS_FILLED : NS_NONE
+      numberGroupsFound || solvedIndices.includes(i) ? NS_FILLED : NS_NONE
     );
     setNumberStatus(status, rowCol, index, i);
   }
