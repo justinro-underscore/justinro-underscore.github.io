@@ -160,7 +160,7 @@ function createGameTable() {
       const cellElem = document.createElement(ELEM_TABLE_CELL);
       cellElem.setAttribute(ATTR_ID, getCellId(col, row));
       cellElem.classList.add(CLASS_CELL);
-      cellElem.innerHTML = '&nbsp';
+      cellElem.innerHTML = CELL_NONE;
       rowElem.appendChild(cellElem);
     }
     gameTable.appendChild(rowElem);
