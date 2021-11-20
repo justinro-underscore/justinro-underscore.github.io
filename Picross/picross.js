@@ -316,30 +316,37 @@ function clearCellElem(cell) {
 function takeInternalAction(internalAction = currInternalAction, cellPos = selectedPos) {
   const id = getCellId(cellPos);
   const cell = document.getElementById(id);
+  const currCellStatus = gameBoard[cellPos[1]][cellPos[0]];
 
   // Take the action
   switch (internalAction) {
     case IA_ADD_FILL:
-      clearCellElem(cell);
-      cell.classList.add(CLASS_CELL_FILLED);
-      gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
+      // Fills cannot overwrite x-es
+      if (currCellStatus !== CV_X_ED) {
+        clearCellElem(cell);
+        cell.classList.add(CLASS_CELL_FILLED);
+        gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
 
-      // Since a square has been filled, check if the puzzle has been solved
-      if (checkWin()) {
-        // If it has, set the win status and exit
-        setWin();
-        return;
+        // Since a square has been filled, check if the puzzle has been solved
+        if (checkWin()) {
+          // If it has, set the win status and exit
+          setWin();
+          return;
+        }
       }
       break;
     case IA_ADD_X:
-      clearCellElem(cell);
-      cell.classList.add(CLASS_CELL_X_ED);
-      cell.innerText = CELL_X;
-      gameBoard[cellPos[1]][cellPos[0]] = CV_X_ED;
+      // X-es cannot overwrite fills
+      if (currCellStatus !== CV_FILLED) {
+        clearCellElem(cell);
+        cell.classList.add(CLASS_CELL_X_ED);
+        cell.innerText = CELL_X;
+        gameBoard[cellPos[1]][cellPos[0]] = CV_X_ED;
+      }
       break;
     case IA_ADD_MARK:
       // Marks can only be placed on empty cells
-      if (gameBoard[cellPos[1]][cellPos[0]] === CV_NONE) {
+      if (currCellStatus === CV_NONE) {
         clearCellElem(cell);
         cell.classList.add(CLASS_CELL_MARKED);
         cell.innerText = CELL_MARK;
@@ -349,7 +356,7 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
 
     case IA_ERASE_MARK:
       // When erasing marks, can only erase marked cells
-      if (gameBoard[cellPos[1]][cellPos[0]] !== CV_MARKED) {
+      if (currCellStatus !== CV_MARKED) {
         break;
       }
       // Fall through:
