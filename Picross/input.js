@@ -18,7 +18,8 @@ function keydownListener(event) {
   if (!gameOver) {
     const keyCode = event.key;
     if (NAVIGATION_KEYS.includes(keyCode)) {
-      // TODO Add debounce
+      // NOTE: I changed this to debounce but didn't like the way it felt.
+      //  It's currently on branch picross-debounce-input, if I want to come back to it
       event.preventDefault();
       moveSelected(keyCode, event.repeat);
       // If an action key is currently being pressed down...
