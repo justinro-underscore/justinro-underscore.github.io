@@ -75,6 +75,10 @@ const CONTROL_MAPPING = Object.fromEntries(Object.entries(CONTROLS).map(([action
 const NAVIGATION_KEYS = Object.keys(CONTROL_MAPPING[NAVIGATION]);
 const ACTION_KEYS = Object.keys(CONTROL_MAPPING[ACTION]);
 
+// Timeout Timings
+const NAV_INITIAL_TIMEOUT = 160;
+const NAV_SUBSEQUENT_TIMEOUT = 100;
+
 // Number Statuses
 const NS_NONE = 'none';
 const NS_FILLED = 'filled';
