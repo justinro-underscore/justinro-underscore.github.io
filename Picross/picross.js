@@ -29,26 +29,6 @@ function onLoad() {
 }
 
 /**
- * Binds the event listeners. This is just keydown for now
- */
-function bindListeners() {
-  document.addEventListener('keydown', event => {
-    if (!gameOver) {
-      // TODO Add debounce
-      // TODO Add ability to hold action key while moving
-      const keyCode = event.key;
-      if (NAVIGATION_KEYS.includes(keyCode)) {
-        event.preventDefault();
-        moveSelected(keyCode);
-      }
-      else if (ACTION_KEYS.includes(keyCode)) {
-        takeAction(keyCode);
-      }
-    }
-  });
-}
-
-/**
  * Loads the specified level into the game board
  * @param {number} index The index of the level to play 
  */
