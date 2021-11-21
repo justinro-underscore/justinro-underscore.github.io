@@ -1,0 +1,127 @@
+#game-board {
+  max-width: 1000px;
+  margin: auto;
+}
+
+#game-table {
+  margin: auto;
+  border-spacing: 4px;
+}
+
+tr {
+  position: relative;
+}
+
+.cell {
+  /* TODO Make this dynamic */
+  width: 20px;
+  height: 20px;
+  position: relative;
+  font-weight: 500;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.cell::before {
+  content: "";
+  z-index: -10;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+}
+
+tr:nth-child(2) > .cell:first-of-type::before {
+  border-radius: 5px 0 0 0;
+}
+
+tr:nth-child(2) > .cell:last-of-type::before {
+  border-radius: 0 5px 0 0;
+}
+
+tr:last-child > .cell:first-of-type::before {
+  border-radius: 0 0 0 5px;
+}
+
+tr:last-child > .cell:last-of-type::before {
+  border-radius: 0 0 5px 0;
+}
+
+.cell::after {
+  content: none;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  height: 30px;
+  width: 30px;
+  background-color: #0f0;
+  z-index: -9;
+}
+
+.cell:nth-child(5n + 1):not(:last-child)::after {
+  content: "";
+  clip-path: polygon(26px 0, 30px 0, 30px 30px, 26px 30px);
+}
+
+tr:nth-child(5n + 1):not(:last-child) > .cell::after {
+  content: "";
+  clip-path: polygon(0 26px, 30px 26px, 30px 30px, 0 30px);
+}
+
+tr:nth-child(5n + 1):not(:last-child) > .cell:nth-child(5n + 1):not(:last-child):after {
+  content: "";
+  clip-path: polygon(0 26px, 26px 26px, 26px 0, 30px 0, 30px 30px, 0 30px);
+}
+
+.cell-selected::before {
+  background-color: #0ff;
+  z-index: -5;
+  border-radius: 5px !important;
+}
+
+.cell-filled {
+  background-color: #11f;
+}
+
+.cell-x-ed {
+  color: #f80;
+}
+
+.cell-marked {
+  color: #11f;
+}
+
+.numbers {
+  /* TODO Add Ubuntu Monospace */
+  font-family: 'Ubuntu Monospace', monospace;
+  display: table-cell;
+  /* TODO Make sure that numbers with more than 1 digit are 1 space wide */
+}
+
+.numbers-row {
+  text-align: right;
+  padding-right: 5px;
+  vertical-align: middle;
+}
+
+.numbers-col {
+  text-align: center;
+  padding-bottom: 5px;
+  vertical-align: bottom;
+}
+
+.numbers-filled {
+  color: #888;
+}
+
+.numbers-filled-blue {
+  color: #aeaeff;
+}
+
+.numbers-blue {
+  color: #44f;
+}
