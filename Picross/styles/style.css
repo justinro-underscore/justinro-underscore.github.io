@@ -3,7 +3,6 @@ body {
   font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
 }
 
-.container {
-  margin: auto;
-  display: flex;
+h1 {
+  margin-bottom: 20px;
 }

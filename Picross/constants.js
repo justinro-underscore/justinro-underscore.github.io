@@ -8,6 +8,7 @@ const ELEM_SPAN = 'span';
 // IDs
 const ID_GAME_BOARD = 'game-board';
 const ID_GAME_TABLE = 'game-table';
+const ID_TIMER = 'timer';
 
 // Classes
 const CLASS_CELL = 'cell';

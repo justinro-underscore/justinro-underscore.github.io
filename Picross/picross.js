@@ -23,13 +23,15 @@ var finalNumbersPrediction;
 let currInternalAction;
 // Keeps track of the time since the start of the game
 let gameStartTime;
+// Defines the ID of the update timer reocurring callback
+let timerIntervalId;
 
 /**
  * Runs when the page loads, initializes game
  */
 function onLoad() {
   bindListeners();
-  loadLevel(1);
+  loadLevel(0);
 }
 
 /**
@@ -102,8 +104,11 @@ function loadLevel(index) {
   document.getElementById(getNumbersId(true, selectedPos[1])).classList.add(CLASS_NUMBERS_SELECTED);
   document.getElementById(getNumbersId(false, selectedPos[0])).classList.add(CLASS_NUMBERS_SELECTED);
 
-  // Start the game
+  // Start the timer
   gameStartTime = new Date().getTime();
+  timerIntervalId = setInterval(updateTimer, 1000);
+
+  // Start the game
   gameOver = false;
 }
 
@@ -206,6 +211,17 @@ function prefillCells() {
       }
     }
   }
+}
+
+/**
+ * Updates the timer with the current time
+ */
+function updateTimer() {
+  const timer = document.getElementById(ID_TIMER);
+  const timeSeconds = (new Date().getTime() - gameStartTime) / 1000;
+  const minutes = String(Math.floor(timeSeconds / 60)).padStart(2, 0);
+  const seconds = String(Math.floor(timeSeconds % 60)).padStart(2, 0);
+  timer.innerText = `${minutes}:${seconds}`;
 }
 
 /**
@@ -345,7 +361,6 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
         if (checkWin()) {
           // If it has, set the win status and exit
           setWin();
-          return;
         }
       }
       break;
@@ -381,9 +396,7 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
   }
 
   // If the game hasn't finished and the game board has been changed...
-  if (!gameOver && (internalAction === IA_ADD_FILL ||
-      internalAction === IA_ADD_X ||
-      internalAction === IA_ERASE)) {
+  if (internalAction === IA_ADD_FILL || internalAction === IA_ADD_X || internalAction === IA_ERASE) {
     // Update the numbers on this row and column
     updateNumbers(cellPos);
   }
@@ -547,6 +560,7 @@ function checkWin() {
  */
 function setWin() {
   gameOver = true;
+  clearInterval(timerIntervalId);
 
   // Remove cursor
   document.getElementById(getCellId(selectedPos)).classList.remove(CLASS_CELL_SELECTED);

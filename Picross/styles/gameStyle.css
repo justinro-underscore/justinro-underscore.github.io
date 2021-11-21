@@ -1,3 +1,15 @@
+#timer {
+  margin: 10px auto 30px auto;
+  padding: 3px 6px;
+  width: fit-content;
+  background-color: #ccc;
+  border: 2px solid #888;
+  border-radius: 5px;
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 700;
+  font-size: 36px;
+}
+
 #game-board {
   max-width: 1000px;
   margin: auto;
