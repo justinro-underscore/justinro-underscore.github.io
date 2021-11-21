@@ -31,7 +31,7 @@ let timerIntervalId;
  */
 function onLoad() {
   bindListeners();
-  loadLevel(0);
+  loadLevel(1);
 }
 
 /**
@@ -356,12 +356,6 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
         clearCellElem(cell);
         cell.classList.add(CLASS_CELL_FILLED);
         gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
-
-        // Since a square has been filled, check if the puzzle has been solved
-        if (checkWin()) {
-          // If it has, set the win status and exit
-          setWin();
-        }
       }
       break;
     case IA_ADD_X:
@@ -399,6 +393,12 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
   if (internalAction === IA_ADD_FILL || internalAction === IA_ADD_X || internalAction === IA_ERASE) {
     // Update the numbers on this row and column
     updateNumbers(cellPos);
+
+    // Check if the puzzle has been solved
+    if (checkWin()) {
+      // If it has, set the win status and exit
+      setWin();
+    }
   }
 }
 
@@ -560,17 +560,48 @@ function checkWin() {
  */
 function setWin() {
   gameOver = true;
+
+  // Stop the timer
   clearInterval(timerIntervalId);
+  const timerElem = document.getElementById(ID_TIMER);
+  timerElem.style.backgroundColor = COLOR_LIGHT_RED;
+  timerElem.style.borderColor = COLOR_DARK_RED;
 
-  // Remove cursor
-  document.getElementById(getCellId(selectedPos)).classList.remove(CLASS_CELL_SELECTED);
+  // Flash the screen
+  const screenOverlay = document.getElementById(ID_SCREEN_OVERLAY);
+  screenOverlay.style.display = 'block';
+  setTimeout(() => {
+    const fadeOutTime = 2000;
+    screenOverlay.style.animation = `fade-out ${fadeOutTime}ms ease-in`;
+    setTimeout(() => screenOverlay.style.display = 'none', fadeOutTime);
 
-  // Add win condition
-  const gameBoardElem = document.getElementById(ID_GAME_BOARD);
-  const winElem = document.createElement(ELEM_DIV);
-  winElem.classList.add(CLASS_WIN);
-  winElem.innerText = 'You win!';
-  gameBoardElem.appendChild(winElem);
+    // Keep track of height and width
+    const gameTable = document.getElementById(ID_GAME_TABLE);
+    const height = ((gameTable.childNodes.length - 1) * 26) + 8;
+    const width = ((gameTable.firstChild.childNodes.length - 1) * 26) + 8;
+
+    // Wipe the game board clean
+    const gameBoard = document.getElementById(ID_GAME_BOARD);
+    while(gameBoard.lastChild) {
+      gameBoard.removeChild(gameBoard.lastChild);
+    }
+
+    // Add the final image
+    const finalImg = document.createElement(ELEM_IMG);
+    finalImg.setAttribute(ATTR_ID, ID_FINAL_IMG);
+    finalImg.setAttribute(ATTR_SRC, 'levels/raw/test.png'); // TODO Replace with whatever image was just created
+    finalImg.setAttribute(ATTR_HEIGHT, height);
+    finalImg.setAttribute(ATTR_WIDTH, width);
+    gameBoard.appendChild(finalImg);
+
+    // Tell the player how long they took
+    const time = document.createElement(ELEM_P);
+    const timeSeconds = (new Date().getTime() - gameStartTime) / 1000;
+    const minutes = Math.floor(timeSeconds / 60);
+    const seconds = Math.floor(timeSeconds % 60);
+    time.innerText = `This took you${minutes ? ` ${minutes} minutes and` : ''} ${seconds} seconds, well done!`;
+    gameBoard.appendChild(time);
+  }, 3000);
 }
 
 /**

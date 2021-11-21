@@ -1,8 +1,28 @@
 body {
+  height: 100%;
   text-align: center;
   font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
 }
 
+#screen-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: #fff;
+  z-index: 100;
+  display: none;
+
+  animation: fade-in 3s ease-in;
+}
+
 h1 {
   margin-bottom: 20px;
+}
+
+#final-img {
+  background-color: #fff;
+  image-rendering: pixelated;
 }
