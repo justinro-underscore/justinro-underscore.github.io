@@ -41,8 +41,8 @@ function onLoad() {
 function loadLevel(index) {
   // Get data and set initial values for variables
   solution = levels[index];
-  gameBoardHeight = solution.length;
-  gameBoardWidth = solution[0].length;
+  gameBoardHeight = solution.height;
+  gameBoardWidth = solution.width;
   gameBoard = new Array(gameBoardHeight);
   for (let i = 0; i < gameBoardHeight; i++) {
     gameBoard[i] = new Array(gameBoardWidth);
@@ -63,7 +63,7 @@ function loadLevel(index) {
       let vals = [];
       let count = 0;
       for (let j = 0; j < (row ? gameBoardWidth : gameBoardHeight); j++) {
-        if ((row ? solution[i][j] : solution[j][i])[3] === 1) {
+        if ((row ? solution.data[i][j] : solution.data[j][i]) === 1) {
           count++;
         }
         else if (count > 0) {
@@ -546,8 +546,8 @@ function recurseCalcNumbersPrediction(nums, numsIdx, initPrediction, initPredict
 function checkWin() {
   for (let i = 0; i < gameBoardHeight; i++) {
     for (let j = 0; j < gameBoardWidth; j++) {
-      if ((gameBoard[i][j] === CV_FILLED && solution[i][j][3] !== 1) ||
-        (gameBoard[i][j] !== CV_FILLED && solution[i][j][3] === 1)) {
+      if ((gameBoard[i][j] === CV_FILLED && solution.data[i][j] !== 1) ||
+        (gameBoard[i][j] !== CV_FILLED && solution.data[i][j] === 1)) {
         return false;
       }
     }
@@ -556,7 +556,7 @@ function checkWin() {
 }
 
 /**
- * Sets the win condition
+ * Starts setting the win data
  */
 function setWin() {
   gameOver = true;
@@ -568,40 +568,51 @@ function setWin() {
   timerElem.style.borderColor = COLOR_DARK_RED;
 
   // Flash the screen
+  document.getElementById(ID_SCREEN_OVERLAY).style.display = 'block';
+  setTimeout(setWinScreen, 3000);
+}
+
+/**
+ * Sets the data on the win screen
+ */
+function setWinScreen() {
   const screenOverlay = document.getElementById(ID_SCREEN_OVERLAY);
-  screenOverlay.style.display = 'block';
-  setTimeout(() => {
-    const fadeOutTime = 2000;
-    screenOverlay.style.animation = `fade-out ${fadeOutTime}ms ease-in`;
-    setTimeout(() => screenOverlay.style.display = 'none', fadeOutTime);
+  const fadeOutTime = 2000;
+  screenOverlay.style.animation = `fade-out ${fadeOutTime}ms ease-in`;
+  setTimeout(() => screenOverlay.style.display = 'none', fadeOutTime);
 
-    // Keep track of height and width
-    const gameTable = document.getElementById(ID_GAME_TABLE);
-    const height = ((gameTable.childNodes.length - 1) * 26) + 8;
-    const width = ((gameTable.firstChild.childNodes.length - 1) * 26) + 8;
+  // Keep track of height and width
+  const gameTable = document.getElementById(ID_GAME_TABLE);
+  const height = ((gameTable.childNodes.length - 1) * 26) + 8;
+  const width = ((gameTable.firstChild.childNodes.length - 1) * 26) + 8;
 
-    // Wipe the game board clean
-    const gameBoard = document.getElementById(ID_GAME_BOARD);
-    while(gameBoard.lastChild) {
-      gameBoard.removeChild(gameBoard.lastChild);
-    }
+  // Wipe the game board clean
+  const gameBoard = document.getElementById(ID_GAME_BOARD);
+  while(gameBoard.lastChild) {
+    gameBoard.removeChild(gameBoard.lastChild);
+  }
 
-    // Add the final image
-    const finalImg = document.createElement(ELEM_IMG);
-    finalImg.setAttribute(ATTR_ID, ID_FINAL_IMG);
-    finalImg.setAttribute(ATTR_SRC, 'levels/raw/test.png'); // TODO Replace with whatever image was just created
-    finalImg.setAttribute(ATTR_HEIGHT, height);
-    finalImg.setAttribute(ATTR_WIDTH, width);
-    gameBoard.appendChild(finalImg);
+  // Add level name
+  const levelName = document.createElement(ELEM_P);
+  levelName.setAttribute(ATTR_ID, ID_LEVEL_NAME);
+  levelName.innerText = solution.name;
+  gameBoard.appendChild(levelName);
 
-    // Tell the player how long they took
-    const time = document.createElement(ELEM_P);
-    const timeSeconds = (new Date().getTime() - gameStartTime) / 1000;
-    const minutes = Math.floor(timeSeconds / 60);
-    const seconds = Math.floor(timeSeconds % 60);
-    time.innerText = `This took you${minutes ? ` ${minutes} minutes and` : ''} ${seconds} seconds, well done!`;
-    gameBoard.appendChild(time);
-  }, 3000);
+  // Add the final image
+  const finalImg = document.createElement(ELEM_IMG);
+  finalImg.setAttribute(ATTR_ID, ID_FINAL_IMG);
+  finalImg.setAttribute(ATTR_SRC, `levels/${solution.file_path}`);
+  finalImg.setAttribute(ATTR_HEIGHT, height);
+  finalImg.setAttribute(ATTR_WIDTH, width);
+  gameBoard.appendChild(finalImg);
+
+  // Tell the player how long they took
+  const time = document.createElement(ELEM_P);
+  const timeSeconds = (new Date().getTime() - gameStartTime) / 1000;
+  const minutes = Math.floor(timeSeconds / 60);
+  const seconds = Math.floor(timeSeconds % 60);
+  time.innerText = `This took you${minutes ? ` ${minutes} minutes and` : ''} ${seconds} seconds, well done!`;
+  gameBoard.appendChild(time);
 }
 
 /**
