@@ -23,7 +23,7 @@ function getCellId(x, y) {
  */
 function getNumbersId(rowCol, index, numberIndex) {
   const prefix = rowCol ? CLASS_NUMBERS_ROW : CLASS_NUMBERS_COL;
-  return `${prefix}-${index}-${numberIndex}`;
+  return `${prefix}-${index}${numberIndex !== undefined ? `-${numberIndex}` : ''}`;
 }
 
 /**

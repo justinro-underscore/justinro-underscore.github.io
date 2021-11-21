@@ -16,6 +16,7 @@ const CLASS_CELL_FILLED = 'cell-filled';
 const CLASS_CELL_X_ED = 'cell-x-ed';
 const CLASS_CELL_MARKED = 'cell-marked';
 const CLASS_NUMBERS = 'numbers';
+const CLASS_NUMBERS_SELECTED = 'numbers-selected';
 const CLASS_NUMBERS_ROW = 'numbers-row';
 const CLASS_NUMBERS_COL = 'numbers-col';
 const CLASS_NUMBERS_FILLED = 'numbers-filled';

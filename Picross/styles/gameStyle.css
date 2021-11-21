@@ -96,20 +96,35 @@ tr:nth-child(5n + 1):not(:last-child) > .cell:nth-child(5n + 1):not(:last-child)
 }
 
 .numbers {
-  /* TODO Add Ubuntu Monospace */
-  font-family: 'Ubuntu Monospace', monospace;
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 700;
+  font-size: 19px;
   display: table-cell;
-  /* TODO Make sure that numbers with more than 1 digit are 1 space wide */
+  position: relative;
+}
+
+.numbers-selected {
+  background-color: #cff !important;
+}
+
+.numbers:nth-child(even) {
+  background-color: #eee;
+}
+
+tr:nth-child(even) > .numbers {
+  background-color: #eee;
 }
 
 .numbers-row {
   text-align: right;
+  padding-left: 6px;
   padding-right: 5px;
   vertical-align: middle;
 }
 
 .numbers-col {
   text-align: center;
+  padding-top: 5px;
   padding-bottom: 5px;
   vertical-align: bottom;
 }

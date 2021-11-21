@@ -98,8 +98,9 @@ function loadLevel(index) {
 
   // Set first selected cell
   selectedPos = [0, 0];
-  const selectedId = getCellId(selectedPos);
-  document.getElementById(selectedId).classList.add(CLASS_CELL_SELECTED);
+  document.getElementById(getCellId(selectedPos)).classList.add(CLASS_CELL_SELECTED);
+  document.getElementById(getNumbersId(true, selectedPos[1])).classList.add(CLASS_NUMBERS_SELECTED);
+  document.getElementById(getNumbersId(false, selectedPos[0])).classList.add(CLASS_NUMBERS_SELECTED);
 
   // Start the game
   gameStartTime = new Date().getTime();
@@ -133,6 +134,7 @@ function createGameTable() {
     }
     colValuesElem.classList.add(CLASS_NUMBERS);
     colValuesElem.classList.add(CLASS_NUMBERS_COL);
+    colValuesElem.setAttribute(ATTR_ID, getNumbersId(false, col));
     colValuesRowElem.appendChild(colValuesElem);
   }
   gameTable.appendChild(colValuesRowElem);
@@ -156,6 +158,7 @@ function createGameTable() {
     }
     rowValuesElem.classList.add(CLASS_NUMBERS);
     rowValuesElem.classList.add(CLASS_NUMBERS_ROW);
+    rowValuesElem.setAttribute(ATTR_ID, getNumbersId(true, row));
     rowElem.appendChild(rowValuesElem);
 
     // Next add the columns
@@ -212,8 +215,9 @@ function prefillCells() {
  *  If this is true, then we want to not wrap the cursor
  */
 function moveSelected(keyCode, repeating) {
-  const id = getCellId(selectedPos);
-  document.getElementById(id).classList.remove(CLASS_CELL_SELECTED);
+  document.getElementById(getCellId(selectedPos)).classList.remove(CLASS_CELL_SELECTED);
+  document.getElementById(getNumbersId(true, selectedPos[1])).classList.remove(CLASS_NUMBERS_SELECTED);
+  document.getElementById(getNumbersId(false, selectedPos[0])).classList.remove(CLASS_NUMBERS_SELECTED);
 
   // Translate the key code to a direction
   const navDirection = CONTROL_MAPPING[NAVIGATION][keyCode];
@@ -258,11 +262,12 @@ function moveSelected(keyCode, repeating) {
 
   // Make sure the animation continues uninterrupted
   const psuedoStyle = document.getElementById("psuedo-style");
-  psuedoStyle.innerHTML = `.cell-selected::before { animation-delay: ${-(new Date().getTime() - gameStartTime) % 1500}ms; }`;
+  psuedoStyle.innerHTML = `.${CLASS_CELL_SELECTED}::before { animation-delay: ${-(new Date().getTime() - gameStartTime) % 1500}ms; }`;
 
   // Set the newly selected cell
-  const nextId = getCellId(selectedPos);
-  document.getElementById(nextId).classList.add(CLASS_CELL_SELECTED);
+  document.getElementById(getCellId(selectedPos)).classList.add(CLASS_CELL_SELECTED);
+  document.getElementById(getNumbersId(true, selectedPos[1])).classList.add(CLASS_NUMBERS_SELECTED);
+  document.getElementById(getNumbersId(false, selectedPos[0])).classList.add(CLASS_NUMBERS_SELECTED);
 }
 
 /**
