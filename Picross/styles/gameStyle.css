@@ -78,7 +78,7 @@ tr:nth-child(5n + 1):not(:last-child) > .cell:nth-child(5n + 1):not(:last-child)
 }
 
 .cell-selected::before {
-  background-color: #0ff;
+  animation: flash-blue 1500ms infinite;
   z-index: -5;
   border-radius: 5px !important;
 }

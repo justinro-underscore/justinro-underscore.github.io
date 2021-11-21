@@ -21,6 +21,8 @@ let gameOver;
 var finalNumbersPrediction;
 // Defines the current action being taken
 let currInternalAction;
+// Keeps track of the time since the start of the game
+let gameStartTime;
 
 /**
  * Runs when the page loads, initializes game
@@ -100,6 +102,7 @@ function loadLevel(index) {
   document.getElementById(selectedId).classList.add(CLASS_CELL_SELECTED);
 
   // Start the game
+  gameStartTime = new Date().getTime();
   gameOver = false;
 }
 
@@ -252,6 +255,12 @@ function moveSelected(keyCode, repeating) {
       }
       break;
   }
+
+  // Make sure the animation continues uninterrupted
+  const psuedoStyle = document.getElementById("psuedo-style");
+  psuedoStyle.innerHTML = `.cell-selected::before { animation-delay: ${-(new Date().getTime() - gameStartTime) % 1500}ms; }`;
+
+  // Set the newly selected cell
   const nextId = getCellId(selectedPos);
   document.getElementById(nextId).classList.add(CLASS_CELL_SELECTED);
 }
