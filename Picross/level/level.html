@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Picross</title>
+    <title>Picross Level</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,13 +9,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap" rel="stylesheet"> 
+
+    <!-- Load common styling -->
+    <link href="../style.css" rel="stylesheet">
+    
+    <!-- Load level-specific styling -->
     <link href="styles/animations.css" rel="stylesheet">
     <link href="styles/style.css" rel="stylesheet">
     <link href="styles/gameStyle.css" rel="stylesheet">
     <style id="psuedo-style"></style> <!-- This hacky solution allows us to edit psuedo elements! -->
+
+    <!-- Load common code -->
+    <script type="text/javascript" src="../data/constants.js"></script>
+    <script type="text/javascript" src="../data/levels.js"></script>
+
+    <!-- Load level-specific code -->
     <script type="text/javascript" src="scripts/constants.js"></script>
     <script type="text/javascript" src="scripts/util.js"></script>
-    <script type="text/javascript" src="scripts/levels.js"></script>
     <script type="text/javascript" src="scripts/input.js"></script>
     <script type="text/javascript" src="scripts/picross.js"></script>
   </head>

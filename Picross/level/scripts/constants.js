@@ -1,12 +1,3 @@
-// Elements
-const ELEM_DIV = 'div';
-const ELEM_TABLE = 'table';
-const ELEM_TABLE_ROW = 'tr';
-const ELEM_TABLE_CELL = 'td';
-const ELEM_SPAN = 'span';
-const ELEM_IMG = 'img';
-const ELEM_P = 'p';
-
 // IDs
 const ID_GAME_BOARD = 'game-board';
 const ID_GAME_TABLE = 'game-table';
@@ -29,16 +20,6 @@ const CLASS_NUMBERS_FILLED = 'numbers-filled';
 const CLASS_NUMBERS_FILLED_BLUE = 'numbers-filled-blue';
 const CLASS_NUMBERS_BLUE = 'numbers-blue';
 const CLASS_WIN = 'win';
-
-// Attributes
-const ATTR_ID = 'id';
-const ATTR_SRC = 'src';
-const ATTR_HEIGHT = 'height';
-const ATTR_WIDTH = 'width';
-
-// Colors
-const COLOR_LIGHT_RED = '#ffb1b1';
-const COLOR_DARK_RED = '#9e0000';
 
 // Cell Content
 const CELL_NONE = '&nbsp';
