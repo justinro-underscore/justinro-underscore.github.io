@@ -31,7 +31,14 @@ let timerIntervalId;
  */
 function onLoad() {
   bindListeners();
-  loadLevel(1);
+  const levelNum = parseInt(window.location.hash.slice(1));
+  if (levelNum !== NaN && levelNum >= 0 && levelNum < levels.length) {
+    loadLevel(levelNum);
+  }
+  else {
+    // TODO Link back to homepage
+    console.error('Level number not found in location hash!');
+  }
 }
 
 /**
