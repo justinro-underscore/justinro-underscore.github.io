@@ -12,7 +12,7 @@
 
 #game-board {
   max-width: 1000px;
-  margin: auto;
+  margin: 20px auto auto;
 }
 
 #game-table {
