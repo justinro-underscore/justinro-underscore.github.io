@@ -16,3 +16,7 @@ const CLASS_LEVEL_CELL_SELECTED = 'level-cell-selected';
 
 // Level Table Info
 const LEVELS_ROW_COUNT = 7;
+
+// Level Description Content Values
+const LEVEL_DESC_CONTENT_DEFAULT = '???';
+const LEVEL_DESC_CONTENT_TIME_DEFAULT = '--:--';

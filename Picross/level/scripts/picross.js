@@ -226,9 +226,7 @@ function prefillCells() {
 function updateTimer() {
   const timer = document.getElementById(ID_TIMER);
   const timeSeconds = (new Date().getTime() - gameStartTime) / 1000;
-  const minutes = String(Math.floor(timeSeconds / 60)).padStart(2, 0);
-  const seconds = String(Math.floor(timeSeconds % 60)).padStart(2, 0);
-  timer.innerText = `${minutes}:${seconds}`;
+  timer.innerText = formatTime(timeSeconds);
 }
 
 /**

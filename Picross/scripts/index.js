@@ -1,5 +1,7 @@
 // Keeps track of how many levels there are
 const NUM_LEVELS = levels.length;
+// Keeps track of the cookies in the browser (shouldn't change on this screen)
+const COOKIES = getCookies();
 
 // The current level that is selected
 let currSelectedLevel;
@@ -46,22 +48,29 @@ function createLevelCell(idx) {
   cell.setAttribute(ATTR_ID, `level-${idx}`);
   cell.addEventListener('mouseenter', () => setSelectedLevel(idx));
 
-  // TODO Make cell be hidden if it is not completed
+  // Create the content inside the level cell
   const cellContent = document.createElement(ELEM_DIV);
   cellContent.classList.add(CLASS_LEVEL_CELL_CONTENT);
-  // cellContent.classList.add(CLASS_PREVIEW_UNKNOWN);
   cell.appendChild(cellContent);
 
-  // Create container for image, so that we can make the preview image smaller
-  const cellImgContainer = document.createElement(ELEM_DIV);
-  cellImgContainer.classList.add("level-cell-content-preview-container");
-  cellContent.appendChild(cellImgContainer);
+  // If the user has completed this level...
+  if (Object.keys(COOKIES).includes(`${idx}`)) {
+    // Create container for preview image, so that we can make the preview image smaller
+    const cellImgContainer = document.createElement(ELEM_DIV);
+    cellImgContainer.classList.add("level-cell-content-preview-container");
+    cellContent.appendChild(cellImgContainer);
 
-  // Create the preview image
-  const cellImg = document.createElement(ELEM_IMG);
-  cellImg.classList.add(CLASS_PREVIEW);
-  cellImg.src = `levels/${levels[idx].file_path}`;
-  cellImgContainer.appendChild(cellImg);
+    // Create the preview image
+    const cellImg = document.createElement(ELEM_IMG);
+    cellImg.classList.add(CLASS_PREVIEW);
+    cellImg.src = `levels/${levels[idx].file_path}`;
+    cellImgContainer.appendChild(cellImg);
+  }
+  // If the user has not completed this level...
+  else {
+    // Set the preview to be a question mark
+    cellContent.classList.add(CLASS_PREVIEW_UNKNOWN);
+  }
 
   return cell;
 }
@@ -130,20 +139,42 @@ function moveSelected(keyCode) {
 
 /**
  * Updates the level description content to reflect the current selected level
- * TODO If the level is locked, set to default values
+ * If level selected has not been completed, show default values
  */
 function updateLevelDescriptionContent() {
   const levelInfo = levels[currSelectedLevel];
 
-  // Set text content values
-  document.getElementById(ID_LEVEL_DESC_TITLE).innerText = levelInfo.name;
-  document.getElementById(ID_LEVEL_DESC_LOCATION).innerText = 'TODO';
+  // Whether or not the user has completed the level
+  const completed = Object.keys(COOKIES).includes(`${currSelectedLevel}`);
+
+  // Set static text content values
   document.getElementById(ID_LEVEL_DESC_SIZE).innerText = `${levelInfo.width}x${levelInfo.height}`;
-  document.getElementById(ID_LEVEL_DESC_TIME).innerText = 'TODO';
+
+  // Set dynamic text content values
+  let title = LEVEL_DESC_CONTENT_DEFAULT;
+  let location = LEVEL_DESC_CONTENT_DEFAULT;
+  let time = LEVEL_DESC_CONTENT_TIME_DEFAULT;
+  // If level has been completed, then set the data
+  if (completed) {
+    title = levelInfo.name;
+    location = 'TODO';
+    time = formatTime(COOKIES[currSelectedLevel]);
+  }
+  document.getElementById(ID_LEVEL_DESC_TITLE).innerText = title;
+  document.getElementById(ID_LEVEL_DESC_LOCATION).innerText = location;
+  document.getElementById(ID_LEVEL_DESC_TIME).innerText = time;
 
   // Set preview image
-  document.getElementById(ID_LEVEL_DESC_PREVIEW_CONTAINER).classList.remove(CLASS_PREVIEW_UNKNOWN);
+  const levelPreviewContainer = document.getElementById(ID_LEVEL_DESC_PREVIEW_CONTAINER);
   const levelPreview = document.getElementById(ID_LEVEL_DESC_PREVIEW);
-  levelPreview.style.display = '';
-  levelPreview.src = `levels/${levelInfo.file_path}`;
+  if (completed) {
+    levelPreviewContainer.classList.remove(CLASS_PREVIEW_UNKNOWN);
+    levelPreview.style.display = '';
+    levelPreview.src = `levels/${levelInfo.file_path}`;
+  }
+  else {
+    levelPreviewContainer.classList.add(CLASS_PREVIEW_UNKNOWN);
+    levelPreview.style.display = 'none';
+    levelPreview.src = ``;
+  }
 }
