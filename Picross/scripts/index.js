@@ -22,25 +22,48 @@ function loadGame() {
 
   // Go through all levels and add them to the levels container
   for (let i = 0; i < NUM_LEVELS; i++) {
-    // Add cell that is a link to the next level
-    const cell = document.createElement(ELEM_ANCHOR);
-    cell.classList.add(CLASS_LEVEL_CELL);
-    cell.setAttribute(ATTR_HREF, `./level/level.html#${i}`);
-    cell.setAttribute(ATTR_ID, `level-${i}`);
-    cell.addEventListener('mouseenter', () => setSelectedLevel(i));
+    // Create the level cell
+    const cell = createLevelCell(i);
 
-    // TODO Make cell content more interesting
-    const cellContent = document.createElement(ELEM_DIV);
-    cellContent.classList.add(CLASS_LEVEL_CELL_CONTENT);
-    cellContent.innerHTML = `Level ${i}`;
-    cell.appendChild(cellContent);
-
-    // Add the level cell to the current row
+    // Add the level cell to the levels container
     levelsContainer.appendChild(cell);
   }
 
   // Set the selected level to be the first level
   setSelectedLevel(0);
+}
+
+/**
+ * Creates a new level cell for the given index
+ * @param {number} idx The index of the level this cell is for
+ * @returns The cell element
+ */
+function createLevelCell(idx) {
+  // Add cell that is a link to the next level
+  const cell = document.createElement(ELEM_ANCHOR);
+  cell.classList.add(CLASS_LEVEL_CELL);
+  cell.setAttribute(ATTR_HREF, `./level/level.html#${idx}`);
+  cell.setAttribute(ATTR_ID, `level-${idx}`);
+  cell.addEventListener('mouseenter', () => setSelectedLevel(idx));
+
+  // TODO Make cell be hidden if it is not completed
+  const cellContent = document.createElement(ELEM_DIV);
+  cellContent.classList.add(CLASS_LEVEL_CELL_CONTENT);
+  // cellContent.classList.add(CLASS_PREVIEW_UNKNOWN);
+  cell.appendChild(cellContent);
+
+  // Create container for image, so that we can make the preview image smaller
+  const cellImgContainer = document.createElement(ELEM_DIV);
+  cellImgContainer.classList.add("level-cell-content-preview-container");
+  cellContent.appendChild(cellImgContainer);
+
+  // Create the preview image
+  const cellImg = document.createElement(ELEM_IMG);
+  cellImg.classList.add(CLASS_PREVIEW);
+  cellImg.src = `levels/${levels[idx].file_path}`;
+  cellImgContainer.appendChild(cellImg);
+
+  return cell;
 }
 
 /**
@@ -119,8 +142,8 @@ function updateLevelDescriptionContent() {
   document.getElementById(ID_LEVEL_DESC_TIME).innerText = 'TODO';
 
   // Set preview image
-  document.getElementById(ID_LEVEL_DESC_PREVIEW_CONTAINER).classList.remove(CLASS_LEVEL_DESC_PREVIEW_UNKNOWN);
+  document.getElementById(ID_LEVEL_DESC_PREVIEW_CONTAINER).classList.remove(CLASS_PREVIEW_UNKNOWN);
   const levelPreview = document.getElementById(ID_LEVEL_DESC_PREVIEW);
   levelPreview.style.display = '';
-  levelPreview.setAttribute(ATTR_SRC, `levels/${levelInfo.file_path}`)
+  levelPreview.src = `levels/${levelInfo.file_path}`;
 }

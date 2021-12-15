@@ -8,6 +8,32 @@ body {
   row-gap: 20px;
 }
 
+.preview {
+  display: block;
+  height: calc(100% - 4px);
+  /* width: calc(100% - 4px); To keep img in container, doesn't work with borders / box shadows */
+  margin: auto;
+  border: 2px solid #000;
+  border-radius: 6px;
+  box-shadow: #000 0 0 8px;
+  image-rendering: pixelated;
+  object-fit: contain;
+}
+
+.preview-unknown::before {
+  content: "?";
+  font-style: normal;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  font-size: 110px;
+  position: absolute;
+  text-align: center;
+  top: -5px; /* Question mark is a bit too low */
+  left: 0;
+  text-shadow: 0 0 8px #000;
+}
+
 .level-description {
   width: 100%;
   height: 120px;
@@ -44,32 +70,6 @@ body {
   background-color: #ddd;
   grid-row: 1 / span 2;
   padding: 6px;
-}
-
-.level-description-preview-unknown::before {
-  content: "?";
-  font-style: normal;
-  color: #000;
-  width: 100%;
-  height: 100%;
-  font-size: 110px;
-  position: absolute;
-  text-align: center;
-  top: -5px; /* Question mark is a bit too low */
-  left: 0;
-  text-shadow: 0 0 8px #000;
-}
-
-#level-description-preview {
-  display: block;
-  height: calc(100% - 4px);
-  /* width: calc(100% - 4px); To keep img in container, doesn't work with borders / box shadows */
-  margin: auto;
-  border: 2px solid #000;
-  border-radius: 6px;
-  box-shadow: #000 0 0 8px;
-  image-rendering: pixelated;
-  object-fit: contain;
 }
 
 .level-description-title::before {
@@ -119,8 +119,19 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: #ddd;
   border-radius: 10px;
+}
+
+.level-cell-content::before {
+  top: 5px;
+  font-size: 90px;
+}
+
+.level-cell-content-preview-container {
+  margin: 10%;
+  width: 80%;
+  height: 80%;
 }
 
 .level-cell-selected::before {
