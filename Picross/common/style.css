@@ -1,5 +1,7 @@
 body {
   height: 100%;
+  max-width: 1000px;
+  margin: auto;
   text-align: center;
   font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
 }
