@@ -63,6 +63,9 @@ function setSelectedLevel(newSelectedLevel) {
   const newSelectedCell = document.getElementById(`level-${newSelectedLevel}`);
   newSelectedCell.classList.add(CLASS_LEVEL_CELL_SELECTED);
   currSelectedLevel = newSelectedLevel;
+
+  // Update the level description content
+  updateLevelDescriptionContent();
 }
 
 /**
@@ -100,4 +103,24 @@ function moveSelected(keyCode) {
       break;
   }
   setSelectedLevel(newSelectedLevel);
+}
+
+/**
+ * Updates the level description content to reflect the current selected level
+ * TODO If the level is locked, set to default values
+ */
+function updateLevelDescriptionContent() {
+  const levelInfo = levels[currSelectedLevel];
+
+  // Set text content values
+  document.getElementById(ID_LEVEL_DESC_TITLE).innerText = levelInfo.name;
+  document.getElementById(ID_LEVEL_DESC_LOCATION).innerText = 'TODO';
+  document.getElementById(ID_LEVEL_DESC_SIZE).innerText = `${levelInfo.width}x${levelInfo.height}`;
+  document.getElementById(ID_LEVEL_DESC_TIME).innerText = 'TODO';
+
+  // Set preview image
+  document.getElementById(ID_LEVEL_DESC_PREVIEW_CONTAINER).classList.remove(CLASS_LEVEL_DESC_PREVIEW_UNKNOWN);
+  const levelPreview = document.getElementById(ID_LEVEL_DESC_PREVIEW);
+  levelPreview.style.display = '';
+  levelPreview.setAttribute(ATTR_SRC, `levels/${levelInfo.file_path}`)
 }

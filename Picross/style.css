@@ -46,7 +46,7 @@ body {
   padding: 6px;
 }
 
-.level-description-preview::before {
+.level-description-preview-unknown::before {
   content: "?";
   font-style: normal;
   color: #000;

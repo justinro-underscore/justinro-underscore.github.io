@@ -11,6 +11,7 @@ const ID_LEVEL_DESC_TIME = 'level-description-time';
 const CLASS_LEVEL_CELL = 'level-cell';
 const CLASS_LEVEL_CELL_CONTENT = 'level-cell-content';
 const CLASS_LEVEL_CELL_SELECTED = 'level-cell-selected';
+const CLASS_LEVEL_DESC_PREVIEW_UNKNOWN = 'level-description-preview-unknown';
 
 // Level Table Info
 const LEVELS_ROW_COUNT = 7;
