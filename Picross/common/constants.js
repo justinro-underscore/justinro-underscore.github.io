@@ -14,6 +14,7 @@ const ATTR_ID = 'id';
 const ATTR_SRC = 'src';
 const ATTR_HEIGHT = 'height';
 const ATTR_WIDTH = 'width';
+const ATTR_HREF = 'href';
 
 // Colors
 const COLOR_LIGHT_RED = '#ffb1b1';
