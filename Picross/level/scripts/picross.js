@@ -1,4 +1,5 @@
-// TODO Replace most instances of for loop with forEach
+// Defines the current level
+const LEVEL_NUM = parseInt(window.location.hash.slice(1));
 
 // The position of the selected cell
 let selectedPos;
@@ -31,9 +32,8 @@ let timerIntervalId;
  */
 function onLoad() {
   bindListeners();
-  const levelNum = parseInt(window.location.hash.slice(1));
-  if (levelNum !== NaN && levelNum >= 0 && levelNum < levels.length) {
-    loadLevel(levelNum);
+  if (LEVEL_NUM !== NaN && LEVEL_NUM >= 0 && LEVEL_NUM < levels.length) {
+    loadLevel(LEVEL_NUM);
   }
   else {
     // TODO Link back to homepage
@@ -568,6 +568,9 @@ function checkWin() {
 function setWin() {
   gameOver = true;
 
+  // Save the win
+  saveWin();
+
   // Stop the timer
   clearInterval(timerIntervalId);
   const timerElem = document.getElementById(ID_TIMER);
@@ -577,6 +580,22 @@ function setWin() {
   // Flash the screen
   document.getElementById(ID_SCREEN_OVERLAY).style.display = 'block';
   setTimeout(setWinScreen, 3000);
+}
+
+/**
+ * Saves the win to the browser cookies
+ */
+function saveWin() {
+  // Determine how long it took to complete the level
+  const timeSeconds = Math.floor((new Date().getTime() - gameStartTime) / 1000);
+
+  // Save time if user has not completed the level yet or if the user has a new high score
+  const cookies = getCookies();
+  if (!Object.keys(cookies).includes(`${LEVEL_NUM}`) || cookies[LEVEL_NUM] > timeSeconds) {
+    const d = new Date();
+    d.setTime(d.getTime() + (10 * 365 * 24 * 60 * 60 * 1000)); // Save data for 10 years
+    document.cookie = `${LEVEL_NUM}=${timeSeconds};path=/;expires=${d.toUTCString()}`;
+  }
 }
 
 /**
