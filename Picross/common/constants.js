@@ -19,3 +19,47 @@ const ATTR_HREF = 'href';
 // Colors
 const COLOR_LIGHT_RED = '#ffb1b1';
 const COLOR_DARK_RED = '#9e0000';
+
+// Key Codes
+const KC_UP = 'ArrowUp';
+const KC_RIGHT = 'ArrowRight';
+const KC_DOWN = 'ArrowDown';
+const KC_LEFT = 'ArrowLeft';
+const KC_W = 'w';
+const KC_A = 'a';
+const KC_S = 's';
+const KC_D = 'd';
+const KC_Z = 'z';
+const KC_X = 'x';
+const KC_C = 'c';
+
+// Controls
+const NAVIGATION = 'navigation';
+const NAV_UP = 'nav up';
+const NAV_RIGHT = 'nav right';
+const NAV_DOWN = 'nav down';
+const NAV_LEFT = 'nav left';
+const ACTION = 'action';
+const ACTION_FILL = 'fill';
+const ACTION_X = 'x';
+const ACTION_MARK = 'mark';
+// This isn't actually used, this is just easier to visualize
+const CONTROLS = {
+  [NAVIGATION]: {
+    [NAV_UP]: [KC_UP, KC_W],
+    [NAV_RIGHT]: [KC_RIGHT, KC_D],
+    [NAV_DOWN]: [KC_DOWN, KC_S],
+    [NAV_LEFT]: [KC_LEFT, KC_A],
+  },
+  [ACTION]: {
+    [ACTION_FILL]: [KC_Z],
+    [ACTION_X]: [KC_X],
+    [ACTION_MARK]: [KC_C],
+  }
+}
+// Reverse the controls to keyCode => action to make code simpler
+const CONTROL_MAPPING = Object.fromEntries(Object.entries(CONTROLS).map(([action, mapping]) =>
+  [action, Object.fromEntries(Object.entries(mapping).flatMap(([action, keyCodes]) =>
+    keyCodes.map(keyCode => [keyCode, action])))]));
+const NAVIGATION_KEYS = Object.keys(CONTROL_MAPPING[NAVIGATION]);
+const ACTION_KEYS = Object.keys(CONTROL_MAPPING[ACTION]);
