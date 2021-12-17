@@ -4,4 +4,5 @@ PhraseGenerator/
 SpotifyDataFix/MissingStreamingHistoryWithId.csv
 USARegions/converter/
 Picross/levels.txt
+# Picross/levels/raw/
 Picross/levels/converted/
