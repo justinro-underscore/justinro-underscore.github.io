@@ -138,6 +138,18 @@ function moveSelected(keyCode) {
 }
 
 /**
+ * Takes an action with the given key code
+ * @param {string} keyCode The key code of the key input
+ */
+function takeAction(keyCode) {
+  const action = CONTROL_MAPPING[ACTION][keyCode];
+  if (action === ACTION_ENTER) {
+    const currHref = window.location.href;
+    window.location.href = `${currHref.substring(0, currHref.indexOf(LOC_INDEX_FILE))}${LOC_LEVEL_PATH}#${currSelectedLevel}`;
+  }
+}
+
+/**
  * Updates the level description content to reflect the current selected level
  * If level selected has not been completed, show default values
  */

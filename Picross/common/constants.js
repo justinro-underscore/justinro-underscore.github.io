@@ -25,6 +25,7 @@ const KC_UP = 'ArrowUp';
 const KC_RIGHT = 'ArrowRight';
 const KC_DOWN = 'ArrowDown';
 const KC_LEFT = 'ArrowLeft';
+const KC_ENTER = 'Enter';
 const KC_W = 'w';
 const KC_A = 'a';
 const KC_S = 's';
@@ -43,6 +44,7 @@ const ACTION = 'action';
 const ACTION_FILL = 'fill';
 const ACTION_X = 'x';
 const ACTION_MARK = 'mark';
+const ACTION_ENTER = 'enter';
 // This isn't actually used, this is just easier to visualize
 const CONTROLS = {
   [NAVIGATION]: {
@@ -55,6 +57,7 @@ const CONTROLS = {
     [ACTION_FILL]: [KC_Z],
     [ACTION_X]: [KC_X],
     [ACTION_MARK]: [KC_C],
+    [ACTION_ENTER]: [KC_ENTER],
   }
 }
 // Reverse the controls to keyCode => action to make code simpler

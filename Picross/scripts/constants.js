@@ -20,3 +20,7 @@ const LEVELS_ROW_COUNT = 7;
 // Level Description Content Values
 const LEVEL_DESC_CONTENT_DEFAULT = '???';
 const LEVEL_DESC_CONTENT_TIME_DEFAULT = '--:--';
+
+// Location Constants
+const LOC_INDEX_FILE = 'index.html';
+const LOC_LEVEL_PATH = 'level/level.html';

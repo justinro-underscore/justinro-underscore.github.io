@@ -16,4 +16,7 @@ function keydownListener(event) {
     event.preventDefault();
     moveSelected(keyCode);
   }
+  else if (ACTION_KEYS.includes(keyCode) && !event.repeat) {
+    takeAction(keyCode);
+  }
 }
