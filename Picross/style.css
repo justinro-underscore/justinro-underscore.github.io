@@ -6,7 +6,8 @@
 .preview {
   display: block;
   height: calc(100% - 4px);
-  /* width: calc(100% - 4px); To keep img in container, doesn't work with borders / box shadows */
+  /* To keep img in container, doesn't work with borders / box shadows */
+  /* width: calc(100% - 4px); */
   margin: auto;
   border: 2px solid #000;
   border-radius: 6px;
@@ -125,10 +126,18 @@
 }
 
 .level-cell-content-preview-container {
+  position: absolute;
   margin: 10%;
   width: 80%;
-  height: 80%;
+  height: fit-content;
+  top: calc(50% - 10px);
+  transform: translate(0, -50%);
 }
+
+.level-cell-content-preview-container > img {
+  width: calc(100% - 4px);
+}
+
 
 .level-cell-selected::before {
   content: "";

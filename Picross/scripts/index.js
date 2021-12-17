@@ -171,6 +171,12 @@ function updateLevelDescriptionContent() {
     levelPreviewContainer.classList.remove(CLASS_PREVIEW_UNKNOWN);
     levelPreview.style.display = '';
     levelPreview.src = `levels/${levelInfo.file_path}`;
+    if (levelInfo.width > levelInfo.height) {
+      levelPreview.style.width = 'calc(100% - 4px)';
+    }
+    else {
+      levelPreview.style.width = '';
+    }
   }
   else {
     levelPreviewContainer.classList.add(CLASS_PREVIEW_UNKNOWN);
