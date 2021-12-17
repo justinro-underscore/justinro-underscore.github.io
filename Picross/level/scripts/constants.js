@@ -6,6 +6,7 @@ const ID_SCREEN_OVERLAY = 'screen-overlay';
 const ID_LEVEL_NAME = 'level-name';
 const ID_LEVEL_LOCATION = 'level-location';
 const ID_FINAL_IMG = 'final-img';
+const ID_REF_IMG = 'ref-img';
 
 // Classes
 const CLASS_CELL = 'cell';

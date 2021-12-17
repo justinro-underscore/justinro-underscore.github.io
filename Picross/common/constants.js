@@ -69,3 +69,4 @@ const ACTION_KEYS = Object.keys(CONTROL_MAPPING[ACTION]);
 
 // Image Paths
 const FINAL_IMG_PATH = 'levels/images/';
+const REF_IMG_PATH = FINAL_IMG_PATH + 'ref/';

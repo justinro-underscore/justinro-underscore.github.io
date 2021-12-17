@@ -648,6 +648,12 @@ function setWinScreen() {
   const seconds = Math.floor(timeSeconds % 60);
   time.innerText = `This took you${minutes ? ` ${minutes} minutes and` : ''} ${seconds} seconds, well done!`;
   gameBoard.appendChild(time);
+
+  // Add the reference image
+  const refImg = document.createElement(ELEM_IMG);
+  refImg.setAttribute(ATTR_ID, ID_REF_IMG);
+  refImg.setAttribute(ATTR_SRC, `../${REF_IMG_PATH}${solution.file_name}`);
+  gameBoard.appendChild(refImg);
 }
 
 /**

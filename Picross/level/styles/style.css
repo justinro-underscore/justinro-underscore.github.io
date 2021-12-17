@@ -31,4 +31,21 @@ h1 {
 #final-img {
   background-color: #fff;
   image-rendering: pixelated;
+  padding: 5px;
+  border: 2px solid #000;
+  border-radius: 3px;
+  box-shadow: #000 0 0 8px;
+}
+
+#ref-img {
+  height: 120px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: #000 0 0 8px;
+  transition-duration: 0.2s;
+  margin-bottom: 20px;
+}
+
+#ref-img:hover {
+  height: 360px;
 }
