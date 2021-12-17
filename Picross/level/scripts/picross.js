@@ -24,6 +24,8 @@ var finalNumbersPrediction;
 let currInternalAction;
 // Keeps track of the time since the start of the game
 let gameStartTime;
+// Keeps track of the time the game ended
+let gameEndTime;
 // Defines the ID of the update timer reocurring callback
 let timerIntervalId;
 
@@ -566,6 +568,9 @@ function checkWin() {
 function setWin() {
   gameOver = true;
 
+  // Save the time the game ended
+  gameEndTime = new Date().getTime();
+
   // Save the win
   saveWin();
 
@@ -585,7 +590,7 @@ function setWin() {
  */
 function saveWin() {
   // Determine how long it took to complete the level
-  const timeSeconds = Math.floor((new Date().getTime() - gameStartTime) / 1000);
+  const timeSeconds = Math.floor((gameEndTime - gameStartTime) / 1000);
 
   // Save time if user has not completed the level yet or if the user has a new high score
   const cookies = getCookies();
@@ -622,6 +627,12 @@ function setWinScreen() {
   levelName.innerText = solution.name;
   gameBoard.appendChild(levelName);
 
+  // Add level location
+  const levelLocation = document.createElement(ELEM_P);
+  levelLocation.setAttribute(ATTR_ID, ID_LEVEL_LOCATION);
+  levelLocation.innerText = solution.location;
+  gameBoard.appendChild(levelLocation);
+
   // Add the final image
   const finalImg = document.createElement(ELEM_IMG);
   finalImg.setAttribute(ATTR_ID, ID_FINAL_IMG);
@@ -632,7 +643,7 @@ function setWinScreen() {
 
   // Tell the player how long they took
   const time = document.createElement(ELEM_P);
-  const timeSeconds = (new Date().getTime() - gameStartTime) / 1000;
+  const timeSeconds = (gameEndTime - gameStartTime) / 1000;
   const minutes = Math.floor(timeSeconds / 60);
   const seconds = Math.floor(timeSeconds % 60);
   time.innerText = `This took you${minutes ? ` ${minutes} minutes and` : ''} ${seconds} seconds, well done!`;

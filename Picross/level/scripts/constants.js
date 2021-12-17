@@ -4,6 +4,7 @@ const ID_GAME_TABLE = 'game-table';
 const ID_TIMER = 'timer';
 const ID_SCREEN_OVERLAY = 'screen-overlay';
 const ID_LEVEL_NAME = 'level-name';
+const ID_LEVEL_LOCATION = 'level-location';
 const ID_FINAL_IMG = 'final-img';
 
 // Classes

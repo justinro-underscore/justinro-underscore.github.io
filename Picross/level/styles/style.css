@@ -19,6 +19,13 @@ h1 {
 #level-name {
   font-size: 36px;
   font-weight: 700;
+  margin-bottom: 0;
+}
+
+#level-location {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
 }
 
 #final-img {

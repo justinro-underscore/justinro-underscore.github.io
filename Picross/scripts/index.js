@@ -157,7 +157,7 @@ function updateLevelDescriptionContent() {
   // If level has been completed, then set the data
   if (completed) {
     title = levelInfo.name;
-    location = 'TODO';
+    location = levelInfo.location;
     time = formatTime(COOKIES[currSelectedLevel]);
   }
   document.getElementById(ID_LEVEL_DESC_TITLE).innerText = title;
