@@ -338,10 +338,15 @@ function takeAction(actionKeyCode) {
   takeInternalAction();
 }
 
+/**
+ * Clears all statuses from the given cell
+ * @param {HTMLElement} cell The cell to remove status from
+ */
 function clearCellElem(cell) {
   cell.classList.remove(CLASS_CELL_FILLED);
   cell.classList.remove(CLASS_CELL_X_ED);
   cell.classList.remove(CLASS_CELL_MARKED);
+  // Do not get rid of CLASS_CELL_MISSED
   cell.innerHTML = CELL_NONE;
 }
 
@@ -361,17 +366,40 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
       // Fills cannot overwrite x-es
       if (currCellStatus !== CV_X_ED) {
         clearCellElem(cell);
-        cell.classList.add(CLASS_CELL_FILLED);
-        gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
+        // If this cell is supposed to be a fill...
+        if (solution.data[cellPos[1]][cellPos[0]] === 1) {
+          // Fill it in
+          cell.classList.add(CLASS_CELL_FILLED);
+          gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
+        }
+        // If this cell is supposed to be an X...
+        else {
+          // X it out, mark as missed
+          cell.classList.add(CLASS_CELL_MISSED);
+          cell.classList.add(CLASS_CELL_X_ED);
+          cell.innerText = CELL_X;
+          gameBoard[cellPos[1]][cellPos[0]] = CV_X_ED;
+        }
       }
       break;
     case IA_ADD_X:
       // X-es cannot overwrite fills
       if (currCellStatus !== CV_FILLED) {
         clearCellElem(cell);
-        cell.classList.add(CLASS_CELL_X_ED);
-        cell.innerText = CELL_X;
-        gameBoard[cellPos[1]][cellPos[0]] = CV_X_ED;
+        // If this cell is supposed to be an X...
+        if (solution.data[cellPos[1]][cellPos[0]] !== 1) {
+          // X it out
+          cell.classList.add(CLASS_CELL_X_ED);
+          cell.innerText = CELL_X;
+          gameBoard[cellPos[1]][cellPos[0]] = CV_X_ED;
+        }
+        // If this cell is supposed to be a fill...
+        else {
+          // Fill it in, mark as missed
+          cell.classList.add(CLASS_CELL_MISSED);
+          cell.classList.add(CLASS_CELL_FILLED);
+          gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
+        }
       }
       break;
     case IA_ADD_MARK:

@@ -107,6 +107,14 @@ tr:nth-child(5n + 1):not(:last-child) > .cell:nth-child(5n + 1):not(:last-child)
   color: #11f;
 }
 
+.cell-missed.cell-filled {
+  background-color: #f00 !important;
+}
+
+.cell-missed.cell-x-ed {
+  color: #f00 !important;
+}
+
 .numbers {
   font-family: 'Ubuntu Mono', monospace;
   font-weight: 700;
