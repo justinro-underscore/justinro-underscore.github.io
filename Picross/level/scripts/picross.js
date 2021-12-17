@@ -636,7 +636,7 @@ function setWinScreen() {
   // Add the final image
   const finalImg = document.createElement(ELEM_IMG);
   finalImg.setAttribute(ATTR_ID, ID_FINAL_IMG);
-  finalImg.setAttribute(ATTR_SRC, `../levels/${solution.file_path}`);
+  finalImg.setAttribute(ATTR_SRC, `../${FINAL_IMG_PATH}${solution.file_name}`);
   finalImg.setAttribute(ATTR_HEIGHT, height);
   finalImg.setAttribute(ATTR_WIDTH, width);
   gameBoard.appendChild(finalImg);

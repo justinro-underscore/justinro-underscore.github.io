@@ -22,7 +22,7 @@ def run(raw_file_path, level_name=None, location=None):
     'location': location,
     'height': height,
     'width': width,
-    'file_path': 'images/' + file_name + '.png',
+    'file_name': file_name + '.png',
     'data': data,
   }
 

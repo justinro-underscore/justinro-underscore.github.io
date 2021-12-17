@@ -63,7 +63,7 @@ function createLevelCell(idx) {
     // Create the preview image
     const cellImg = document.createElement(ELEM_IMG);
     cellImg.classList.add(CLASS_PREVIEW);
-    cellImg.src = `levels/${levels[idx].file_path}`;
+    cellImg.src = `${FINAL_IMG_PATH}${levels[idx].file_name}`;
     cellImgContainer.appendChild(cellImg);
   }
   // If the user has not completed this level...
@@ -182,7 +182,7 @@ function updateLevelDescriptionContent() {
   if (completed) {
     levelPreviewContainer.classList.remove(CLASS_PREVIEW_UNKNOWN);
     levelPreview.style.display = '';
-    levelPreview.src = `levels/${levelInfo.file_path}`;
+    levelPreview.src = `${FINAL_IMG_PATH}${levelInfo.file_name}`;
     if (levelInfo.width > levelInfo.height) {
       levelPreview.style.width = 'calc(100% - 4px)';
     }

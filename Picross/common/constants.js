@@ -66,3 +66,6 @@ const CONTROL_MAPPING = Object.fromEntries(Object.entries(CONTROLS).map(([action
     keyCodes.map(keyCode => [keyCode, action])))]));
 const NAVIGATION_KEYS = Object.keys(CONTROL_MAPPING[NAVIGATION]);
 const ACTION_KEYS = Object.keys(CONTROL_MAPPING[ACTION]);
+
+// Image Paths
+const FINAL_IMG_PATH = 'levels/images/';

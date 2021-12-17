@@ -4,7 +4,7 @@ levels = [
     "location": "Lawrence, KS",
     "height": 5,
     "width": 10,
-    "file_path": "images/ku.png",
+    "file_name": "ku.png",
     "data": [
       [
         0,
@@ -73,7 +73,7 @@ levels = [
     "location": "La Prima Tazza - Lawrence, KS",
     "height": 10,
     "width": 10,
-    "file_path": "images/primatazza.png",
+    "file_name": "primatazza.png",
     "data": [
       [
         1,
@@ -202,7 +202,7 @@ levels = [
     "location": "Paisano's - Lawrence, KS",
     "height": 10,
     "width": 10,
-    "file_path": "images/spaghetti.png",
+    "file_name": "spaghetti.png",
     "data": [
       [
         1,
@@ -331,7 +331,7 @@ levels = [
     "location": "Potter Lake - Lawrence, KS",
     "height": 10,
     "width": 15,
-    "file_path": "images/potterlake.png",
+    "file_name": "potterlake.png",
     "data": [
       [
         0,
@@ -510,7 +510,7 @@ levels = [
     "location": "Tennessee Street - Lawrence, KS",
     "height": 10,
     "width": 10,
-    "file_path": "images/house.png",
+    "file_name": "house.png",
     "data": [
       [
         1,
@@ -639,7 +639,7 @@ levels = [
     "location": "Rudy's Pizzeria - Lawrence, KS",
     "height": 10,
     "width": 10,
-    "file_path": "images/rudys.png",
+    "file_name": "rudys.png",
     "data": [
       [
         0,
@@ -768,7 +768,7 @@ levels = [
     "location": "The Dusty Bookshelf - Lawrence, KS",
     "height": 10,
     "width": 10,
-    "file_path": "images/dinah.png",
+    "file_name": "dinah.png",
     "data": [
       [
         0,
@@ -897,7 +897,7 @@ levels = [
     "location": "Burcham Park - Lawrence, KS",
     "height": 10,
     "width": 15,
-    "file_path": "images/river.png",
+    "file_name": "river.png",
     "data": [
       [
         1,
@@ -1076,7 +1076,7 @@ levels = [
     "location": "Denver, CO",
     "height": 10,
     "width": 10,
-    "file_path": "images/crepes.png",
+    "file_name": "crepes.png",
     "data": [
       [
         0,
