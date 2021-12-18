@@ -33,9 +33,40 @@ function loadGame() {
     levelsContainer.appendChild(cell);
   }
 
+  // If all levels have been completed...
+  const levelsComplete = [...Array(levels.length).keys()].every(i => Object.keys(COOKIES).includes(`${i}`));
+  if (levelsComplete) {
+    // Then show the completion message with how long it took to complete
+    const timeSeconds = [...Array(levels.length).keys()].reduce((acc, i) => acc + parseInt(COOKIES[i], 10), 0);
+    document.getElementById(ID_COMPLETION_TIME).innerText = formatTimeWithWords(timeSeconds);
+    document.getElementById(ID_COMPLETION_MESSAGE).style.display = '';
+  }
+
   // Set the selected level to be the first level
   animationStartTime = new Date().getTime();
   setSelectedLevel(0);
+}
+
+/**
+ * Formats the given time with words
+ * @param {number} timeSeconds The number of seconds to format
+ * @returns A formatted string of the time
+ */
+function formatTimeWithWords(timeSeconds) {
+  const hours = Math.floor(timeSeconds / (60 * 60));
+  const minutes = Math.floor(timeSeconds / 60) % 60;
+  const seconds = timeSeconds % 60;
+  let timeStr = '';
+  if (hours) {
+    timeStr += `${hours} hour${hours > 1 ? 's' : ''}`;
+  }
+  if (minutes) {
+    timeStr += `${hours ? seconds ? ', ' : ' and ' : ''}${minutes} minute${minutes > 1 ? 's' : ''}`;
+  }
+  if (seconds) {
+    timeStr += `${timeStr ? ' and ' : ''}${seconds} second${seconds > 1 ? 's' : ''}`;
+  }
+  return timeStr;
 }
 
 /**

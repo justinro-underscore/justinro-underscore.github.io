@@ -2,6 +2,10 @@
   margin-bottom: 0;
 }
 
+#completion-time {
+  font-weight: 700;
+}
+
 #levels {
   display: grid;
   row-gap: 20px;

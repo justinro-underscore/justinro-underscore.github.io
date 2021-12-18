@@ -1,4 +1,6 @@
 // IDs
+const ID_COMPLETION_MESSAGE = 'completion-msg';
+const ID_COMPLETION_TIME = 'completion-time';
 const ID_LEVELS = 'levels';
 const ID_LEVEL_DESC_PREVIEW_CONTAINER = 'level-description-preview-container';
 const ID_LEVEL_DESC_PREVIEW = 'level-description-preview';
