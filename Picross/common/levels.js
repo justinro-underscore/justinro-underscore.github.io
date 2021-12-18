@@ -1,7 +1,7 @@
 levels = [
   {
     "name": "KU",
-    "location": "Lawrence, KS",
+    "location": "Nunemaker Center - Lawrence, KS",
     "quote": "Where it all began...",
     "height": 5,
     "width": 10,
@@ -2006,7 +2006,7 @@ levels = [
   },
   {
     "name": "Milo",
-    "location": "Matti's Bathroom - Atlanta, GA",
+    "location": "Matti's Apartment - Atlanta, GA",
     "quote": "He's a menace, but we love him all the same",
     "height": 20,
     "width": 20,
