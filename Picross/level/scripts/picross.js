@@ -300,7 +300,6 @@ function moveSelected(keyCode, repeating) {
  * @param {string} actionKeyCode The key code of the action to take (assumes valid input)
  */
 function takeAction(actionKeyCode) {
-  setWin();
   // Get the current action being taken based on the controls
   const action = CONTROL_MAPPING[ACTION][actionKeyCode];
   // Get the current selected cell status
