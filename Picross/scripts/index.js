@@ -5,6 +5,8 @@ const COOKIES = getCookies();
 
 // The current level that is selected
 let currSelectedLevel;
+// Keeps track of the time since the start of the game for the animation
+let animationStartTime;
 
 /**
  * Sets up the game
@@ -32,6 +34,7 @@ function loadGame() {
   }
 
   // Set the selected level to be the first level
+  animationStartTime = new Date().getTime();
   setSelectedLevel(0);
 }
 
@@ -90,6 +93,10 @@ function setSelectedLevel(newSelectedLevel) {
     const selectedCell = document.getElementById(`level-${currSelectedLevel}`);
     selectedCell.classList.remove(CLASS_LEVEL_CELL_SELECTED);
   }
+
+  // Make sure the animation continues uninterrupted
+  const psuedoStyle = document.getElementById("psuedo-style");
+  psuedoStyle.innerHTML = `.${CLASS_LEVEL_CELL_SELECTED}::before { animation-delay: ${-(new Date().getTime() - animationStartTime) % 1500}ms; }`;
 
   // Set the new selected cell
   const newSelectedCell = document.getElementById(`level-${newSelectedLevel}`);

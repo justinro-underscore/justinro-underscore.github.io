@@ -149,4 +149,5 @@
   left: -6px;
   background-color: #11f;
   border-radius: 16px;
+  animation: flash-blue 1500ms infinite;
 }
