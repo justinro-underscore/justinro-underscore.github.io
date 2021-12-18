@@ -125,28 +125,40 @@ tr:nth-child(5n + 1):not(:last-child) > .cell:nth-child(5n + 1):not(:last-child)
   position: relative;
 }
 
-.numbers-selected {
-  background-color: #cff !important;
+tr:nth-child(1) > .numbers-selected {
+  background-image: linear-gradient(to top, #cff calc(100% - 15px), #fff0 100%) !important;
+}
+
+tr:nth-child(n + 2) > .numbers-selected {
+  background-image: linear-gradient(to left, #cff calc(100% - 15px), #fff0 100%) !important;
 }
 
 .numbers:nth-child(even) {
-  background-color: #eee;
+  background-image: linear-gradient(to top, #ddd calc(100% - 15px), #fff0 100%);
 }
 
 tr:nth-child(even) > .numbers {
-  background-color: #eee;
+  background-image: linear-gradient(to left, #ddd calc(100% - 15px), #fff0 100%);
+}
+
+.numbers:nth-child(odd) {
+  background-image: linear-gradient(to top, #fff calc(100% - 15px), #fff0 100%);
+}
+
+tr:nth-child(2n + 3) > .numbers {
+  background-image: linear-gradient(to left, #fff calc(100% - 15px), #fff0 100%);
 }
 
 .numbers-row {
   text-align: right;
-  padding-left: 6px;
+  padding-left: 14px;
   padding-right: 5px;
   vertical-align: middle;
 }
 
 .numbers-col {
   text-align: center;
-  padding-top: 5px;
+  padding-top: 10px;
   padding-bottom: 5px;
   vertical-align: bottom;
 }
