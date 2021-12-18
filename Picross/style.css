@@ -1,3 +1,7 @@
+#header {
+  margin-bottom: 0;
+}
+
 #levels {
   display: grid;
   row-gap: 20px;
