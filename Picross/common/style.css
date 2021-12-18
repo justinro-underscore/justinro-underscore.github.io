@@ -9,4 +9,5 @@ body {
   text-align: center;
   font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
   background-image: linear-gradient(#fff 30%, #ccc 70%, #aaa 100%);
+  background-attachment: fixed;
 }
