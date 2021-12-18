@@ -1,6 +1,6 @@
 @keyframes flash-blue {
   from {
-    background-color: #00f;
+    background-color: #08f;
   }
 
   50% {
@@ -8,7 +8,7 @@
   }
 
   to {
-    background-color: #00f;
+    background-color: #08f;
   }
 }
 

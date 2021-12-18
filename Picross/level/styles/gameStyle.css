@@ -34,6 +34,8 @@ tr {
   vertical-align: middle;
   background-color: #fff;
   border-radius: 2px;
+  transition-duration: 0.1s;
+  transition-property: background-color;
 }
 
 .cell::before {
