@@ -1,5 +1,7 @@
 // Defines the current level
 const LEVEL_NUM = parseInt(window.location.hash.slice(1));
+// Defines if automatic error checking should be enabled or not
+const ERROR_CHECKING = false;
 
 // The position of the selected cell
 let selectedPos;
@@ -366,13 +368,13 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
       // Fills cannot overwrite x-es
       if (currCellStatus !== CV_X_ED) {
         clearCellElem(cell);
-        // If this cell is supposed to be a fill...
-        if (solution.data[cellPos[1]][cellPos[0]] === 1) {
+        // If we have automatic error checking off OR if this cell is supposed to be a fill...
+        if (!ERROR_CHECKING || solution.data[cellPos[1]][cellPos[0]] === 1) {
           // Fill it in
           cell.classList.add(CLASS_CELL_FILLED);
           gameBoard[cellPos[1]][cellPos[0]] = CV_FILLED;
         }
-        // If this cell is supposed to be an X...
+        // If automatic error checking is enabled and this cell is supposed to be an X...
         else {
           // X it out, mark as missed
           cell.classList.add(CLASS_CELL_MISSED);
@@ -386,8 +388,8 @@ function takeInternalAction(internalAction = currInternalAction, cellPos = selec
       // X-es cannot overwrite fills
       if (currCellStatus !== CV_FILLED) {
         clearCellElem(cell);
-        // If this cell is supposed to be an X...
-        if (solution.data[cellPos[1]][cellPos[0]] !== 1) {
+        // If we have automatic error checking off OR if this cell is supposed to be an X...
+        if (!ERROR_CHECKING || solution.data[cellPos[1]][cellPos[0]] !== 1) {
           // X it out
           cell.classList.add(CLASS_CELL_X_ED);
           cell.innerText = CELL_X;
