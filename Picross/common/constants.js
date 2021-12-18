@@ -8,6 +8,11 @@ const ELEM_IMG = 'img';
 const ELEM_P = 'p';
 const ELEM_ANCHOR = 'a';
 const ELEM_BREAK = 'br';
+const ELEM_ICON = 'i'; // I know this is an italics element, but I'm only using it for icons
+
+// Classes
+const CLASS_FONT_AWESOME = 'fa';
+const CLASS_FONT_AWESOME_MAP_PIN = 'fa-map-pin';
 
 // Attributes
 const ATTR_ID = 'id';

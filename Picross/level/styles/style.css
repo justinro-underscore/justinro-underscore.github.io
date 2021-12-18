@@ -29,6 +29,10 @@ h1 {
   margin: 5px 0 10px 0;
 }
 
+#level-location > i {
+  margin-right: 5px;
+}
+
 #level-quote {
   font-size: 20px;
   margin-top: 0;

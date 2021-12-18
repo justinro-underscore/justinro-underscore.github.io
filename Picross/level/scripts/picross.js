@@ -660,7 +660,13 @@ function setWinScreen() {
   // Add level location
   const levelLocation = document.createElement(ELEM_P);
   levelLocation.setAttribute(ATTR_ID, ID_LEVEL_LOCATION);
-  levelLocation.innerText = solution.location;
+  // Create location pin icon
+  const locationPin = document.createElement(ELEM_ICON);
+  locationPin.classList.add(CLASS_FONT_AWESOME);
+  locationPin.classList.add(CLASS_FONT_AWESOME_MAP_PIN);
+  levelLocation.appendChild(locationPin);
+  // Add location text
+  levelLocation.innerHTML += solution.location;
   gameBoard.appendChild(levelLocation);
 
   // Add level quote, if it exists
