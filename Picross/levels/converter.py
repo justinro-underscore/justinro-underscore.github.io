@@ -2,7 +2,7 @@ from PIL import Image
 import sys
 import json
 
-def run(raw_file_path, level_name=None, location=None):
+def run(raw_file_path, level_name=None, location=None, quote=None):
   file_name = raw_file_path[4:-4]
   if level_name is None:
     level_name = file_name
@@ -20,6 +20,7 @@ def run(raw_file_path, level_name=None, location=None):
   game_data = {
     'name': level_name,
     'location': location,
+    'quote': quote if quote != None else '',
     'height': height,
     'width': width,
     'file_name': file_name + '.png',
@@ -35,10 +36,10 @@ try:
   if len(sys.argv) > 1:
     raw_file_path = sys.argv[1]
     if len(sys.argv) > 2:
-      run(raw_file_path, sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)
+      run(raw_file_path, sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None, sys.argv[4] if len(sys.argv) > 4 else None)
     else:
       run(raw_file_path)
   else:
-    print('python3 converter.py {{raw_file_path}} {{level_name}} {{location}}')
+    print('python3 converter.py {{raw_file_path}} {{level_name}} {{location}} {{quote}}')
 except RuntimeError as e:
   print('ERROR: ' + str(e))

@@ -5,6 +5,7 @@ const ID_TIMER = 'timer';
 const ID_SCREEN_OVERLAY = 'screen-overlay';
 const ID_LEVEL_NAME = 'level-name';
 const ID_LEVEL_LOCATION = 'level-location';
+const ID_LEVEL_QUOTE = 'level-quote';
 const ID_FINAL_IMG = 'final-img';
 const ID_REF_IMG = 'ref-img';
 

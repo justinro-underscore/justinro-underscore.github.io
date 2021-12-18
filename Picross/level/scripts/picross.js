@@ -300,6 +300,7 @@ function moveSelected(keyCode, repeating) {
  * @param {string} actionKeyCode The key code of the action to take (assumes valid input)
  */
 function takeAction(actionKeyCode) {
+  setWin();
   // Get the current action being taken based on the controls
   const action = CONTROL_MAPPING[ACTION][actionKeyCode];
   // Get the current selected cell status
@@ -662,6 +663,14 @@ function setWinScreen() {
   levelLocation.setAttribute(ATTR_ID, ID_LEVEL_LOCATION);
   levelLocation.innerText = solution.location;
   gameBoard.appendChild(levelLocation);
+
+  // Add level quote, if it exists
+  if (solution.quote) {
+    const levelQuote = document.createElement(ELEM_P);
+    levelQuote.setAttribute(ATTR_ID, ID_LEVEL_QUOTE);
+    levelQuote.innerText = solution.quote;
+    gameBoard.appendChild(levelQuote);
+  }
 
   // Add the final image
   const finalImg = document.createElement(ELEM_IMG);

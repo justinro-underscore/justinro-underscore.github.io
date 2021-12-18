@@ -2,6 +2,7 @@ levels = [
   {
     "name": "KU",
     "location": "Lawrence, KS",
+    "quote": "Where it all began...",
     "height": 5,
     "width": 10,
     "file_name": "ku.png",
@@ -71,6 +72,7 @@ levels = [
   {
     "name": "Prima Tazza",
     "location": "La Prima Tazza - Lawrence, KS",
+    "quote": "The first date, of many to come",
     "height": 10,
     "width": 10,
     "file_name": "primatazza.png",
@@ -200,6 +202,7 @@ levels = [
   {
     "name": "Spaghetti",
     "location": "Paisano's - Lawrence, KS",
+    "quote": "\"Look, I'm a walrus!\"",
     "height": 10,
     "width": 10,
     "file_name": "spaghetti.png",
@@ -329,6 +332,7 @@ levels = [
   {
     "name": "Potter Lake",
     "location": "Potter Lake - Lawrence, KS",
+    "quote": "\"What kind of music do you like?\"",
     "height": 10,
     "width": 15,
     "file_name": "potterlake.png",
@@ -508,6 +512,7 @@ levels = [
   {
     "name": "Matti's House",
     "location": "Tennessee Street - Lawrence, KS",
+    "quote": "Lots of good memories were made here",
     "height": 10,
     "width": 10,
     "file_name": "house.png",
@@ -637,6 +642,7 @@ levels = [
   {
     "name": "Rudy's",
     "location": "Rudy's Pizzeria - Lawrence, KS",
+    "quote": "We make a great couple, but we are not pizza compatible",
     "height": 10,
     "width": 10,
     "file_name": "rudys.png",
@@ -766,6 +772,7 @@ levels = [
   {
     "name": "Dinah",
     "location": "The Dusty Bookshelf - Lawrence, KS",
+    "quote": "I still think The Raven's better",
     "height": 10,
     "width": 10,
     "file_name": "dinah.png",
@@ -895,6 +902,7 @@ levels = [
   {
     "name": "Kansas River",
     "location": "Burcham Park - Lawrence, KS",
+    "quote": "I could go for some Pickleman's right now",
     "height": 10,
     "width": 15,
     "file_name": "river.png",
@@ -1074,6 +1082,7 @@ levels = [
   {
     "name": "Crepes",
     "location": "Moontime Crepes - Denver, CO",
+    "quote": "One year later...",
     "height": 10,
     "width": 10,
     "file_name": "crepes.png",
@@ -1203,6 +1212,7 @@ levels = [
   {
     "name": "Denver Beer Co.",
     "location": "Denver Beer Co. - Denver, CO",
+    "quote": "\"Welp, looks like I'm drinking another pint\"",
     "height": 15,
     "width": 15,
     "file_name": "beer.png",
@@ -1467,6 +1477,7 @@ levels = [
   {
     "name": "Goose",
     "location": "Sloan Lake - Denver, CO",
+    "quote": "\"Though I eat sandwiches in the valley of the shadow of death, I will fear no evil\"",
     "height": 15,
     "width": 15,
     "file_name": "goose.png",
@@ -1731,6 +1742,7 @@ levels = [
   {
     "name": "Floor & Decor",
     "location": "Floor & Decor - Atlanta, GA",
+    "quote": "The highlight of any trip to Atlanta",
     "height": 15,
     "width": 15,
     "file_name": "floordecor.png",
@@ -1995,6 +2007,7 @@ levels = [
   {
     "name": "Milo",
     "location": "Matti's Bathroom - Atlanta, GA",
+    "quote": "He's a menace, but we love him all the same",
     "height": 20,
     "width": 20,
     "file_name": "milo.png",
@@ -2444,6 +2457,7 @@ levels = [
   {
     "name": "Love",
     "location": "Coit Tower - San Francisco, CA",
+    "quote": "I love you Matti!",
     "height": 25,
     "width": 25,
     "file_name": "love.png",
