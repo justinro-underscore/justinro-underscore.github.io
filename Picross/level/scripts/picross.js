@@ -609,6 +609,7 @@ function setWin() {
   const timerElem = document.getElementById(ID_TIMER);
   timerElem.style.backgroundColor = COLOR_LIGHT_RED;
   timerElem.style.borderColor = COLOR_DARK_RED;
+  timerElem.style.boxShadow = `${COLOR_DARK_RED} 0 0 8px`;
 
   // Flash the screen
   document.getElementById(ID_SCREEN_OVERLAY).style.display = 'block';

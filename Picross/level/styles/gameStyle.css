@@ -5,6 +5,7 @@
   background-color: #ccc;
   border: 2px solid #888;
   border-radius: 5px;
+  box-shadow: #888 0 0 8px;
   font-family: 'Ubuntu Mono', monospace;
   font-weight: 700;
   font-size: 36px;
