@@ -1,7 +1,7 @@
 // Defines the current level
 const LEVEL_NUM = parseInt(window.location.hash.slice(1));
 // Defines if automatic error checking should be enabled or not
-const ERROR_CHECKING = false;
+const ERROR_CHECKING = true;
 
 // The position of the selected cell
 let selectedPos;
