@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello Jesse - CSS</title>
+    <meta charset="utf-8">
+
+    <link href="../index.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <a href="../index.html">Back to Home</a>
+
+    <h1>How does CSS interact with HTML?</h1>
+
+    <p style="font-weight: 600;">
+      CSS (Cascading Style Sheets) can be thought of as another language like HTML.<br />
+      It's used to define the styling of HTML elements
+    </p>
+
+    <div class="container">
+      <p>There are 3 ways we can write CSS:</p>
+      <div class="columns">
+        <div class="column">
+          <p>
+            1. Written in its own <code>.css</code> file<br />
+            <span style="color: gray;">Cleanest solution</span>
+          </p>
+
+<pre><span style="color: purple; font-style: italic;">index.css</span>
+
+.css-class {
+  color: red;
+  font-size: 18px;
+}
+</pre>
+        </div>
+        <div class="column">
+          <p>
+            2. Embedded in the <code>style</code> attribute of HTML elements<br />
+            <span style="color: gray;">A bit messier, but not too bad</span>
+          </p>
+
+<pre>&lt;p style="color: red; font-size: 18px;"&gt;
+  Test paragraph
+&lt;/p&gt;
+</pre>
+        </div>
+        <div>
+          <p>
+            3. Defined in the HTML file itself in a <code>&lt;style&gt;</code> HTML element<br />
+            <span style="color: gray;">Kinda messy imo</span>
+          </p>
+
+<pre><span style="color: purple; font-style: italic;">index.html</span>
+
+&lt;html&gt;
+  &lt;head&gt;
+    ...
+    &lt;style&gt;
+      .css-class {
+        color: red;
+        font-size: 18px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;p class="css-class"&gt;
+      Test paragraph
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      I'm gonna put together some files that you can use as a sandbox,<br />
+      but it's late and I put too much effort into this. I'll get to it tomorrow.
+    </p>
+
+    <div>
+      <h2>Helpful Links</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS" target="_blank">Mozilla's CSS Intro</a></li>
+        <li><a href="https://www.w3schools.com/Css/" target="_blank">W3's CSS Intro</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
