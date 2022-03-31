@@ -115,7 +115,7 @@ function _callSpotifyWithQuery(queryStr, podcast) {
   document.getElementById("no-results-text").style.display = 'none';
 
   const type = podcast ? "episode" : "track";
-  const query = `q=${encodeURI(queryStr)}&type=${type}&offset=${offset}&limit=6`;
+  const query = `q=${encodeURI(queryStr.replace('#', ''))}&type=${type}&offset=${offset}&limit=6`;
   fetch(`https://api.spotify.com/v1/search?${query}`, {
     headers: {"Authorization": `Bearer ${token}`}
   }).then(res => res.json()).then(
