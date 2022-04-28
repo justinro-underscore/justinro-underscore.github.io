@@ -1,16 +1,23 @@
-html, body {
+html {
+  height: 100%;
+  background-image: linear-gradient(144deg, #434343 0%, black 100%);
+}
+
+body {
   height: 95%;
   font-family: 'Courier New', Courier, monospace;
 }
 
 h1 {
   text-align: center;
+  color: #ddd;
 }
 
 p {
   font-size: 30px;
   font-weight: 700;
   margin: 10px;
+  color: #ddd;
 }
 
 #status-text {
@@ -47,5 +54,5 @@ p {
   left: 0;
   height: 100%;
   transition: 0.5s;
-  background-color: #f00;
+  background-image: linear-gradient(to right, #ff512f, #f09819);
 }
