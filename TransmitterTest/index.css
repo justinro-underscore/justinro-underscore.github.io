@@ -1,0 +1,51 @@
+html, body {
+  height: 95%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 10px;
+}
+
+#status-text {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s;
+  transition-timing-function: ease-out;
+}
+
+#progress-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+}
+
+#progress-bar {
+  vertical-align: middle;
+  margin: auto;
+  height: 50px;
+  width: 85%;
+  background-color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#progress-bar-progress {
+  position: relative;
+  left: 0;
+  height: 100%;
+  transition: 0.5s;
+  background-color: #f00;
+}
