@@ -6,18 +6,32 @@ html {
 body {
   height: 95%;
   font-family: 'Courier New', Courier, monospace;
+  text-align: center;
 }
 
-h1 {
-  text-align: center;
-  color: #ddd;
+@keyframes flash-white {
+  from {
+    color: #bbb;
+  }
+
+  50% {
+    color: #fff;
+  }
+
+  to {
+    color: #bbb;
+  }
+}
+
+h1, p {
+  color: #bbb;
+  animation: flash-white 2s infinite;
 }
 
 p {
   font-size: 30px;
   font-weight: 700;
   margin: 10px;
-  color: #ddd;
 }
 
 #status-text {
@@ -36,7 +50,6 @@ p {
   transform: translate(-50%, -50%);
   height: fit-content;
   width: 100%;
-  text-align: center;
 }
 
 #progress-bar {

@@ -54,5 +54,9 @@ function updatePercent() {
 
 function complete() {
   statusText.style.opacity = 0;
-  progressBarStatusText.innerText = 'Link Established!';
+  progressBarStatusText.innerText = 'Beacon Online!';
+  progressBarPercent.style.animation = 'initial';
+  progressBarPercent.style.color = '#fff';
+  progressBarStatusText.style.animation = 'initial';
+  progressBarStatusText.style.color = '#fff';
 }
