@@ -658,18 +658,6 @@ function setWinScreen() {
   levelName.innerText = solution.name;
   gameBoard.appendChild(levelName);
 
-  // Add level location
-  const levelLocation = document.createElement(ELEM_P);
-  levelLocation.setAttribute(ATTR_ID, ID_LEVEL_LOCATION);
-  // Create location pin icon
-  const locationPin = document.createElement(ELEM_ICON);
-  locationPin.classList.add(CLASS_FONT_AWESOME);
-  locationPin.classList.add(CLASS_FONT_AWESOME_MAP_PIN);
-  levelLocation.appendChild(locationPin);
-  // Add location text
-  levelLocation.innerHTML += solution.location;
-  gameBoard.appendChild(levelLocation);
-
   // Add level quote, if it exists
   if (solution.quote) {
     const levelQuote = document.createElement(ELEM_P);
@@ -693,12 +681,6 @@ function setWinScreen() {
   const seconds = Math.floor(timeSeconds % 60);
   time.innerText = `This took you${minutes ? ` ${minutes} minutes and` : ''} ${seconds} seconds, well done!`;
   gameBoard.appendChild(time);
-
-  // Add the reference image
-  const refImg = document.createElement(ELEM_IMG);
-  refImg.setAttribute(ATTR_ID, ID_REF_IMG);
-  refImg.setAttribute(ATTR_SRC, `../${REF_IMG_PATH}${solution.file_name}`);
-  gameBoard.appendChild(refImg);
 }
 
 /**
