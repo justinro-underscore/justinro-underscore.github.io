@@ -30,7 +30,40 @@
       		<h1 class="title index-title">PROJECTS</h1>
       	</div>
       </section>
-      <section class="section">
+      <section class="section thumbnails">
+        <fieldset>
+          <legend class="index-subtitle">Professional Work</legend>
+          <div class="tile is-ancestor">
+            <div class="proj-spacer">
+            </div>
+
+            <!-- Wordscapes - Professional Work -->
+            <div class="tile proj-container">
+              <a class="proj-i" href="#wordscapes" onclick="openPopup('wordscapes')">
+                <img src="Images/ProfessionalWork/Wordscapes/WordscapesThumbnail.png" alt="Wordscapes">
+              </a>
+              <a class="desc-text" href="#wordscapes" onclick="openPopup('wordscapes')">
+                <b>Wordscapes</b><br>
+                TODO Description
+              </a>
+            </div>
+
+            <!-- Bricks n Balls - Professional Work -->
+            <div class="tile proj-container">
+              <a class="proj-i" href="#bricksnballs" onclick="openPopup('bricksnballs')">
+                <img src="Images/ProfessionalWork/BricksNBalls/BricksNBallsThumbnail.png" alt="BricksNBalls">
+              </a>
+              <a class="desc-text" href="#bricksnballs" onclick="openPopup('bricksnballs')">
+                <b>Bricks n Balls</b><br>
+                TODO Description
+              </a>
+            </div>
+
+            <div class="proj-spacer">
+            </div>
+          </div>
+        </fieldset>
+
         <fieldset>
           <legend class="index-subtitle">Video Games</legend>
           <div class="tile is-ancestor">
@@ -361,6 +394,106 @@
     </main>
 
     <div id="popup-background" class="popup-background popup-background-hidden" onclick="closePopups()">
+      <div id="popup-wordscapes" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <a onclick="closePopups()">Back</a>
+        <h2>Wordscapes</h2>
+        <div class="link-container">
+          <a class="popup-link-button" href="https://apps.apple.com/us/app/wordscapes/id1207472156" target="_blank">
+            <i class="fa fa-apple" style="font-size:80px;color:#888"></i>
+          </a>
+          <a class="popup-link-button" href="https://play.google.com/store/apps/details?id=com.peoplefun.wordcross" target="_blank">
+            <i class="fa fa-google" style="font-size:80px;color:#888"></i>
+          </a>
+        </div>
+        <p>
+          TODO Description
+        </p>
+        <div class="columns has-text-centered stats-container">
+          <div class="column">
+            <b>Languages / Frameworks</b>
+            <ul>
+              <li>TODO</li>
+            </ul>
+          </div>
+          <div class="column">
+            <b>Skills Learned / Improved</b>
+            <ul>
+              <li>TODO</li>
+            </ul>
+          </div>
+          <div class="column">
+            <b>Other Notes</b>
+            <ul>
+              <li>TODO</li>
+            </ul>
+          </div>
+        </div>
+        <!-- TODO IMAGES -->
+        <!-- <div class="columns has-text-centered">
+          <div class="column proj-img">
+            <img src="Images/VideoGames/LostRaturn/LostRaturn1.gif">
+          </div>
+        </div>
+        <div class="columns has-text-centered">
+          <div class="column proj-img">
+            <img src="Images/VideoGames/LostRaturn/LostRaturn2.gif">
+          </div>
+          <div class="column proj-img">
+            <img src="Images/VideoGames/LostRaturn/LostRaturn3.gif">
+          </div>
+        </div> -->
+      </div>
+
+      <div id="popup-bricksnballs" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
+        <a onclick="closePopups()">Back</a>
+        <h2>Bricks n Balls</h2>
+        <div class="link-container">
+          <a class="popup-link-button" href="https://apps.apple.com/us/app/bricks-n-balls/id1331794412" target="_blank">
+            <i class="fa fa-apple" style="font-size:80px;color:#888"></i>
+          </a>
+          <a class="popup-link-button" href="https://play.google.com/store/apps/details?id=com.peoplefun.bricksnballs" target="_blank">
+            <i class="fa fa-google" style="font-size:80px;color:#888"></i>
+          </a>
+        </div>
+        <p>
+          TODO Description
+        </p>
+        <div class="columns has-text-centered stats-container">
+          <div class="column">
+            <b>Languages / Frameworks</b>
+            <ul>
+              <li>TODO</li>
+            </ul>
+          </div>
+          <div class="column">
+            <b>Skills Learned / Improved</b>
+            <ul>
+              <li>TODO</li>
+            </ul>
+          </div>
+          <div class="column">
+            <b>Other Notes</b>
+            <ul>
+              <li>TODO</li>
+            </ul>
+          </div>
+        </div>
+        <!-- TODO IMAGES -->
+        <!-- <div class="columns has-text-centered">
+          <div class="column proj-img">
+            <img src="Images/VideoGames/LostRaturn/LostRaturn1.gif">
+          </div>
+        </div>
+        <div class="columns has-text-centered">
+          <div class="column proj-img">
+            <img src="Images/VideoGames/LostRaturn/LostRaturn2.gif">
+          </div>
+          <div class="column proj-img">
+            <img src="Images/VideoGames/LostRaturn/LostRaturn3.gif">
+          </div>
+        </div> -->
+      </div>
+
       <div id="popup-dinosoar" class="popup popup-content-container" style="display: none" onclick="event.stopPropagation()">
         <a onclick="closePopups()">Back</a>
         <h2>Dino Soar</h2>
